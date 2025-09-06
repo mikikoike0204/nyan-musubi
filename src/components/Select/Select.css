@@ -1,0 +1,22 @@
+.select-wrapper {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  background-color: #535353;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  pointer-events: none;
+}
+
+.select-wrapper select {
+  appearance: none; 
+  cursor: pointer;
+  width: 100%;
+}

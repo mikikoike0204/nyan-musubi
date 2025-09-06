@@ -1,103 +1,477 @@
+import TopSlider from "@/components/TopSlider";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="mt-5">
+      <section>
+        <div className="c-container">
+          <TopSlider />
+          <div className="mt-10">
+            <p className="text-base text-center leading-7">
+              ねこを飼った事がないけれど、
+              <br />
+              困っている子を家族としてお迎えしたい。
+            </p>
+            <p className="text-base text-center leading-7 mt-5">
+              ねこについて詳しくないけど、
+              <br />
+              猫を保護したので家族になってくれる人を探したい。
+            </p>
+            <p className="text-base text-center mt-2 leading-7 mt-5">
+              そんな優しい人たちの間で、にゃんこのご縁を結びたい。
+              <br />
+              そう思って出来たサイト「にゃん結び」です。
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="mt-30">
+        <div className="c-container">
+          <h2 className="text-center text-xl bg-[#dfefff] border-dashed border-white border-2 shadow-[0_0_0_5px_#dfefff] px-1 py-1 text-center">
+            新着のねこちゃん
+          </h2>
+          <ul className="p-top__newcat-list flex flex-wrap gap-x-4 gap-y-4 mt-15">
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/top/newcat-list-img01.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    12ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">茶白</div>
+                    <h3 className="text-center text-base">人懐っこい男の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img02.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    6ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジトラ</div>
+                    <h3 className="text-center text-base">元気な女の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img03.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    3ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジ白</div>
+                    <h3 className="text-center text-base">おとなしい男の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img04.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    シニア / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">サバトラ</div>
+                    <h3 className="text-center text-base">
+                      落ち着きのある男の子
+                    </h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/top/newcat-list-img01.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    12ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">茶白</div>
+                    <h3 className="text-center text-base">人懐っこい男の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img02.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    6ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジトラ</div>
+                    <h3 className="text-center text-base">元気な女の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img03.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    3ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジ白</div>
+                    <h3 className="text-center text-base">おとなしい男の子</h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="relative block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff]"
+                href=""
+              >
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img04.jpg"
+                    alt="新着のねこちゃん画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    シニア / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">サバトラ</div>
+                    <h3 className="text-center text-base">
+                      落ち着きのある男の子
+                    </h3>
+                  </div>
+                  <button className="block py-2 px-5 rounded-full bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer">
+                    お気に入り❤︎
+                  </button>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <div className="table ml-auto mr-auto mt-15">
+            <a
+              href="/cats"
+              className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full px-10 font-medium border"
+            >
+              <span>もっと見る</span>
+              <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                >
+                  <path
+                    d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-30">
+        <div className="c-container">
+          <h2 className="text-center text-xl bg-[#dfefff] border-dashed border-white border-2 shadow-[0_0_0_5px_#dfefff] px-1 py-1">
+            家族が決定したねこちゃん
+          </h2>
+          <ul className="p-top__newcat-list flex flex-wrap gap-x-4 gap-y-4 mt-15">
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff] relative"
+                href=""
+              >
+                <div className="absolute top-2 right-2 z-1">
+                  <Image
+                    src="/top/icon-shuku.png"
+                    alt=""
+                    width="72"
+                    height="64"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/top/newcat-list-img01.jpg"
+                    alt="家族が決定したねこちゃんの画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    3ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジ白</div>
+                    <h3 className="text-center text-base">人懐っこい男の子</h3>
+                  </div>
+                  <div className="block py-2 px-1 bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer text-center mt-5">
+                    家族が決まりました！
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff] relative"
+                href=""
+              >
+                <div className="absolute top-2 right-2 z-1">
+                  <Image
+                    src="/top/icon-shuku.png"
+                    alt=""
+                    width="72"
+                    height="64"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img02.jpg"
+                    alt="家族が決定したねこちゃんの画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    6ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジトラ</div>
+                    <h3 className="text-center text-base">元気な女の子</h3>
+                  </div>
+                  <div className="block py-2 px-1 bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer text-center mt-5">
+                    家族が決まりました！
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff] relative"
+                href=""
+              >
+                <div className="absolute top-2 right-2 z-1">
+                  <Image
+                    src="/top/icon-shuku.png"
+                    alt=""
+                    width="72"
+                    height="64"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img03.jpg"
+                    alt="家族が決定したねこちゃんの画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    3ヶ月 / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">キジ白</div>
+                    <h3 className="text-center text-base">おとなしい男の子</h3>
+                  </div>
+                  <div className="block py-2 px-1 bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer text-center mt-5">
+                    家族が決まりました！
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li className="w-[calc((100%_-_1rem*3)_/_4)]">
+              <a
+                className="block border border-gray-300 px-4 py-4 hover:bg-[#dfefff] transition duration-300 hover:border-[#dfefff] relative"
+                href=""
+              >
+                <div className="absolute top-2 right-2 z-1">
+                  <Image
+                    src="/top/icon-shuku.png"
+                    alt=""
+                    width="72"
+                    height="64"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/sample/newcat-list-img04.jpg"
+                    alt="家族が決定したねこちゃんの画像"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center mt-5">
+                  <div className="text-center text-sm">
+                    ミックス ♂<br />
+                    シニア / 関東
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-center text-sm">サバトラ</div>
+                    <h3 className="text-center text-base">
+                      落ち着きのある男の子
+                    </h3>
+                  </div>
+                  <div className="block py-2 px-1 bg-[#4a90e2] text-white text-sm mt-5 cursor-pointer text-center mt-5">
+                    家族が決まりました！
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <div className="table ml-auto mr-auto mt-15">
+            <a
+              href="/adopted"
+              className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full px-10 font-medium border"
+            >
+              <span>もっと見る</span>
+              <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                >
+                  <path
+                    d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
