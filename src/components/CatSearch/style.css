@@ -1,0 +1,36 @@
+.p-cats-search__parameters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* gap-4 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.p-cats-search__item {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.p-cats-search__item.half {
+  width: calc((100% - 2rem) / 2); /* w-[calc((100%_-_2rem)_/_2)] */
+}
+
+.p-cats-search__label {
+  text-align: center;
+  width: 8.75rem; /* w-35 → 35 * 0.25rem = 8.75rem = 140px */
+  background-color: #e0e0e0; /* gray-300 */
+  height: 2rem; /* h-8 = 32px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+.p-cats-search__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem; /* gap-x-5 = 1.25rem, gap-y-2 = 0.5rem */
+}

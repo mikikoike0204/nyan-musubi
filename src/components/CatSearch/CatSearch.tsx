@@ -2,6 +2,7 @@
 import React from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import Select from "../Select/Select";
+import "./style.css";
 
 const hairColors = [
   "白系",
@@ -71,13 +72,11 @@ const other = ["一人暮らし相談可", "高齢者相談可"];
 
 export default function CatSearch() {
   return (
-    <ul className="flex flex-wrap gap-4">
+    <ul className="p-cats-search__parameters">
       {/* 毛色 */}
-      <li className="flex w-full gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          毛色
-        </div>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
+      <li className="p-cats-search__item">
+        <div className="p-cats-search__label">毛色</div>
+        <div className="p-cats-search__inputs">
           {hairColors.map((color) => (
             <Checkbox key={color} label={color} name="hairColor" />
           ))}
@@ -85,18 +84,14 @@ export default function CatSearch() {
       </li>
 
       {/* 募集地域 */}
-      <li className="flex w-[calc((100%_-_2rem)_/_2)] gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          募集地域
-        </div>
+      <li className="p-cats-search__item half">
+        <div className="p-cats-search__label">募集地域</div>
         <Select name="prefecture" options={prefectures} />
       </li>
 
       {/* 年齢 */}
-      <li className="flex w-[calc((100%_-_2rem)_/_2)] gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          年齢
-        </div>
+      <li className="p-cats-search__item half">
+        <div className="p-cats-search__label">年齢</div>
         <Select
           name="age"
           options={[
@@ -108,10 +103,8 @@ export default function CatSearch() {
       </li>
 
       {/* 性別 */}
-      <li className="flex w-[calc((100%_-_2rem)_/_2)] gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          性別
-        </div>
+      <li className="p-cats-search__item half">
+        <div className="p-cats-search__label">性別</div>
         <Select
           name="gender"
           options={[
@@ -123,10 +116,8 @@ export default function CatSearch() {
       </li>
 
       {/* 避妊・去勢 */}
-      <li className="flex w-[calc((100%_-_2rem)_/_2)] gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          避妊・去勢
-        </div>
+      <li className="p-cats-search__item half">
+        <div className="p-cats-search__label">避妊・去勢</div>
         <Select
           name="neuter"
           options={[
@@ -137,11 +128,9 @@ export default function CatSearch() {
       </li>
 
       {/* その他条件 */}
-      <li className="flex w-[calc((100%_-_2rem)_/_2)] gap-2">
-        <div className="text-center w-35 bg-gray-300 h-8 flex items-center justify-center shrink-0">
-          その他条件
-        </div>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
+      <li className="p-cats-search__item half">
+        <div className="p-cats-search__label">その他条件</div>
+        <div className="p-cats-search__inputs">
           {other.map((other) => (
             <Checkbox key={other} label={other} name="other" />
           ))}

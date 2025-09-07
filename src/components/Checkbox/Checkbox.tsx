@@ -1,6 +1,6 @@
 // src/components/Checkbox/Checkbox.tsx
 import React from "react";
-import "./Checkbox.css";
+import "./style.css";
 
 type CheckboxProps = {
   label: string;
