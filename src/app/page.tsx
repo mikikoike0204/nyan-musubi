@@ -1,4 +1,4 @@
-import TopSlider from "@/components/TopSlider";
+import TopSlider from "@/components/TopSlider/TopSlider";
 import Image from "next/image";
 
 export default function Home() {
