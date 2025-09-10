@@ -42,7 +42,9 @@ export default function Favorites() {
                       人懐っこい男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -66,7 +68,9 @@ export default function Favorites() {
                     <div className="p-top-newcat__text2-s">キジトラ</div>
                     <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -92,7 +96,9 @@ export default function Favorites() {
                       おとなしい男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -118,7 +124,9 @@ export default function Favorites() {
                       落ち着きのある男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -144,7 +152,9 @@ export default function Favorites() {
                       人懐っこい男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -168,7 +178,9 @@ export default function Favorites() {
                     <div className="p-top-newcat__text2-s">キジトラ</div>
                     <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -194,7 +206,9 @@ export default function Favorites() {
                       おとなしい男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済み❤︎
+                  </button>
                 </div>
               </a>
             </li>
@@ -220,7 +234,9 @@ export default function Favorites() {
                       落ち着きのある男の子
                     </h3>
                   </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                  <button className="p-top-newcat__fav added">
+                    お気に入り済❤︎
+                  </button>
                 </div>
               </a>
             </li>

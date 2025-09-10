@@ -1,11 +1,11 @@
 .p-cats-parameters {
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
-.p-cats-parameter__content {
+.p-cats-parameters__form {
     margin-top: 50px;
-    padding: 30px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #ccc;
+    padding: 40px
 }
 
 .p-cats-list__sort {

@@ -162,6 +162,11 @@ a:hover {
 	text-align: center;
 }
 
+.p-top-newcat__fav.added {
+    background-color: pink;
+
+}
+
 .p-top-newcat__more {
 	margin-top: 50px;
 }

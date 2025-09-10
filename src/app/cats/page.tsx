@@ -30,8 +30,8 @@ export default function Cats() {
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">絞り込み条件</h2>
           </div>
-          <div className="p-cats-parameter__content">
-            <form className="p-cats-parameter__form" action="">
+          <div className="p-cats-parameters__content">
+            <form className="p-cats-parameters__form" action="">
               <CatSearch />
               <div className="p-top-newcat__more">
                 <button type="submit" className="c-common-btn">

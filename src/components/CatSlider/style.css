@@ -1,0 +1,46 @@
+/* src/styles/catSlider.css */
+
+.p-detail-slider-wrapper {
+
+}
+
+.p-detail-slider__main {
+  width: 760px;
+  height: 420px;
+}
+
+.p-detail-slider__main-slide {
+  display: block;
+  background-color: #d1d5db;
+}
+
+.p-detail-slider__main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.p-detail-slider__thumb {
+  margin-top: 30px;
+}
+
+.p-detail-slider__thumb-slide {
+  width: 120px;
+  height: 120px;
+  display: block;
+  cursor: pointer;
+}
+
+.p-detail-slider__thumb-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #333;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 30px;
+}
