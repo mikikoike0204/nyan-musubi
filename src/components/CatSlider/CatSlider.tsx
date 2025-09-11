@@ -19,25 +19,29 @@ export default function CatSlider({ images }: CatSliderProps) {
 
   return (
     <div className="p-detail-slider-wrapper">
-      {/* メインスライダー */}
-      <Swiper
-        modules={[Thumbs, Navigation]}
-        thumbs={{ swiper: thumbsSwiper }}
-        navigation
-        className="p-detail-slider__main"
-      >
-        {images.map((src, i) => (
-          <SwiperSlide key={i} className="p-detail-slider__main-slide">
-            <Image
-              src={src}
-              alt={`猫画像 ${i}`}
-              fill
-              style={{ objectFit: "contain" }}
-              className="p-detail-slider__main-image"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="p-detail-slider__main-wrapper">
+        <div className="p-detail-slider__fav"></div>
+        {/* <div className="p-detail-slider__fav added"></div> */}
+        {/* メインスライダー */}
+        <Swiper
+          modules={[Thumbs, Navigation]}
+          thumbs={{ swiper: thumbsSwiper }}
+          navigation
+          className="p-detail-slider__main"
+        >
+          {images.map((src, i) => (
+            <SwiperSlide key={i} className="p-detail-slider__main-slide">
+              <Image
+                src={src}
+                alt={`猫画像 ${i}`}
+                fill
+                style={{ objectFit: "contain" }}
+                className="p-detail-slider__main-image"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       {/* サムネイルスライダー */}
       <Swiper
