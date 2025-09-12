@@ -72,6 +72,8 @@ a:hover {
 }
 
 
+/* CatList コンポーネント分けた後で整理 */
+/* ============================================ */
 
 .p-top-newcat {
 	margin-top: 50px;
@@ -148,6 +150,18 @@ a:hover {
   margin-top: 20px;
   cursor: pointer;
 	text-align: center;
+}
+
+.p-top-newcat__adopted-label {
+  display: block;
+  padding: 0.5rem 0.25rem; /* py-2 px-1 */
+  background-color: #4a90e2;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: 1.25rem;
+  cursor: pointer;
+  text-align: center;
 }
 
 .p-top-newcat__fav.added {
