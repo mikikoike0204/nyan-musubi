@@ -53,15 +53,16 @@ a:hover {
 	margin: 0 auto;
 	min-width: 235px;
 	padding: 0 20px;
-  line-height: 2.5rem;                 /* h-10 = 2.5rem = 40px */
-  overflow: hidden;               /* overflow-hidden */
-  border-radius: 30px;          /* rounded-full */
+  line-height: 2.5rem; 
+  overflow: hidden; 
+  border-radius: 30px;
 	text-align: center;
-  font-weight: 500;               /* font-medium */
-  border: 1px solid gray;         /* border = 1px solid 黒 (Tailwind デフォルト) */
-  cursor: pointer;                /* 任意で追加 */
-  background-color: #fff;         /* 任意で背景色指定 */
+  font-weight: 500;
+  border: 1px solid gray;
+  cursor: pointer;
+  background-color: #fff;
 	box-shadow: 0 4px 0 gray;
+  transition: .3s ease;
 }
 
 .c-common-btn:hover {
@@ -70,20 +71,7 @@ a:hover {
 	opacity: 1;
 }
 
-/* TOP */
-/* ============================================ */
-.p-top-mv__desc {
-	margin-top: 40px;
-}
 
-.p-top-mv__text {
-	text-align: center;
-	line-height: 1.5;
-}
-
-.p-top-mv__text + .p-top-mv__text {
-	margin-top: 15px;
-}
 
 .p-top-newcat {
 	margin-top: 50px;

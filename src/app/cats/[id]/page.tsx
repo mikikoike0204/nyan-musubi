@@ -79,9 +79,11 @@ export default async function CatDetail({ params }: Props) {
               </div>
             </div>
           </div>
-          <a className="p-detail-desc__contact" href="">
-            応募する・問い合わせる
-          </a>
+          <div className="p-detail-desc__contact">
+            <button className="c-common-btn" type="submit">
+              応募する・問い合わせる
+            </button>
+          </div>
         </div>
       </section>
 

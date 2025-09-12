@@ -1,6 +1,7 @@
 import TopSlider from "@/components/TopSlider/TopSlider";
 import Image from "next/image";
 import Link from "next/link";
+import "./style.css"
 
 export default function Home() {
   return (

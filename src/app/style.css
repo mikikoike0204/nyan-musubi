@@ -1,0 +1,14 @@
+/* TOP */
+/* ============================================ */
+.p-top-mv__desc {
+	margin-top: 40px;
+}
+
+.p-top-mv__text {
+	text-align: center;
+	line-height: 1.5;
+}
+
+.p-top-mv__text + .p-top-mv__text {
+	margin-top: 15px;
+}
