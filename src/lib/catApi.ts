@@ -30,7 +30,7 @@ const cats: Cat[] = [
       "/sample/cat-slide05.jpg",
       "/sample/cat-slide06.jpg",
       "/sample/cat-slide07.jpg",
-    ], 
+    ],
   },
 ];
 

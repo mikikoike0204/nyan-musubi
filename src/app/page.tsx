@@ -1,7 +1,7 @@
 import TopSlider from "@/components/TopSlider/TopSlider";
 import Image from "next/image";
 import Link from "next/link";
-import "./style.css"
+import "./style.css";
 import CatList from "@/components/CatList/CatList";
 
 export default function Home() {
@@ -36,7 +36,6 @@ export default function Home() {
             <h2 className="c-section-title">新着のねこちゃん</h2>
           </div>
           <CatList />
-
         </div>
       </section>
 
@@ -148,7 +147,7 @@ export default function Home() {
                   </div>
                   <div className="p-top-newcat__adopted-label">
                     家族が決まりました！
-                  </div>  
+                  </div>
                 </div>
               </a>
             </li>

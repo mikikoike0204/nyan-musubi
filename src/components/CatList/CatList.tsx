@@ -26,9 +26,7 @@ export default function CatList() {
               </div>
               <div className="p-top-newcat__text2">
                 <div className="p-top-newcat__text2-s">茶白</div>
-                <h3 className="p-top-newcat__text2-title">
-                  人懐っこい男の子
-                </h3>
+                <h3 className="p-top-newcat__text2-title">人懐っこい男の子</h3>
               </div>
               <button className="p-top-newcat__fav">お気に入り❤︎</button>
             </div>
@@ -76,9 +74,7 @@ export default function CatList() {
               </div>
               <div className="p-top-newcat__text2">
                 <div className="p-top-newcat__text2-s">キジ白</div>
-                <h3 className="p-top-newcat__text2-title">
-                  おとなしい男の子
-                </h3>
+                <h3 className="p-top-newcat__text2-title">おとなしい男の子</h3>
               </div>
               <button className="p-top-newcat__fav">お気に入り❤︎</button>
             </div>
@@ -128,9 +124,7 @@ export default function CatList() {
               </div>
               <div className="p-top-newcat__text2">
                 <div className="p-top-newcat__text2-s">茶白</div>
-                <h3 className="p-top-newcat__text2-title">
-                  人懐っこい男の子
-                </h3>
+                <h3 className="p-top-newcat__text2-title">人懐っこい男の子</h3>
               </div>
               <button className="p-top-newcat__fav">お気に入り❤︎</button>
             </div>
@@ -178,9 +172,7 @@ export default function CatList() {
               </div>
               <div className="p-top-newcat__text2">
                 <div className="p-top-newcat__text2-s">キジ白</div>
-                <h3 className="p-top-newcat__text2-title">
-                  おとなしい男の子
-                </h3>
+                <h3 className="p-top-newcat__text2-title">おとなしい男の子</h3>
               </div>
               <button className="p-top-newcat__fav">お気に入り❤︎</button>
             </div>
@@ -221,4 +213,3 @@ export default function CatList() {
     </>
   );
 }
-

@@ -33,7 +33,9 @@ export default function Login() {
                 </div>
               </div>
               <div className="p-login__item">
-                <div className="p-login__item-head">メールアドレス（確認用）</div>
+                <div className="p-login__item-head">
+                  メールアドレス（確認用）
+                </div>
                 <div className="p-login__item-desc">
                   <input
                     className="p-login__item-desc-input"
