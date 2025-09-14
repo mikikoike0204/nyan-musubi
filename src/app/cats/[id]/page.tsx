@@ -4,11 +4,7 @@ import { fetchCatById } from "@/lib/catApi";
 import "./style.css";
 import Image from "next/image";
 
-interface Props {
-  params: { id: string };
-}
-
-export default async function CatDetail({ params }: Props) {
+export default async function CatDetail({ params }: any) {
   const cat = await fetchCatById(params.id);
 
   if (!cat) {
