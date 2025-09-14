@@ -15,3 +15,7 @@ out/
 # Build outputs
 dist/
 build/
+
+# Other generated files
+*.d.ts
+coverage/
