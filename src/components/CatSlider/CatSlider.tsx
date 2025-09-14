@@ -3,19 +3,22 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs } from "swiper/modules";
 import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper/types";
+import { useState } from "react";
+import Image from "next/image";
+import "./style.css";
+
+// Swiperのスタイルをインポート
 import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/navigation";
-import "./style.css";
-import { useState } from "react";
-import Image from "next/image";
 
 interface CatSliderProps {
   images: string[];
 }
 
 export default function CatSlider({ images }: CatSliderProps) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
     <div className="p-detail-slider-wrapper">

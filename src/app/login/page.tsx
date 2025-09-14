@@ -42,9 +42,9 @@ export default function Login() {
                   />
                 </div>
               </div>
-              <a className="p-login__link" href="">
+              <Link className="p-login__link" href="">
                 ログインメールアドレス・パスワードをお忘れの方
-              </a>
+              </Link>
               <div className="p-login__btn">
                 <button className="c-common-btn" type="submit">
                   ログインする

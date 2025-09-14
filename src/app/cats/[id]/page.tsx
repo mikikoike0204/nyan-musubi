@@ -2,10 +2,13 @@
 import CatSlider from "@/components/CatSlider/CatSlider";
 import { fetchCatById } from "@/lib/catApi";
 import "./style.css";
-import Image from "next/image";
+interface Props {
+  params: Promise<{ id: string }>; // Promise型に変更
+}
 
-export default async function CatDetail({ params }: any) {
-  const cat = await fetchCatById(params.id);
+export default async function CatDetail({ params }: Props) {
+  const { id } = await params;
+  const cat = await fetchCatById(id);
 
   if (!cat) {
     return <div>ねこちゃんが見つかりませんでした。</div>;
