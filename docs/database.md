@@ -31,7 +31,7 @@
 | health_condition | TEXT     | NO   | 健康状態                         |
 | created_at       | DATETIME | YES  | 登録日時                         |
 | updated_at       | DATETIME | YES  | 更新日時                         |
-| adopted          | BOOLEAN  | YES  | 家族が決定したがどうか             |
+| adopted          | BOOLEAN  | YES  | 譲渡が決定したかどうか             |
 
 ※ 後で追加するかもしれない
 | fiv_status       | BOOLEAN  | YES  | 猫エイズ（FIV）                  |
