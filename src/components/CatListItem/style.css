@@ -79,6 +79,7 @@
   margin-top: 1.25rem;
   cursor: pointer;
   text-align: center;
+  width: 100%;
 }
 
 .p-top-newcat__fav.added {

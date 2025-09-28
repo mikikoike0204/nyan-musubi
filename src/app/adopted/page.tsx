@@ -1,22 +1,185 @@
-import React from "react";
+// src/app/adopted/page.tsx
+"use client";
+
+import React, { useEffect, useState } from "react";
 import CatSearch from "@/components/CatSearch/CatSearch";
-import Image from "next/image";
 import Select from "@/components/Select/Select";
+import CatList from "@/components/CatList/CatList";
+import { Cat } from "@/types/cat";
+import { createBrowserClient } from "@supabase/ssr";
+import Pagination from "@/components/Pagination/Pagination";
 import "./style.css";
 
-export default function Cats() {
+// Supabaseクライアントの初期化
+const supabase = createBrowserClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+const ITEMS_PER_PAGE = 8; // 1ページあたりの表示件数
+
+export default function AdoptedCats() {
+  const [cats, setCats] = useState<Cat[]>([]);
+  const [filteredCats, setFilteredCats] = useState<Cat[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState("desc");
+
+  useEffect(() => {
+    fetchCats();
+  }, []);
+
+  // 現在のページに表示するデータを計算
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    let sortedCats = [...filteredCats];
+
+    // ソート処理
+    if (sortOrder === "asc") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+    } else if (sortOrder === "desc") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+    } else if (sortOrder === "updated") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(b.updated_at || b.created_at).getTime() -
+          new Date(a.updated_at || a.created_at).getTime()
+      );
+    }
+
+    return sortedCats.slice(startIndex, endIndex);
+  };
+
+  // 総ページ数を計算
+  const totalPages = Math.ceil(filteredCats.length / ITEMS_PER_PAGE);
+
+  // データ取得（譲渡済みのみ取得）
+  const fetchCats = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { data, error } = await supabase
+        .from("cat_adoption_info")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .eq("adopted", true); // 譲渡済みの猫のみ取得
+
+      if (error) throw error;
+
+      setCats(data || []);
+      setFilteredCats(data || []);
+    } catch (err) {
+      console.error("Error fetching adopted cats:", err);
+      setError("譲渡済みの猫の情報を取得できませんでした。");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // フィルタリング
+  const handleSearch = (filters: any) => {
+    let result = cats;
+
+    // 都道府県でフィルタリング
+    if (filters.prefecture) {
+      result = result.filter((c) => c.prefecture === filters.prefecture);
+    }
+
+    // 毛色でフィルタリング
+    if (filters.color && filters.color.length > 0) {
+      result = result.filter((c) => filters.color.includes(c.color));
+    }
+
+    // 年齢でフィルタリング
+    if (filters.age) {
+      result = result.filter((c) => c.age === filters.age);
+    }
+
+    // 性別でフィルタリング
+    if (filters.gender) {
+      result = result.filter((c) => c.gender === filters.gender);
+    }
+
+    // ワクチン接種状況でフィルタリング
+    if (filters.vaccinated !== undefined) {
+      result = result.filter((c) => c.vaccinated === filters.vaccinated);
+    }
+
+    // 避妊・去勢でフィルタリング
+    if (filters.neutered !== undefined) {
+      result = result.filter((c) => c.neutered === filters.neutered);
+    }
+
+    // 単身者応募でフィルタリング
+    if (filters.single_ok !== undefined) {
+      result = result.filter((c) => c.single_ok === filters.single_ok);
+    }
+
+    // 高齢者応募でフィルタリング
+    if (filters.elderly_ok !== undefined) {
+      result = result.filter((c) => c.elderly_ok === filters.elderly_ok);
+    }
+
+    setFilteredCats(result);
+    setCurrentPage(1); // 検索時は1ページ目に戻る
+  };
+
+  // ソート変更ハンドラ
+  const handleSortChange = (value: string) => {
+    setSortOrder(value);
+    setCurrentPage(1); // ソート変更時は1ページ目に戻る
+  };
+
+  // ページ変更ハンドラ
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // ページトップにスクロール
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // ローディング
+  if (loading)
+    return (
+      <div className="p-top-newcat__loading">
+        <p>読み込み中...</p>
+      </div>
+    );
+
+  // エラー
+  if (error)
+    return (
+      <div className="p-top-newcat__error">
+        <p>{error}</p>
+        <button onClick={fetchCats} className="c-common-btn">
+          再試行
+        </button>
+      </div>
+    );
+
+  const currentPageData = getCurrentPageData();
+
   return (
     <div className="c-section-wrapper">
+      {/* メインビジュアル */}
       <section className="p-sub-mv">
         <div className="c-container">
           <div className="p-sub-mv__content">
             <div
               className="p-sub-mv__image"
-              style={{ backgroundImage: "url('/favorites/bg-mv.jpg')" }}
+              style={{ backgroundImage: "url('/adopted/bg-mv.jpg')" }}
             ></div>
             <div className="p-sub-mv__bg"></div>
             <h1 className="p-sub-mv__title">
-              {" "}
               家族が決まった
               <br />
               ねこちゃん一覧
@@ -25,310 +188,76 @@ export default function Cats() {
         </div>
       </section>
 
-      {/* <section className="c-section p-cats-parameters">
+      {/* 絞り込み条件 */}
+      <section className="c-section p-cats-parameters">
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">絞り込み条件</h2>
           </div>
           <div className="p-cats-parameters__content">
-            <form className="p-cats-parameters__form" action="">
-              <CatSearch />
-              <div className="p-top-newcat__more">
-                <button type="submit" className="c-common-btn">
-                  検索する
-                </button>
-              </div>
-            </form>
+            <CatSearch onSearch={handleSearch} />
           </div>
         </div>
-      </section> */}
+      </section>
 
+      {/* 猫一覧 */}
       <section className="c-section p-cats-list">
         <div className="c-container">
-          <div className="p-cats-list__sort">
-            <Select
-              name="sort"
-              options={[
-                { value: "desc", label: "登録が新しい順" },
-                { value: "asc", label: "登録が古い順" },
-                { value: "updated", label: "情報の更新順" },
-              ]}
-            />
-          </div>
-          <ul className="p-top-newcat__list">
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/top/newcat-list-img01.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
+          {/* データなしの場合のメッセージ */}
+          {filteredCats.length === 0 ? (
+            <div className="p-top-newcat__empty">
+              {cats.length === 0 ? (
+                <p>現在、譲渡済みの猫はいません。</p>
+              ) : (
+                <>
+                  <p>条件に合う猫が見つかりませんでした。</p>
+                  <p>検索条件を変更してお試しください。</p>
+                </>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="p-cats-list__info">
+                <div className="">
+                  <p>
+                    検索結果: {filteredCats.length}件 / 全{cats.length}件
+                    {totalPages > 1 && (
+                      <span>
+                        {" "}
+                        (ページ: {currentPage}/{totalPages})
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div className="p-cats-list__sort">
+                  <Select
+                    name="sort"
+                    value={sortOrder}
+                    options={[
+                      { value: "desc", label: "登録が新しい順" },
+                      { value: "asc", label: "登録が古い順" },
+                      { value: "updated", label: "情報の更新順" },
+                    ]}
+                    onChange={handleSortChange}
                   />
                 </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    12ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">茶白</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      人懐っこい男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img02.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    6ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">キジトラ</div>
-                    <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img03.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    3ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">キジ白</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      おとなしい男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img04.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    シニア / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">サバトラ</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      落ち着きのある男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/top/newcat-list-img01.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    12ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">茶白</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      人懐っこい男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img02.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    6ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">キジトラ</div>
-                    <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img03.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    3ヶ月 / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">キジ白</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      おとなしい男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-            <li className="p-top-newcat__item">
-              <a className="p-top-newcat__link" href="">
-                <div className="p-top-newcat__image">
-                  <Image
-                    src="/sample/newcat-list-img04.jpg"
-                    alt="新着のねこちゃん画像"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="p-top-newcat__image-pic"
-                  />
-                </div>
-                <div className="p-top-newcat__desc">
-                  <div className="p-top-newcat__text1">
-                    ミックス ♂<br />
-                    シニア / 関東
-                  </div>
-                  <div className="p-top-newcat__text2">
-                    <div className="p-top-newcat__text2-s">サバトラ</div>
-                    <h3 className="p-top-newcat__text2-title">
-                      落ち着きのある男の子
-                    </h3>
-                  </div>
-                  <button className="p-top-newcat__fav">お気に入り❤︎</button>
-                </div>
-              </a>
-            </li>
-          </ul>
+              </div>
+              <CatList
+                limit={ITEMS_PER_PAGE}
+                cats={currentPageData}
+                showAdopted={true}
+              />
+            </>
+          )}
 
-          <div className="c-pagination table ml-auto mr-auto mt-15">
-            <ol className="c-pagination__list flex justify-center items-center gap-x-3">
-              <li className="c-pagination__item w-10 h-20">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center arrow prev-arrow w-full h-full"
-                  href=""
-                >
-                  <Image
-                    src="/common/icon-prev-arrow.svg"
-                    alt=""
-                    width={20}
-                    height={15}
-                    className="c-pagination__arrow"
-                  />
-                </a>
-              </li>
-              <li className="c-pagination__item current border w-10 h-10 flex direction-col justify-center items-center">
-                1
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  2
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  3
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  4
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  5
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center arrow next-arrow w-10 h-10"
-                  href=""
-                >
-                  <Image
-                    src="/common/icon-next-arrow.svg"
-                    alt=""
-                    width={20}
-                    height={15}
-                    className="c-pagination__arrow"
-                  />
-                </a>
-              </li>
-            </ol>
-          </div>
+          {/* ページネーション */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </section>
     </div>
