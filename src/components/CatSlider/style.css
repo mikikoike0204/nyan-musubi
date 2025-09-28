@@ -27,10 +27,15 @@
 }
 
 .p-detail-slider__thumb-slide {
-  width: 120px;
-  height: 120px;
+  width: 120px !important;
+  height: 120px !important;
   display: block;
   cursor: pointer;
+  opacity: 0.5;
+}
+
+.p-detail-slider__thumb-slide.swiper-slide-thumb-active {
+  opacity: 1;
 }
 
 .p-detail-slider__thumb-image {
@@ -39,11 +44,13 @@
   display: block;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   color: #333;
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
+.swiper-button-next:after,
+.swiper-button-prev:after {
   font-size: 30px;
 }
 

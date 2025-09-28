@@ -1,3 +1,4 @@
+// src/components/CatSlider/CatSlider.tsx
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -38,6 +39,7 @@ export default function CatSlider({ images }: CatSliderProps) {
                 src={src}
                 alt={`猫画像 ${i}`}
                 fill
+                sizes="760px"
                 style={{ objectFit: "contain" }}
                 className="p-detail-slider__main-image"
               />
@@ -61,6 +63,7 @@ export default function CatSlider({ images }: CatSliderProps) {
               src={src}
               alt={`サムネイル ${i}`}
               fill
+              sizes="120px"
               style={{ objectFit: "cover" }}
               className="p-detail-slider__thumb-image"
             />
