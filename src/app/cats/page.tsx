@@ -5,25 +5,15 @@ import CatSearch from "@/components/CatSearch/CatSearch";
 import Select from "@/components/Select/Select";
 import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
-import { createClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 import "./style.css";
 import Image from "next/image";
 
 // Supabaseクライアントの初期化
-const supabase = createClient(
+const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
-
-interface CatsProps {
-  limit: number; // 表示件数の制限
-  showAdopted?: boolean; // 譲渡済みの猫を表示するかどうか
-}
-
-// 年齢を表示用に変換する関数（そのまま表示）
-const getAgeDisplay = (age: Cat["age"]): string => {
-  return age;
-};
 
 // 性別を表示用に変換する関数
 const getGenderDisplay = (gender: Cat["gender"]): string => {
@@ -44,7 +34,7 @@ interface CatsProps {
   showAdopted?: boolean; // 譲渡済みの猫を表示するかどうか
 }
 
-export default function Cats({ limit, showAdopted }: CatsProps) {
+export default function Cats() {
   const [cats, setCats] = useState<Cat[]>([]);
   const [filteredCats, setFilteredCats] = useState<Cat[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +42,7 @@ export default function Cats({ limit, showAdopted }: CatsProps) {
 
   useEffect(() => {
     fetchCats();
-  }, [limit, showAdopted]);
+  }, []);
 
   const fetchCats = async () => {
     try {
@@ -63,16 +53,10 @@ export default function Cats({ limit, showAdopted }: CatsProps) {
         .from("cat_adoption_info")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(limit);
+        .limit(12);
 
       // adopted=false 固定
       query = query.eq("adopted", false);
-
-      if (showAdopted === false) {
-        query = query.eq("adopted", false);
-      } else if (showAdopted === true) {
-        query = query.eq("adopted", true);
-      }
 
       const { data, error } = await query;
       if (error) throw error;
