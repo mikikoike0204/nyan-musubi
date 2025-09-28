@@ -176,7 +176,7 @@ export default function Cats() {
           <div className="p-sub-mv__content">
             <div
               className="p-sub-mv__image"
-              style={{ backgroundImage: "url('/favorites/bg-mv.jpg')" }}
+              style={{ backgroundImage: "url('/cats/bg-mv.jpg')" }}
             ></div>
             <div className="p-sub-mv__bg"></div>
             <h1 className="p-sub-mv__title">
