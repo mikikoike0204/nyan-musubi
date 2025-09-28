@@ -61,39 +61,50 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 空文字列を除去し、boolean値を適切に変換
-    const cleanedFilters = {
-      prefecture: filters.prefecture || undefined,
-      color: filters.color.length > 0 ? filters.color : undefined,
-      age: filters.age || undefined,
-      gender: filters.gender || undefined,
-      vaccinated:
-        filters.vaccinated === "true"
-          ? true
-          : filters.vaccinated === "false"
-          ? false
-          : undefined,
-      neutered:
-        filters.neutered === "true"
-          ? true
-          : filters.neutered === "false"
-          ? false
-          : undefined,
-      single_ok:
-        filters.single_ok === "true"
-          ? true
-          : filters.single_ok === "false"
-          ? false
-          : undefined,
-      elderly_ok:
-        filters.elderly_ok === "true"
-          ? true
-          : filters.elderly_ok === "false"
-          ? false
-          : undefined,
-    };
+    // 空文字列やundefinedを除去し、boolean値を適切に変換
+    const cleanedFilters: any = {};
 
-    console.log("検索条件:", cleanedFilters);
+    // 都道府県
+    if (filters.prefecture && filters.prefecture !== "") {
+      cleanedFilters.prefecture = filters.prefecture;
+    }
+
+    // 毛色（配列で複数選択可能）
+    if (filters.color.length > 0) {
+      cleanedFilters.color = filters.color;
+    }
+
+    // 年齢
+    if (filters.age && filters.age !== "") {
+      cleanedFilters.age = filters.age;
+    }
+
+    // 性別
+    if (filters.gender && filters.gender !== "") {
+      cleanedFilters.gender = filters.gender;
+    }
+
+    // ワクチン接種状況
+    if (filters.vaccinated && filters.vaccinated !== "") {
+      cleanedFilters.vaccinated = filters.vaccinated === "true";
+    }
+
+    // 避妊・去勢
+    if (filters.neutered && filters.neutered !== "") {
+      cleanedFilters.neutered = filters.neutered === "true";
+    }
+
+    // 単身者応募
+    if (filters.single_ok && filters.single_ok !== "") {
+      cleanedFilters.single_ok = filters.single_ok === "true";
+    }
+
+    // 高齢者応募
+    if (filters.elderly_ok && filters.elderly_ok !== "") {
+      cleanedFilters.elderly_ok = filters.elderly_ok === "true";
+    }
+
+    console.log("送信するcleanedFilters:", cleanedFilters);
     onSearch(cleanedFilters);
   };
 
@@ -110,7 +121,7 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
       elderly_ok: "",
     };
     setFilters(resetFilters);
-    onSearch({});
+    onSearch({}); // 空のオブジェクトを渡してすべて表示
   };
 
   return (
@@ -128,12 +139,11 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
                 checked={filters.color.includes(color)}
                 onChange={(e) => {
                   const checked = e.target.checked;
-                  handleChange(
-                    "color",
-                    checked
-                      ? [...filters.color, color]
-                      : filters.color.filter((c: string) => c !== color)
-                  );
+                  const newColors = checked
+                    ? [...filters.color, color]
+                    : filters.color.filter((c: string) => c !== color);
+
+                  handleChange("color", newColors);
                 }}
               />
             ))}
@@ -146,7 +156,7 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
           <Select
             name="prefecture"
             value={filters.prefecture}
-            options={prefectureOptions}
+            options={[...prefectureOptions]}
             onChange={(value) => handleChange("prefecture", value)}
           />
         </li>

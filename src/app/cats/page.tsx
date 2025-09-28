@@ -41,6 +41,7 @@ export default function Cats() {
 
       if (error) throw error;
 
+      console.log("取得したデータ:", data); // デバッグ用
       setCats(data || []);
       setFilteredCats(data || []);
     } catch (err) {
@@ -55,26 +56,47 @@ export default function Cats() {
   const handleSearch = (filters: any) => {
     let result = cats;
 
-    if (filters.prefecture)
+    // 都道府県でフィルタリング
+    if (filters.prefecture) {
       result = result.filter((c) => c.prefecture === filters.prefecture);
-    if (filters.color?.length)
-      result = result.filter((c) => filters.color.includes(c.color));
-    if (filters.age) result = result.filter((c) => c.age === filters.age);
-    if (filters.gender)
-      result = result.filter((c) => c.gender === filters.gender);
-    if (filters.vaccinated !== undefined)
-      result = result.filter(
-        (c) => String(c.vaccinated) === filters.vaccinated
-      );
-    if (filters.neutered !== undefined)
-      result = result.filter((c) => String(c.neutered) === filters.neutered);
-    if (filters.single_ok !== undefined)
-      result = result.filter((c) => String(c.single_ok) === filters.single_ok);
-    if (filters.elderly_ok !== undefined)
-      result = result.filter(
-        (c) => String(c.elderly_ok) === filters.elderly_ok
-      );
+    }
 
+    // 毛色でフィルタリング
+    if (filters.color && filters.color.length > 0) {
+      result = result.filter((c) => filters.color.includes(c.color));
+    }
+
+    // 年齢でフィルタリング
+    if (filters.age) {
+      result = result.filter((c) => c.age === filters.age);
+    }
+
+    // 性別でフィルタリング
+    if (filters.gender) {
+      result = result.filter((c) => c.gender === filters.gender);
+    }
+
+    // ワクチン接種状況でフィルタリング（修正）
+    if (filters.vaccinated !== undefined) {
+      result = result.filter((c) => c.vaccinated === filters.vaccinated);
+    }
+
+    // 避妊・去勢でフィルタリング（修正）
+    if (filters.neutered !== undefined) {
+      result = result.filter((c) => c.neutered === filters.neutered);
+    }
+
+    // 単身者応募でフィルタリング（修正）
+    if (filters.single_ok !== undefined) {
+      result = result.filter((c) => c.single_ok === filters.single_ok);
+    }
+
+    // 高齢者応募でフィルタリング（修正）
+    if (filters.elderly_ok !== undefined) {
+      result = result.filter((c) => c.elderly_ok === filters.elderly_ok);
+    }
+
+    console.log("最終結果数:", result.length); // デバッグ用
     setFilteredCats(result);
   };
 
@@ -94,14 +116,6 @@ export default function Cats() {
         <button onClick={fetchCats} className="c-common-btn">
           再試行
         </button>
-      </div>
-    );
-
-  // データなし
-  if (filteredCats.length === 0)
-    return (
-      <div className="p-top-newcat__empty">
-        <p>条件に合う猫が見つかりませんでした。</p>
       </div>
     );
 
@@ -150,7 +164,23 @@ export default function Cats() {
               ]}
             />
           </div>
-          <CatList limit={8} cats={filteredCats} />
+
+          {/* データなしの場合のメッセージ */}
+          {filteredCats.length === 0 ? (
+            <div className="p-top-newcat__empty">
+              <p>条件に合う猫が見つかりませんでした。</p>
+              <p>検索条件を変更してお試しください。</p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-4">
+                <p>
+                  検索結果: {filteredCats.length}件 / 全{cats.length}件
+                </p>
+              </div>
+              <CatList limit={8} cats={filteredCats} />
+            </>
+          )}
 
           {/* ページネーション（表示のみ、機能は未実装） */}
           <div className="c-pagination table ml-auto mr-auto mt-15">

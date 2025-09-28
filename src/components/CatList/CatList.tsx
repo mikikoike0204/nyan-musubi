@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Cat } from "@/types/cat";
 import CatListItem from "@/components/CatListItem/CatListItem";
 import "./style.css";
+
 interface CatListProps {
   limit: number;
   showAdopted?: boolean;
@@ -21,11 +22,20 @@ export default function CatList({
   const [loading, setLoading] = useState(!propsCats);
   const [error, setError] = useState<string | null>(null);
 
+  // propsCatsが更新された時に、stateを更新
+  useEffect(() => {
+    if (propsCats) {
+      setCats(propsCats);
+      setLoading(false);
+    }
+  }, [propsCats]);
+
+  // propsCatsが提供されていない場合のみ、データを取得
   useEffect(() => {
     if (!propsCats) {
       fetchCats();
     }
-  }, [limit, showAdopted, propsCats]);
+  }, [limit, showAdopted]);
 
   const fetchCats = async () => {
     try {
