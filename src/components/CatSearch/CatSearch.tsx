@@ -1,141 +1,253 @@
 // src/components/CatSearch/CatSearch.tsx
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import Select from "../Select/Select";
+import { Cat } from "@/types/cat";
+import { prefectureOptions } from "@/types/prefectures";
 import "./style.css";
 
-const hairColors = [
+// Cat型から毛色の選択肢を生成
+const colorOptions = [
   "白系",
   "黒系",
   "茶系",
   "グレー系",
   "サビ",
-  "白茶",
+  "茶白",
   "白黒",
   "茶トラ",
   "キジトラ",
   "サバトラ",
   "その他",
+] as const;
+
+// Cat型から年齢の選択肢を生成
+const ageOptions: { value: Cat["age"] | ""; label: string }[] = [
+  { value: "", label: "選択してください" },
+  { value: "幼少期", label: "幼少期" },
+  { value: "若年期", label: "若年期" },
+  { value: "高齢期", label: "高齢期" },
 ];
 
-export const prefectures = [
-  { value: "hokkaido", label: "北海道" },
-  { value: "aomori", label: "青森県" },
-  { value: "iwate", label: "岩手県" },
-  { value: "miyagi", label: "宮城県" },
-  { value: "akita", label: "秋田県" },
-  { value: "yamagata", label: "山形県" },
-  { value: "fukushima", label: "福島県" },
-  { value: "ibaraki", label: "茨城県" },
-  { value: "tochigi", label: "栃木県" },
-  { value: "gunma", label: "群馬県" },
-  { value: "saitama", label: "埼玉県" },
-  { value: "chiba", label: "千葉県" },
-  { value: "tokyo", label: "東京都" },
-  { value: "kanagawa", label: "神奈川県" },
-  { value: "niigata", label: "新潟県" },
-  { value: "toyama", label: "富山県" },
-  { value: "ishikawa", label: "石川県" },
-  { value: "fukui", label: "福井県" },
-  { value: "yamanashi", label: "山梨県" },
-  { value: "nagano", label: "長野県" },
-  { value: "gifu", label: "岐阜県" },
-  { value: "shizuoka", label: "静岡県" },
-  { value: "aichi", label: "愛知県" },
-  { value: "mie", label: "三重県" },
-  { value: "shiga", label: "滋賀県" },
-  { value: "kyoto", label: "京都府" },
-  { value: "osaka", label: "大阪府" },
-  { value: "hyogo", label: "兵庫県" },
-  { value: "nara", label: "奈良県" },
-  { value: "wakayama", label: "和歌山県" },
-  { value: "tottori", label: "鳥取県" },
-  { value: "shimane", label: "島根県" },
-  { value: "okayama", label: "岡山県" },
-  { value: "hiroshima", label: "広島県" },
-  { value: "yamaguchi", label: "山口県" },
-  { value: "tokushima", label: "徳島県" },
-  { value: "kagawa", label: "香川県" },
-  { value: "ehime", label: "愛媛県" },
-  { value: "kochi", label: "高知県" },
-  { value: "fukuoka", label: "福岡県" },
-  { value: "saga", label: "佐賀県" },
-  { value: "nagasaki", label: "長崎県" },
-  { value: "kumamoto", label: "熊本県" },
-  { value: "oita", label: "大分県" },
-  { value: "miyazaki", label: "宮崎県" },
-  { value: "kagoshima", label: "鹿児島県" },
-  { value: "okinawa", label: "沖縄県" },
+// Cat型から性別の選択肢を生成
+const genderOptions: { value: Cat["gender"] | ""; label: string }[] = [
+  { value: "", label: "選択してください" },
+  { value: "オス", label: "オス" },
+  { value: "メス", label: "メス" },
+  { value: "不明", label: "不明" },
 ];
 
-const other = ["一人暮らし相談可", "高齢者相談可"];
+interface CatSearchProps {
+  onSearch: (filters: any) => void;
+}
 
-export default function CatSearch() {
+export default function CatSearch({ onSearch }: CatSearchProps) {
+  const [filters, setFilters] = useState({
+    color: [] as string[],
+    prefecture: "",
+    age: "",
+    gender: "",
+    vaccinated: "",
+    neutered: "",
+    single_ok: "",
+    elderly_ok: "",
+  });
+
+  // 入力変更ハンドラ
+  const handleChange = (name: string, value: any) => {
+    setFilters((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // 空文字列を除去し、boolean値を適切に変換
+    const cleanedFilters = {
+      prefecture: filters.prefecture || undefined,
+      color: filters.color.length > 0 ? filters.color : undefined,
+      age: filters.age || undefined,
+      gender: filters.gender || undefined,
+      vaccinated:
+        filters.vaccinated === "true"
+          ? true
+          : filters.vaccinated === "false"
+          ? false
+          : undefined,
+      neutered:
+        filters.neutered === "true"
+          ? true
+          : filters.neutered === "false"
+          ? false
+          : undefined,
+      single_ok:
+        filters.single_ok === "true"
+          ? true
+          : filters.single_ok === "false"
+          ? false
+          : undefined,
+      elderly_ok:
+        filters.elderly_ok === "true"
+          ? true
+          : filters.elderly_ok === "false"
+          ? false
+          : undefined,
+    };
+
+    console.log("検索条件:", cleanedFilters);
+    onSearch(cleanedFilters);
+  };
+
+  // リセット機能
+  const handleReset = () => {
+    const resetFilters = {
+      color: [],
+      prefecture: "",
+      age: "",
+      gender: "",
+      vaccinated: "",
+      neutered: "",
+      single_ok: "",
+      elderly_ok: "",
+    };
+    setFilters(resetFilters);
+    onSearch({});
+  };
+
   return (
-    <ul className="p-cats-search__parameters">
-      {/* 毛色 */}
-      <li className="p-cats-search__item">
-        <div className="p-cats-search__label">毛色</div>
-        <div className="p-cats-search__inputs">
-          {hairColors.map((color) => (
-            <Checkbox key={color} label={color} name="hairColor" />
-          ))}
-        </div>
-      </li>
+    <form className="p-cats-parameters__form" onSubmit={handleSubmit}>
+      <ul className="p-cats-search__parameters">
+        {/* 毛色 */}
+        <li className="p-cats-search__item">
+          <div className="p-cats-search__label">毛色</div>
+          <div className="p-cats-search__inputs">
+            {colorOptions.map((color) => (
+              <Checkbox
+                key={color}
+                label={color}
+                name="color"
+                checked={filters.color.includes(color)}
+                onChange={(e) => {
+                  const checked = e.target.checked;
+                  handleChange(
+                    "color",
+                    checked
+                      ? [...filters.color, color]
+                      : filters.color.filter((c: string) => c !== color)
+                  );
+                }}
+              />
+            ))}
+          </div>
+        </li>
 
-      {/* 募集地域 */}
-      <li className="p-cats-search__item half">
-        <div className="p-cats-search__label">募集地域</div>
-        <Select name="prefecture" options={prefectures} />
-      </li>
+        {/* 募集地域 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">募集地域</div>
+          <Select
+            name="prefecture"
+            value={filters.prefecture}
+            options={prefectureOptions}
+            onChange={(value) => handleChange("prefecture", value)}
+          />
+        </li>
 
-      {/* 年齢 */}
-      <li className="p-cats-search__item half">
-        <div className="p-cats-search__label">年齢</div>
-        <Select
-          name="age"
-          options={[
-            { value: "child", label: "幼少期" },
-            { value: "young", label: "若年期" },
-            { value: "senior", label: "高齢期" },
-          ]}
-        />
-      </li>
+        {/* 年齢 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">年齢</div>
+          <Select
+            name="age"
+            value={filters.age}
+            options={ageOptions}
+            onChange={(value) => handleChange("age", value)}
+          />
+        </li>
 
-      {/* 性別 */}
-      <li className="p-cats-search__item half">
-        <div className="p-cats-search__label">性別</div>
-        <Select
-          name="gender"
-          options={[
-            { value: "male", label: "オス" },
-            { value: "female", label: "メス" },
-            { value: "unknown", label: "不明" },
-          ]}
-        />
-      </li>
+        {/* 性別 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">性別</div>
+          <Select
+            name="gender"
+            value={filters.gender}
+            options={genderOptions}
+            onChange={(value) => handleChange("gender", value)}
+          />
+        </li>
 
-      {/* 避妊・去勢 */}
-      <li className="p-cats-search__item half">
-        <div className="p-cats-search__label">避妊・去勢</div>
-        <Select
-          name="neuter"
-          options={[
-            { value: "done", label: "済み" },
-            { value: "not_done", label: "未" },
-          ]}
-        />
-      </li>
+        {/* ワクチン接種状況 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">ワクチン接種状況</div>
+          <Select
+            name="vaccinated"
+            value={filters.vaccinated}
+            options={[
+              { value: "", label: "選択してください" },
+              { value: "true", label: "済み" },
+              { value: "false", label: "未" },
+            ]}
+            onChange={(value) => handleChange("vaccinated", value)}
+          />
+        </li>
 
-      {/* その他条件 */}
-      <li className="p-cats-search__item half">
-        <div className="p-cats-search__label">その他条件</div>
-        <div className="p-cats-search__inputs">
-          {other.map((other) => (
-            <Checkbox key={other} label={other} name="other" />
-          ))}
-        </div>
-      </li>
-    </ul>
+        {/* 避妊・去勢 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">避妊・去勢</div>
+          <Select
+            name="neutered"
+            value={filters.neutered}
+            options={[
+              { value: "", label: "選択してください" },
+              { value: "true", label: "済み" },
+              { value: "false", label: "未" },
+            ]}
+            onChange={(value) => handleChange("neutered", value)}
+          />
+        </li>
+
+        {/* 単身者応募 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">単身者応募</div>
+          <Select
+            name="single_ok"
+            value={filters.single_ok}
+            options={[
+              { value: "", label: "選択してください" },
+              { value: "true", label: "可" },
+              { value: "false", label: "不可" },
+            ]}
+            onChange={(value) => handleChange("single_ok", value)}
+          />
+        </li>
+
+        {/* 高齢者応募 */}
+        <li className="p-cats-search__item half">
+          <div className="p-cats-search__label">高齢者応募</div>
+          <Select
+            name="elderly_ok"
+            value={filters.elderly_ok}
+            options={[
+              { value: "", label: "選択してください" },
+              { value: "true", label: "可" },
+              { value: "false", label: "不可" },
+            ]}
+            onChange={(value) => handleChange("elderly_ok", value)}
+          />
+        </li>
+      </ul>
+
+      <div className="p-top-newcat__more">
+        <button type="submit" className="c-common-btn">
+          検索する
+        </button>
+        <button
+          type="button"
+          onClick={handleReset}
+          className="c-common-btn c-common-btn--secondary"
+        >
+          リセット
+        </button>
+      </div>
+    </form>
   );
 }

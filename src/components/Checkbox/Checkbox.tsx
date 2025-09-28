@@ -5,12 +5,24 @@ import "./style.css";
 type CheckboxProps = {
   label: string;
   name: string;
+  checked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, name }) => {
+const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  name,
+  checked,
+  onChange,
+}: CheckboxProps) => {
   return (
     <label className="checkbox-label">
-      <input type="checkbox" name={name} />
+      <input
+        type="checkbox"
+        name={name}
+        checked={checked}
+        onChange={onChange}
+      />
       <span className="checkbox-box"></span>
       <span className="checkbox-text text-sm">{label}</span>
     </label>

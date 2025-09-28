@@ -89,7 +89,8 @@ a:hover {
 }
 
 .p-top-newcat__link {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
   border: 1px solid #ccc;
   padding: 20px;
@@ -113,8 +114,10 @@ a:hover {
 .p-top-newcat__desc {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
   margin-top: 20px;
+  justify-content: space-between;
 }
 
 .p-top-newcat__text1 {

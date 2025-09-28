@@ -5,10 +5,17 @@ type Option = { value: string; label: string };
 
 type SelectProps = {
   name: string;
-  options: Option[];
+  options: { value: string; label: string }[];
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select: React.FC<SelectProps> = ({ name, options }) => {
+const Select: React.FC<SelectProps> = ({
+  name,
+  options,
+  value,
+  onChange,
+}: SelectProps) => {
   return (
     <div className="p-cats-parameter__select-wrapper">
       <select className="p-cats-parameter__select" name={name} id={name}>

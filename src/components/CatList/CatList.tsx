@@ -1,215 +1,109 @@
 // src/components/CatList/CatList.tsx
-import React from "react";
-import "./style.css";
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 
-export default function CatList() {
-  return (
-    <>
-      <ul className="p-top-newcat__list">
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/top/newcat-list-img01.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                12ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">茶白</div>
-                <h3 className="p-top-newcat__text2-title">人懐っこい男の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img02.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                6ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">キジトラ</div>
-                <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img03.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                3ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">キジ白</div>
-                <h3 className="p-top-newcat__text2-title">おとなしい男の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img04.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                シニア / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">サバトラ</div>
-                <h3 className="p-top-newcat__text2-title">
-                  落ち着きのある男の子
-                </h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/top/newcat-list-img01.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                12ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">茶白</div>
-                <h3 className="p-top-newcat__text2-title">人懐っこい男の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img02.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                6ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">キジトラ</div>
-                <h3 className="p-top-newcat__text2-title">元気な女の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img03.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                3ヶ月 / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">キジ白</div>
-                <h3 className="p-top-newcat__text2-title">おとなしい男の子</h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-        <li className="p-top-newcat__item">
-          <Link className="p-top-newcat__link" href="">
-            <div className="p-top-newcat__image">
-              <Image
-                src="/sample/newcat-list-img04.jpg"
-                alt="新着のねこちゃん画像"
-                fill
-                style={{ objectFit: "cover" }}
-                className="p-top-newcat__image-pic"
-              />
-            </div>
-            <div className="p-top-newcat__desc">
-              <div className="p-top-newcat__text1">
-                ミックス ♂<br />
-                シニア / 関東
-              </div>
-              <div className="p-top-newcat__text2">
-                <div className="p-top-newcat__text2-s">サバトラ</div>
-                <h3 className="p-top-newcat__text2-title">
-                  落ち着きのある男の子
-                </h3>
-              </div>
-              <button className="p-top-newcat__fav">お気に入り❤︎</button>
-            </div>
-          </Link>
-        </li>
-      </ul>
-      <div className="p-top-newcat__more">
-        <Link href="/cats" className="c-common-btn">
-          もっと見る
-        </Link>
+import React, { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { Cat } from "@/types/cat";
+import CatListItem from "@/components/CatListItem/CatListItem";
+import "./style.css";
+
+// 年齢を表示用に変換する関数（そのまま表示）
+const getAgeDisplay = (age: Cat["age"]): string => age;
+
+// 性別を表示用に変換する関数
+const getGenderDisplay = (gender: Cat["gender"]): string => {
+  switch (gender) {
+    case "オス":
+      return "♂";
+    case "メス":
+      return "♀";
+    case "不明":
+      return "？";
+    default:
+      return gender;
+  }
+};
+
+interface CatListProps {
+  limit: number;
+  showAdopted?: boolean;
+  cats?: Cat[];
+}
+
+export default function CatList({
+  limit,
+  showAdopted,
+  cats: propsCats,
+}: CatListProps) {
+  const [cats, setCats] = useState<Cat[]>(propsCats || []);
+  const [loading, setLoading] = useState(!propsCats);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!propsCats) {
+      fetchCats();
+    }
+  }, [limit, showAdopted, propsCats]);
+
+  const fetchCats = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      let query = supabase
+        .from("cat_adoption_info")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(limit);
+
+      if (showAdopted === false) {
+        query = query.eq("adopted", false);
+      } else if (showAdopted === true) {
+        query = query.eq("adopted", true);
+      }
+
+      const { data, error } = await query;
+      if (error) throw error;
+
+      setCats(data || []);
+    } catch (error) {
+      console.error("Error fetching cats:", error);
+      setError("猫の情報を取得できませんでした。");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="p-top-newcat__loading">
+        <p>読み込み中...</p>
       </div>
-    </>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-top-newcat__error">
+        <p>{error}</p>
+        {!propsCats && <button onClick={fetchCats}>再試行</button>}
+      </div>
+    );
+  }
+
+  if (cats.length === 0) {
+    return (
+      <div className="p-top-newcat__empty">
+        <p>現在、登録されている猫はいません。</p>
+      </div>
+    );
+  }
+
+  return (
+    <ul className="p-top-newcat__list">
+      {cats.map((cat) => (
+        <CatListItem key={cat.id} cat={cat} />
+      ))}
+    </ul>
   );
 }
