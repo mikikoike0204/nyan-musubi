@@ -2,7 +2,6 @@ import TopSlider from "@/components/TopSlider/TopSlider";
 import Link from "next/link";
 import "./style.css";
 import CatList from "@/components/CatList/CatList";
-import Image from "next/image";
 
 export default function Home() {
   return (
