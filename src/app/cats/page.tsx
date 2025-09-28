@@ -7,8 +7,8 @@ import Select from "@/components/Select/Select";
 import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
 import { createBrowserClient } from "@supabase/ssr";
+import Pagination from "@/components/Pagination/Pagination";
 import "./style.css";
-import Image from "next/image";
 
 // Supabaseクライアントの初期化
 const supabase = createBrowserClient(
@@ -16,17 +16,53 @@ const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+const ITEMS_PER_PAGE = 8; // 1ページあたりの表示件数
+
 export default function Cats() {
   const [cats, setCats] = useState<Cat[]>([]);
   const [filteredCats, setFilteredCats] = useState<Cat[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState("desc");
 
   useEffect(() => {
     fetchCats();
   }, []);
 
-  // データ取得（最新8件、譲渡済みは除外）
+  // 現在のページに表示するデータを計算
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    let sortedCats = [...filteredCats];
+
+    // ソート処理
+    if (sortOrder === "asc") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+    } else if (sortOrder === "desc") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+    } else if (sortOrder === "updated") {
+      sortedCats.sort(
+        (a, b) =>
+          new Date(b.updated_at || b.created_at).getTime() -
+          new Date(a.updated_at || a.created_at).getTime()
+      );
+    }
+
+    return sortedCats.slice(startIndex, endIndex);
+  };
+
+  // 総ページ数を計算
+  const totalPages = Math.ceil(filteredCats.length / ITEMS_PER_PAGE);
+
+  // データ取得（譲渡済みは除外、limitを削除してすべて取得）
   const fetchCats = async () => {
     try {
       setLoading(true);
@@ -36,12 +72,10 @@ export default function Cats() {
         .from("cat_adoption_info")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(8)
         .eq("adopted", false);
 
       if (error) throw error;
 
-      console.log("取得したデータ:", data); // デバッグ用
       setCats(data || []);
       setFilteredCats(data || []);
     } catch (err) {
@@ -76,28 +110,41 @@ export default function Cats() {
       result = result.filter((c) => c.gender === filters.gender);
     }
 
-    // ワクチン接種状況でフィルタリング（修正）
+    // ワクチン接種状況でフィルタリング
     if (filters.vaccinated !== undefined) {
       result = result.filter((c) => c.vaccinated === filters.vaccinated);
     }
 
-    // 避妊・去勢でフィルタリング（修正）
+    // 避妊・去勢でフィルタリング
     if (filters.neutered !== undefined) {
       result = result.filter((c) => c.neutered === filters.neutered);
     }
 
-    // 単身者応募でフィルタリング（修正）
+    // 単身者応募でフィルタリング
     if (filters.single_ok !== undefined) {
       result = result.filter((c) => c.single_ok === filters.single_ok);
     }
 
-    // 高齢者応募でフィルタリング（修正）
+    // 高齢者応募でフィルタリング
     if (filters.elderly_ok !== undefined) {
       result = result.filter((c) => c.elderly_ok === filters.elderly_ok);
     }
 
-    console.log("最終結果数:", result.length); // デバッグ用
     setFilteredCats(result);
+    setCurrentPage(1); // 検索時は1ページ目に戻る
+  };
+
+  // ソート変更ハンドラ
+  const handleSortChange = (value: string) => {
+    setSortOrder(value);
+    setCurrentPage(1); // ソート変更時は1ページ目に戻る
+  };
+
+  // ページ変更ハンドラ
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // ページトップにスクロール
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // ローディング
@@ -118,6 +165,8 @@ export default function Cats() {
         </button>
       </div>
     );
+
+  const currentPageData = getCurrentPageData();
 
   return (
     <div className="c-section-wrapper">
@@ -154,17 +203,6 @@ export default function Cats() {
       {/* 猫一覧 */}
       <section className="c-section p-cats-list">
         <div className="c-container">
-          <div className="p-cats-list__sort">
-            <Select
-              name="sort"
-              options={[
-                { value: "desc", label: "登録が新しい順" },
-                { value: "asc", label: "登録が古い順" },
-                { value: "updated", label: "情報の更新順" },
-              ]}
-            />
-          </div>
-
           {/* データなしの場合のメッセージ */}
           {filteredCats.length === 0 ? (
             <div className="p-top-newcat__empty">
@@ -173,66 +211,43 @@ export default function Cats() {
             </div>
           ) : (
             <>
-              <div className="mb-4">
-                <p>
-                  検索結果: {filteredCats.length}件 / 全{cats.length}件
-                </p>
+              <div className="p-cats-list__info">
+                <div className="">
+                  <p>
+                    検索結果: {filteredCats.length}件 / 全{cats.length}件
+                    {totalPages > 1 && (
+                      <span>
+                        {" "}
+                        (ページ: {currentPage}/{totalPages})
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div className="p-cats-list__sort">
+                  <Select
+                    name="sort"
+                    value={sortOrder}
+                    options={[
+                      { value: "desc", label: "登録が新しい順" },
+                      { value: "asc", label: "登録が古い順" },
+                      { value: "updated", label: "情報の更新順" },
+                    ]}
+                    onChange={handleSortChange}
+                  />
+                </div>
               </div>
-              <CatList limit={8} cats={filteredCats} />
+              <CatList limit={ITEMS_PER_PAGE} cats={currentPageData} />
             </>
           )}
 
-          {/* ページネーション（表示のみ、機能は未実装） */}
-          <div className="c-pagination table ml-auto mr-auto mt-15">
-            <ol className="c-pagination__list flex justify-center items-center gap-x-3">
-              {/* 前ページ */}
-              <li className="c-pagination__item w-10 h-20">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center arrow prev-arrow w-full h-full"
-                  href=""
-                >
-                  <Image
-                    src="/common/icon-prev-arrow.svg"
-                    alt=""
-                    width={20}
-                    height={15}
-                    className="c-pagination__arrow"
-                  />
-                </a>
-              </li>
-              {/* ページ番号 */}
-              {[1, 2, 3, 4, 5].map((n) => (
-                <li
-                  key={n}
-                  className={`c-pagination__item ${
-                    n === 1 ? "current" : ""
-                  } w-10 h-10 flex justify-center items-center`}
-                >
-                  <a
-                    className="c-pagination__link flex justify-center items-center w-10 h-10 bg-gray-300"
-                    href=""
-                  >
-                    {n}
-                  </a>
-                </li>
-              ))}
-              {/* 次ページ */}
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center arrow next-arrow w-10 h-10"
-                  href=""
-                >
-                  <Image
-                    src="/common/icon-next-arrow.svg"
-                    alt=""
-                    width={20}
-                    height={15}
-                    className="c-pagination__arrow"
-                  />
-                </a>
-              </li>
-            </ol>
-          </div>
+          {/* ページネーション */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </section>
     </div>
