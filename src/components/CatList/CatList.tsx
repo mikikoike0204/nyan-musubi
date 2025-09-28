@@ -6,24 +6,6 @@ import { supabase } from "@/lib/supabaseClient";
 import { Cat } from "@/types/cat";
 import CatListItem from "@/components/CatListItem/CatListItem";
 import "./style.css";
-
-// 年齢を表示用に変換する関数（そのまま表示）
-const getAgeDisplay = (age: Cat["age"]): string => age;
-
-// 性別を表示用に変換する関数
-const getGenderDisplay = (gender: Cat["gender"]): string => {
-  switch (gender) {
-    case "オス":
-      return "♂";
-    case "メス":
-      return "♀";
-    case "不明":
-      return "？";
-    default:
-      return gender;
-  }
-};
-
 interface CatListProps {
   limit: number;
   showAdopted?: boolean;

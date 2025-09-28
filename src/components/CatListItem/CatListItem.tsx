@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Cat } from "@/types/cat";
 import { getGenderDisplay, getAgeDisplay } from "@/utils/catDisplay";
-
+import "./style.css";
 interface CatListItemProps {
   cat: Cat;
 }

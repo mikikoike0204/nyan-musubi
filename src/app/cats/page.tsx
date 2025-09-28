@@ -1,3 +1,4 @@
+// src/app/cats/page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -15,25 +16,6 @@ const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// 性別を表示用に変換する関数
-const getGenderDisplay = (gender: Cat["gender"]): string => {
-  switch (gender) {
-    case "オス":
-      return "♂";
-    case "メス":
-      return "♀";
-    case "不明":
-      return "？";
-    default:
-      return gender;
-  }
-};
-
-interface CatsProps {
-  limit: number; // 表示件数の制限
-  showAdopted?: boolean; // 譲渡済みの猫を表示するかどうか
-}
-
 export default function Cats() {
   const [cats, setCats] = useState<Cat[]>([]);
   const [filteredCats, setFilteredCats] = useState<Cat[]>([]);
@@ -44,84 +26,68 @@ export default function Cats() {
     fetchCats();
   }, []);
 
+  // データ取得（最新8件、譲渡済みは除外）
   const fetchCats = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      let query = supabase
+      const { data, error } = await supabase
         .from("cat_adoption_info")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(12);
+        .limit(8)
+        .eq("adopted", false);
 
-      // adopted=false 固定
-      query = query.eq("adopted", false);
-
-      const { data, error } = await query;
       if (error) throw error;
 
       setCats(data || []);
-      setFilteredCats(data || []); // 初期は全件表示
-    } catch (error) {
-      console.error("Error fetching cats:", error);
+      setFilteredCats(data || []);
+    } catch (err) {
+      console.error("Error fetching cats:", err);
       setError("猫の情報を取得できませんでした。");
     } finally {
       setLoading(false);
     }
   };
 
-  // 検索条件に基づいてフィルタリング
+  // フィルタリング
   const handleSearch = (filters: any) => {
     let result = cats;
 
-    if (filters.prefecture) {
-      result = result.filter((cat) => cat.prefecture === filters.prefecture);
-    }
-    if (filters.color && filters.color.length > 0) {
-      result = result.filter((cat) => filters.color.includes(cat.color));
-    }
-    if (filters.age) {
-      result = result.filter((cat) => cat.age === filters.age);
-    }
-    if (filters.gender) {
-      result = result.filter((cat) => cat.gender === filters.gender);
-    }
-    if (filters.vaccinated !== undefined) {
+    if (filters.prefecture)
+      result = result.filter((c) => c.prefecture === filters.prefecture);
+    if (filters.color?.length)
+      result = result.filter((c) => filters.color.includes(c.color));
+    if (filters.age) result = result.filter((c) => c.age === filters.age);
+    if (filters.gender)
+      result = result.filter((c) => c.gender === filters.gender);
+    if (filters.vaccinated !== undefined)
       result = result.filter(
-        (cat) => String(cat.vaccinated) === filters.vaccinated
+        (c) => String(c.vaccinated) === filters.vaccinated
       );
-    }
-    if (filters.neutered !== undefined) {
+    if (filters.neutered !== undefined)
+      result = result.filter((c) => String(c.neutered) === filters.neutered);
+    if (filters.single_ok !== undefined)
+      result = result.filter((c) => String(c.single_ok) === filters.single_ok);
+    if (filters.elderly_ok !== undefined)
       result = result.filter(
-        (cat) => String(cat.neutered) === filters.neutered
+        (c) => String(c.elderly_ok) === filters.elderly_ok
       );
-    }
-    if (filters.single_ok !== undefined) {
-      result = result.filter(
-        (cat) => String(cat.single_ok) === filters.single_ok
-      );
-    }
-    if (filters.elderly_ok !== undefined) {
-      result = result.filter(
-        (cat) => String(cat.elderly_ok) === filters.elderly_ok
-      );
-    }
 
     setFilteredCats(result);
   };
 
-  // ローディング表示
-  if (loading) {
+  // ローディング
+  if (loading)
     return (
       <div className="p-top-newcat__loading">
         <p>読み込み中...</p>
       </div>
     );
-  }
 
-  // エラー表示
-  if (error) {
+  // エラー
+  if (error)
     return (
       <div className="p-top-newcat__error">
         <p>{error}</p>
@@ -130,19 +96,18 @@ export default function Cats() {
         </button>
       </div>
     );
-  }
 
-  // データが空の場合
-  if (filteredCats.length === 0) {
+  // データなし
+  if (filteredCats.length === 0)
     return (
       <div className="p-top-newcat__empty">
         <p>条件に合う猫が見つかりませんでした。</p>
       </div>
     );
-  }
 
   return (
     <div className="c-section-wrapper">
+      {/* メインビジュアル */}
       <section className="p-sub-mv">
         <div className="c-container">
           <div className="p-sub-mv__content">
@@ -160,6 +125,7 @@ export default function Cats() {
         </div>
       </section>
 
+      {/* 絞り込み条件 */}
       <section className="c-section p-cats-parameters">
         <div className="c-container">
           <div className="c-section-title-wrap">
@@ -171,6 +137,7 @@ export default function Cats() {
         </div>
       </section>
 
+      {/* 猫一覧 */}
       <section className="c-section p-cats-list">
         <div className="c-container">
           <div className="p-cats-list__sort">
@@ -185,8 +152,10 @@ export default function Cats() {
           </div>
           <CatList limit={8} cats={filteredCats} />
 
+          {/* ページネーション（表示のみ、機能は未実装） */}
           <div className="c-pagination table ml-auto mr-auto mt-15">
             <ol className="c-pagination__list flex justify-center items-center gap-x-3">
+              {/* 前ページ */}
               <li className="c-pagination__item w-10 h-20">
                 <a
                   className="c-pagination__link flex direction-col justify-center items-center arrow prev-arrow w-full h-full"
@@ -201,41 +170,23 @@ export default function Cats() {
                   />
                 </a>
               </li>
-              <li className="c-pagination__item current border w-10 h-10 flex direction-col justify-center items-center">
-                1
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
+              {/* ページ番号 */}
+              {[1, 2, 3, 4, 5].map((n) => (
+                <li
+                  key={n}
+                  className={`c-pagination__item ${
+                    n === 1 ? "current" : ""
+                  } w-10 h-10 flex justify-center items-center`}
                 >
-                  2
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  3
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  4
-                </a>
-              </li>
-              <li className="c-pagination__item w-10 h-10">
-                <a
-                  className="c-pagination__link flex direction-col justify-center items-center w-10 h-10 bg-gray-300"
-                  href=""
-                >
-                  5
-                </a>
-              </li>
+                  <a
+                    className="c-pagination__link flex justify-center items-center w-10 h-10 bg-gray-300"
+                    href=""
+                  >
+                    {n}
+                  </a>
+                </li>
+              ))}
+              {/* 次ページ */}
               <li className="c-pagination__item w-10 h-10">
                 <a
                   className="c-pagination__link flex direction-col justify-center items-center arrow next-arrow w-10 h-10"
