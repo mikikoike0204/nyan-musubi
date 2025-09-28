@@ -70,105 +70,6 @@ a:hover {
   opacity: 1;
 }
 
-/* CatList コンポーネント分けた後で整理 */
-/* ============================================ */
-
-.p-top-newcat {
-  margin-top: 50px;
-}
-
-.p-top-newcat__list {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.p-top-newcat__item {
-  width: calc((100% - 90px) / 4);
-}
-
-.p-top-newcat__link {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border: 1px solid #ccc;
-  padding: 20px;
-  height: 100%;
-}
-
-.p-top-newcat__link:hover {
-  opacity: 1;
-  background-color: #dfefff;
-  border-color: #dfefff;
-}
-
-.p-top-newcat__image {
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.p-top-newcat__desc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  margin-top: 20px;
-  justify-content: space-between;
-}
-
-.p-top-newcat__text1 {
-  text-align: center;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.p-top-newcat__text2 {
-  margin-top: 20px;
-}
-
-.p-top-newcat__text2-s {
-  text-align: center;
-  font-size: 0.875rem;
-}
-
-.p-top-newcat__text2-title {
-  text-align: center;
-  font-size: 1rem;
-  margin-top: 5px;
-}
-
-.p-top-newcat__fav {
-  display: block;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  background-color: #4a90e2;
-  color: #fff;
-  font-size: 0.875rem;
-  margin-top: 20px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.p-top-newcat__adopted-label {
-  display: block;
-  padding: 0.5rem 0.25rem; /* py-2 px-1 */
-  background-color: #4a90e2;
-  color: #ffffff;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  margin-top: 1.25rem;
-  cursor: pointer;
-  text-align: center;
-}
-
-.p-top-newcat__fav.added {
-  background-color: pink;
-}
-
 .p-top-newcat__more {
   margin-top: 50px;
 }
@@ -211,12 +112,6 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.05em; /* tracking-wider */
   text-align: center;
-}
-
-/* 一覧 */
-/* ============================================ */
-.p-cats-search {
-  margin-top: 50px;
 }
 
 /* ページネーション */

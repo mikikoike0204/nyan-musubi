@@ -11,3 +11,7 @@
 .p-top-mv__text + .p-top-mv__text {
   margin-top: 15px;
 }
+
+.p-top-newcat {
+  margin-top: 50px;
+}
