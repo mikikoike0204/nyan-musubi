@@ -25,7 +25,6 @@ const colorOptions = [
 
 // Cat型から年齢の選択肢を生成
 const ageOptions: { value: Cat["age"] | ""; label: string }[] = [
-  { value: "", label: "選択してください" },
   { value: "幼少期", label: "幼少期" },
   { value: "若年期", label: "若年期" },
   { value: "高齢期", label: "高齢期" },
@@ -33,7 +32,6 @@ const ageOptions: { value: Cat["age"] | ""; label: string }[] = [
 
 // Cat型から性別の選択肢を生成
 const genderOptions: { value: Cat["gender"] | ""; label: string }[] = [
-  { value: "", label: "選択してください" },
   { value: "オス", label: "オス" },
   { value: "メス", label: "メス" },
   { value: "不明", label: "不明" },
@@ -182,7 +180,6 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
             name="vaccinated"
             value={filters.vaccinated}
             options={[
-              { value: "", label: "選択してください" },
               { value: "true", label: "済み" },
               { value: "false", label: "未" },
             ]}
@@ -197,7 +194,6 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
             name="neutered"
             value={filters.neutered}
             options={[
-              { value: "", label: "選択してください" },
               { value: "true", label: "済み" },
               { value: "false", label: "未" },
             ]}
@@ -212,7 +208,6 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
             name="single_ok"
             value={filters.single_ok}
             options={[
-              { value: "", label: "選択してください" },
               { value: "true", label: "可" },
               { value: "false", label: "不可" },
             ]}
@@ -227,7 +222,6 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
             name="elderly_ok"
             value={filters.elderly_ok}
             options={[
-              { value: "", label: "選択してください" },
               { value: "true", label: "可" },
               { value: "false", label: "不可" },
             ]}
