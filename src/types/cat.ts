@@ -1,4 +1,5 @@
 // src/types/cat.ts
+import { Color } from "./color";
 import { Prefecture } from "./prefectures";
 export interface Cat {
   id: string;
@@ -6,18 +7,7 @@ export interface Cat {
   thumbnail: string;
   sliderImages: string[];
   prefecture: Prefecture;
-  color:
-    | "白系"
-    | "黒系"
-    | "茶系"
-    | "グレー系"
-    | "サビ"
-    | "茶白"
-    | "白黒"
-    | "茶トラ"
-    | "キジトラ"
-    | "サバトラ"
-    | "その他";
+  color: Color;
   age: "幼少期" | "若年期" | "高齢期";
   gender: "オス" | "メス" | "不明";
   vaccinated: boolean;

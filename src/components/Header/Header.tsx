@@ -63,15 +63,22 @@ export default function Header() {
                   ねこちゃん一覧
                 </Link>
               </li>
-              {user ? (
               <li>
-                <Link className="c-nav__item" href="/favorites">
-                  お気に入り
+                <Link className="c-nav__item" href="/cats/new">
+                  新規投稿作成
                 </Link>
               </li>
-              ) : ''}
+              {user ? (
+                <li>
+                  <Link className="c-nav__item" href="/favorites">
+                    お気に入り
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
-             {/* ログイン状態で出し分け */}
+            {/* ログイン状態で出し分け */}
             <ul className="c-auth__links">
               {user ? (
                 <>
