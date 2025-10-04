@@ -1,3 +1,4 @@
+// src/app/cats/new/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,6 +7,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Prefecture, prefectureOptions } from "@/types/prefectures";
 import { Color, colorOptions } from "@/types/color";
 import "./style.css";
+import Image from "next/image";
 
 export default function NewCatPage() {
   const router = useRouter();
@@ -28,9 +30,9 @@ export default function NewCatPage() {
 
   // 画像
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
-  const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [thumbnailPreview, setThumbnailPreview] = useState("");
   const [sliderFiles, setSliderFiles] = useState<File[]>([]);
-  const [sliderUrls, setSliderUrls] = useState<string[]>([]);
+  const [sliderPreviews, setSliderPreviews] = useState<string[]>([]);
 
   // ログインチェック
   useEffect(() => {
@@ -56,18 +58,54 @@ export default function NewCatPage() {
     return () => listener.subscription.unsubscribe();
   }, [router]);
 
+  // プレビュー用のクリーンアップ
+  useEffect(() => {
+    return () => {
+      if (thumbnailPreview) URL.revokeObjectURL(thumbnailPreview);
+      sliderPreviews.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [thumbnailPreview, sliderPreviews]);
+
   if (loading) return <p>チェック中...</p>;
 
   // 画像選択
   const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0])
-      setThumbnailFile(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setThumbnailFile(file);
+
+      // 既存のプレビューURLを解放
+      if (thumbnailPreview) URL.revokeObjectURL(thumbnailPreview);
+
+      // 新しいプレビューURLを作成
+      const previewUrl = URL.createObjectURL(file);
+      setThumbnailPreview(previewUrl);
+    }
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const files = Array.from(e.target.files).slice(0, 7); // 最大7枚
     setSliderFiles(files);
+
+    // 既存のプレビューURLを解放
+    sliderPreviews.forEach((url) => URL.revokeObjectURL(url));
+
+    // 新しいプレビューURLを作成
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setSliderPreviews(previews);
+  };
+
+  // スライダー画像を個別に削除
+  const handleRemoveSliderImage = (index: number) => {
+    const newFiles = sliderFiles.filter((_, i) => i !== index);
+    const newPreviews = sliderPreviews.filter((_, i) => i !== index);
+
+    // 削除される画像のプレビューURLを解放
+    URL.revokeObjectURL(sliderPreviews[index]);
+
+    setSliderFiles(newFiles);
+    setSliderPreviews(newPreviews);
   };
 
   // Storage アップロード
@@ -95,9 +133,12 @@ export default function NewCatPage() {
       return;
     }
 
-    if (!thumbnailFile) return alert("サムネイルを選択してください");
+    if (!thumbnailFile) {
+      alert("サムネイルを選択してください");
+      setLoading(false);
+      return;
+    }
 
-    setLoading(true);
     try {
       // 1. サムネイルアップロード
       const thumbUrl = await uploadFile(thumbnailFile, "cat-images");
@@ -132,10 +173,8 @@ export default function NewCatPage() {
       const catId = catData.id;
 
       // 3. スライダー画像アップロード
-      const urls: string[] = [];
       for (let i = 0; i < sliderFiles.length; i++) {
         const url = await uploadFile(sliderFiles[i], "cat-images");
-        urls.push(url);
 
         // cat_images にINSERT
         const { error } = await supabase
@@ -143,9 +182,6 @@ export default function NewCatPage() {
           .insert([{ cat_id: catId, image_url: url, order: i + 1 }]);
         if (error) console.error("cat_images insert error:", error.message);
       }
-
-      setThumbnailUrl(thumbUrl);
-      setSliderUrls(urls);
 
       alert("投稿しました！");
       router.push("/cats");
@@ -189,32 +225,75 @@ export default function NewCatPage() {
             </div>
 
             <div className="p-new__post-thumbnail">
-              {/* サムネイル */}
-              <label>サムネイル</label>
+              <label className="p-new__post-thumbnail-label">サムネイル</label>
+              {thumbnailPreview && (
+                <div className="p-new__post-thumbnail-image">
+                  <div className="p-new__post-thumbnail-image-img-wrap">
+                    <Image
+                      className="p-new__post-thumbnail-image-img"
+                      src={thumbnailPreview}
+                      alt="サムネイルプレビュー"
+                      fill
+                      sizes="185px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                </div>
+              )}
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleThumbnailChange}
+                className="p-new__post-thumbnail-input"
+                required
               />
-              {thumbnailFile && <p>選択中: {thumbnailFile.name}</p>}
             </div>
 
-            <div className="p-new__post-silder">
-              {/* スライダー画像 */}
-              <label>スライダー画像 (最大7枚)</label>
+            <div className="p-new__post-slider">
+              <label className="p-new__post-slider-label">
+                スライダー画像 (最大7枚)
+              </label>
+
+              {sliderPreviews.length > 0 && (
+                <div className="p-new__post-slider-selected-wrap">
+                  <p className="p-new__post-slider-selected-text">
+                    選択中の画像:
+                  </p>
+                  <div className="p-new__post-slider-selected-item">
+                    {sliderPreviews.map((preview, idx) => (
+                      <div
+                        key={idx}
+                        className="p-new__post-slider-selected-item-inner"
+                      >
+                        <div className="p-new__post-slider-selected-item-image">
+                          <Image
+                            src={preview}
+                            alt=""
+                            fill
+                            sizes="100px"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </div>
+                        <button
+                          className="p-new__post-slider-selected-item-image-close"
+                          type="button"
+                          onClick={() => handleRemoveSliderImage(idx)}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <input
                 type="file"
                 accept="image/*"
                 multiple
                 onChange={handleSliderChange}
+                className="p-new__post-slider-input"
               />
-              {sliderFiles.length > 0 && (
-                <ul>
-                  {sliderFiles.map((f, idx) => (
-                    <li key={idx}>{f.name}</li>
-                  ))}
-                </ul>
-              )}
             </div>
 
             <div className="p-detail-desc__content">
