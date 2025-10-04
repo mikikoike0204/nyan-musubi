@@ -69,11 +69,18 @@ export default function Header() {
                 </Link>
               </li>
               {user ? (
-                <li>
-                  <Link className="c-nav__item" href="/favorites">
-                    お気に入り
-                  </Link>
-                </li>
+                <>
+                  <li>
+                    <Link className="c-nav__item" href="/favorites">
+                      お気に入り
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="c-nav__item" href="/mypage">
+                      マイページ
+                    </Link>
+                  </li>
+                </>
               ) : (
                 ""
               )}

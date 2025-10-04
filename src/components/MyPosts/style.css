@@ -1,0 +1,27 @@
+/* src/components/MyPosts/style.css */
+
+.p-myposts__list {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 46px;
+}
+
+.p-myposts__image {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.p-myposts__info {
+  margin-top: 15px;
+}
+
+.p-myposts__date {
+  margin-top: 10px;
+}
+
+.p-myposts__badge {
+  margin-top: 10px;
+}
