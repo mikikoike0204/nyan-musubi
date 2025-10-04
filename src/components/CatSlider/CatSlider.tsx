@@ -24,8 +24,9 @@ export default function CatSlider({ images }: CatSliderProps) {
   return (
     <div className="p-detail-slider-wrapper">
       <div className="p-detail-slider__main-wrapper">
-        <div className="p-detail-slider__fav"></div>
+        {/* <div className="p-detail-slider__fav"></div> */}
         {/* <div className="p-detail-slider__fav added"></div> */}
+
         {/* メインスライダー */}
         <Swiper
           modules={[Thumbs, Navigation]}

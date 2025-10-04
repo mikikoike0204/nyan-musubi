@@ -37,7 +37,7 @@ export default function Mypage() {
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">お気に入りのねこちゃん</h2>
           </div>
-          <CatList limit={8} showAdopted={false} />
+          <CatList limit={8} />
           <div className="p-top-newcat__more">
             <Link href="/cats" className="c-common-btn">
               もっと見る

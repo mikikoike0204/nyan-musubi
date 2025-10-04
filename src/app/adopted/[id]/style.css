@@ -73,12 +73,23 @@
   white-space: pre-line;
 }
 
-.p-detail-desc__explanation-fav .p-top-newcat__fav {
+.p-top-newcat__fav {
+  display: block;
+  border-radius: 9999px;
+  background-color: #4a90e2;
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
   font-size: 16px;
   padding: 10px 10px;
+}
+
+.p-top-newcat__fav.added {
+  background-color: pink;
 }
 
 .p-detail-desc__contact {

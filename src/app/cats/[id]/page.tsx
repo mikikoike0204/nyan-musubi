@@ -1,15 +1,16 @@
 // src/app/cats/[id]/page.tsx
 import CatSlider from "@/components/CatSlider/CatSlider";
 import EditButton from "@/components/EditButton/EditButton";
+import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
 import { fetchCatById, fetchCatImages } from "@/lib/catApi";
 import "./style.css";
 
 interface Props {
-  params: Promise<{ id: string }>; // ← Next.js 15 では Promise 型
+  params: Promise<{ id: string }>;
 }
 
 export default async function CatDetail({ params }: Props) {
-  const { id } = await params; // ← Promise を await して展開
+  const { id } = await params;
 
   const cat = await fetchCatById(id);
   const images = await fetchCatImages(id);
@@ -100,7 +101,11 @@ export default async function CatDetail({ params }: Props) {
                 </div>
               </div>
               <div className="p-detail-desc__explanation-fav">
-                <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                <FavoriteButton
+                  catId={id}
+                  isAdopted={cat.adopted}
+                  showAlways={true}
+                />
               </div>
             </div>
           </div>

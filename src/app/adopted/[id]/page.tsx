@@ -1,6 +1,7 @@
 // src/app/adopted/[id]/page.tsx
 import CatSlider from "@/components/CatSlider/CatSlider";
 import EditButton from "@/components/EditButton/EditButton";
+import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
 import { fetchCatById, fetchCatImages, fetchCatUpdates } from "@/lib/catApi";
 import "./style.css";
 import Image from "next/image";
@@ -111,7 +112,11 @@ export default async function CatDetail({ params }: Props) {
                 </div>
               </div>
               <div className="p-detail-desc__explanation-fav">
-                <button className="p-top-newcat__fav">お気に入り❤︎</button>
+                <FavoriteButton
+                  catId={id}
+                  isAdopted={cat.adopted}
+                  showAlways={true}
+                />
               </div>
             </div>
           </div>
