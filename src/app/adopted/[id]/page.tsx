@@ -1,5 +1,6 @@
 // src/app/adopted/[id]/page.tsx
 import CatSlider from "@/components/CatSlider/CatSlider";
+import EditButton from "@/components/EditButton/EditButton";
 import { fetchCatById, fetchCatImages, fetchCatUpdates } from "@/lib/catApi";
 import "./style.css";
 import Image from "next/image";
@@ -113,6 +114,14 @@ export default async function CatDetail({ params }: Props) {
                 <button className="p-top-newcat__fav">お気に入り❤︎</button>
               </div>
             </div>
+          </div>
+          <div className="p-detail-desc__contact">
+            {/* 投稿者本人なら「編集する」、それ以外は「応募する」を表示 */}
+            <EditButton
+              catId={id}
+              postUserId={cat.user_id}
+              editPath={`/adopted/${id}/edit`}
+            />
           </div>
         </div>
       </section>

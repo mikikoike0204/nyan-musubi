@@ -63,7 +63,7 @@ export default function CatSlider({ images }: CatSliderProps) {
               src={src}
               alt={`サムネイル ${i}`}
               fill
-              sizes="120px"
+              sizes="135px"
               style={{ objectFit: "cover" }}
               className="p-detail-slider__thumb-image"
             />

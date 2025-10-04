@@ -3,6 +3,7 @@ import { Color } from "./color";
 import { Prefecture } from "./prefectures";
 export interface Cat {
   id: string;
+  user_id: string;
   title: string;
   thumbnail: string;
   sliderImages: string[];

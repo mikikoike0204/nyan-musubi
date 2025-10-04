@@ -3,6 +3,7 @@ import { supabase } from "./supabaseClient";
 
 export type Cat = {
   id: string;
+  user_id: string;
   title: string; // UIで使いたいので仮に付ける
   prefecture: string;
   color: string;
