@@ -1,0 +1,7 @@
+.p-favorites__display {
+  margin-top: 50px;
+}
+
+.p-favorites__display + .p-top-newcat__list {
+  margin-top: 30px;
+}

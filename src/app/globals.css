@@ -154,9 +154,9 @@ a:hover {
   align-items: center;
 }
 
-.c-pagination__item.current {
-  border: 1px solid #000;
-  background-color: #fff;
+.c-pagination__link.current {
+  background-color: #4a90e2;
+  color: #fff;
 }
 
 .c-pagination__link {
