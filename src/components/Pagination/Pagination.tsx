@@ -48,44 +48,39 @@ export default function Pagination({
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="c-pagination table ml-auto mr-auto mt-15">
-      <ol className="c-pagination__list flex justify-center items-center gap-x-3">
+    <div className="c-pagination">
+      <ol className="c-pagination__list">
         {/* 前ページ */}
-        <li className="c-pagination__item w-10 h-20">
-          <button
-            className={`c-pagination__link flex direction-col justify-center items-center arrow prev-arrow w-full h-full ${
-              currentPage === 1
-                ? "opacity-50 cursor-not-allowed"
-                : "cursor-pointer"
-            }`}
-            onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            style={{ background: "none", border: "none" }}
-          >
-            <Image
-              src="/common/icon-prev-arrow.svg"
-              alt="前のページ"
-              width={20}
-              height={15}
-              className="c-pagination__arrow"
-            />
-          </button>
-        </li>
+        {currentPage > 1 && (
+          <li className="c-pagination__item">
+            <button
+              className="c-pagination__link arrow prev-arrow"
+              onClick={() => onPageChange(currentPage - 1)}
+            >
+              <Image
+                src="/common/icon-prev-arrow.svg"
+                alt="前のページ"
+                width={20}
+                height={15}
+                className="c-pagination__arrow"
+              />
+            </button>
+          </li>
+        )}
 
         {/* 最初のページ（省略記号がある場合） */}
         {visiblePages[0] > 1 && (
           <>
-            <li className="c-pagination__item w-10 h-10 flex justify-center items-center">
+            <li className="c-pagination__item">
               <button
-                className="c-pagination__link flex justify-center items-center w-10 h-10 bg-gray-300 cursor-pointer"
+                className="c-pagination__link"
                 onClick={() => onPageChange(1)}
-                style={{ background: "none", border: "1px solid #ccc" }}
               >
                 1
               </button>
             </li>
             {visiblePages[0] > 2 && (
-              <li className="c-pagination__item w-10 h-10 flex justify-center items-center">
+              <li className="c-pagination__item">
                 <span>...</span>
               </li>
             )}
@@ -98,20 +93,13 @@ export default function Pagination({
             key={page}
             className={`c-pagination__item ${
               page === currentPage ? "current" : ""
-            } w-10 h-10 flex justify-center items-center`}
+            }`}
           >
             <button
-              className={`c-pagination__link flex justify-center items-center w-10 h-10 cursor-pointer ${
-                page === currentPage
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 hover:bg-gray-400"
+              className={`c-pagination__link ${
+                page === currentPage ? "current" : ""
               }`}
               onClick={() => onPageChange(page)}
-              style={{
-                background: page === currentPage ? "#3b82f6" : "#d1d5db",
-                color: page === currentPage ? "white" : "black",
-                border: "1px solid #ccc",
-              }}
             >
               {page}
             </button>
@@ -122,15 +110,14 @@ export default function Pagination({
         {visiblePages[visiblePages.length - 1] < totalPages && (
           <>
             {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-              <li className="c-pagination__item w-10 h-10 flex justify-center items-center">
+              <li className="c-pagination__item">
                 <span>...</span>
               </li>
             )}
-            <li className="c-pagination__item w-10 h-10 flex justify-center items-center">
+            <li className="c-pagination__item">
               <button
-                className="c-pagination__link flex justify-center items-center w-10 h-10 bg-gray-300 cursor-pointer"
+                className="c-pagination__link"
                 onClick={() => onPageChange(totalPages)}
-                style={{ background: "none", border: "1px solid #ccc" }}
               >
                 {totalPages}
               </button>
@@ -139,28 +126,22 @@ export default function Pagination({
         )}
 
         {/* 次ページ */}
-        <li className="c-pagination__item w-10 h-10">
-          <button
-            className={`c-pagination__link flex direction-col justify-center items-center arrow next-arrow w-10 h-10 ${
-              currentPage === totalPages
-                ? "opacity-50 cursor-not-allowed"
-                : "cursor-pointer"
-            }`}
-            onClick={() =>
-              currentPage < totalPages && onPageChange(currentPage + 1)
-            }
-            disabled={currentPage === totalPages}
-            style={{ background: "none", border: "none" }}
-          >
-            <Image
-              src="/common/icon-next-arrow.svg"
-              alt="次のページ"
-              width={20}
-              height={15}
-              className="c-pagination__arrow"
-            />
-          </button>
-        </li>
+        {currentPage < totalPages && (
+          <li className="c-pagination__item">
+            <button
+              className="c-pagination__link arrow next-arrow"
+              onClick={() => onPageChange(currentPage + 1)}
+            >
+              <Image
+                src="/common/icon-next-arrow.svg"
+                alt="次のページ"
+                width={20}
+                height={15}
+                className="c-pagination__arrow"
+              />
+            </button>
+          </li>
+        )}
       </ol>
     </div>
   );
