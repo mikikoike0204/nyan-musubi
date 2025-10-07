@@ -3,6 +3,7 @@ import CatList from "@/components/CatList/CatList";
 import MyPosts from "@/components/MyPosts/MyPosts";
 import Link from "next/link";
 import { Suspense } from "react";
+import FavoriteCats from "@/components/FavoriteCats/FavoriteCats";
 import "./style.css";
 
 export default function Mypage() {
@@ -37,9 +38,12 @@ export default function Mypage() {
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">お気に入りのねこちゃん</h2>
           </div>
-          <CatList limit={8} />
+          <Suspense fallback={<p>読み込み中...</p>}>
+            <FavoriteCats limit={4} showPagination={false} />
+          </Suspense>
+
           <div className="p-top-newcat__more">
-            <Link href="/cats" className="c-common-btn">
+            <Link href="/favorites" className="c-common-btn">
               もっと見る
             </Link>
           </div>

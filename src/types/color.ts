@@ -9,6 +9,7 @@ export type Color =
   | "白黒"
   | "茶トラ"
   | "キジトラ"
+  | "キジ白"
   | "サバトラ"
   | "その他";
 
@@ -22,6 +23,7 @@ export const colorOptions: { value: string; label: string }[] = [
   { value: "白黒", label: "白黒" },
   { value: "茶トラ", label: "茶トラ" },
   { value: "キジトラ", label: "キジトラ" },
+  { value: "キジ白", label: "キジ白" },
   { value: "サバトラ", label: "サバトラ" },
   { value: "その他", label: "その他" },
 ];
