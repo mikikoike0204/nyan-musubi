@@ -1,4 +1,3 @@
-// src/components/FavoriteCats/FavoriteCats.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -23,7 +22,8 @@ export default function FavoriteCats({
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const ITEMS_PER_PAGE = 6; // ページネーション用
+  // ページあたり件数を limit から自動調整
+  const ITEMS_PER_PAGE = limit || 8;
   const totalPages = Math.ceil(favoriteCats.length / ITEMS_PER_PAGE);
 
   useEffect(() => {
@@ -89,8 +89,8 @@ export default function FavoriteCats({
           })
           .filter((cat): cat is Cat => cat !== null) || [];
 
-      // limit が指定されていればその数だけ切り取る
-      setFavoriteCats(limit ? cats.slice(0, limit) : cats);
+      // limitが指定されていてページネーションを表示しない場合のみカット
+      setFavoriteCats(showPagination ? cats : cats.slice(0, limit));
     } catch (err) {
       console.error("Error fetching favorite cats:", err);
       setError("お気に入りの猫情報を取得できませんでした。");
@@ -119,7 +119,21 @@ export default function FavoriteCats({
 
   return (
     <div className="p-favoritecats">
-      <CatList limit={limit || ITEMS_PER_PAGE} cats={currentCats} />
+      {/* 件数表示 */}
+      <div className="p-favorites__display">
+        お気に入り件数: {favoriteCats.length}件
+        {showPagination && totalPages > 1 && (
+          <span>
+            {" "}
+            (ページ: {currentPage}/{totalPages})
+          </span>
+        )}
+      </div>
+
+      {/* 猫リスト */}
+      <CatList limit={ITEMS_PER_PAGE} cats={currentCats} />
+
+      {/* ページネーション */}
       {showPagination && totalPages > 1 && (
         <Pagination
           currentPage={currentPage}

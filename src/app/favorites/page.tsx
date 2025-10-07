@@ -3,6 +3,7 @@
 
 import FavoriteCats from "@/components/FavoriteCats/FavoriteCats";
 import Link from "next/link";
+import "./style.css";
 
 export default function FavoritesPage() {
   return (
@@ -25,7 +26,6 @@ export default function FavoritesPage() {
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">お気に入り一覧</h2>
           </div>
-          {/* ★ 12件表示に変更 */}
           <FavoriteCats limit={8} />
           <div className="p-top-newcat__more">
             <Link href="/" className="c-common-btn2">

@@ -1,7 +1,11 @@
-.p-favorites__display {
+.p-favorites-list {
   margin-top: 50px;
 }
 
-.p-favorites__display + .p-top-newcat__list {
+.p-favoritecats {
   margin-top: 30px;
+}
+
+.p-favorites__display + .p-top-newcat__list {
+  margin-top: 15px;
 }
