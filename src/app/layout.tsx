@@ -7,7 +7,7 @@ import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "にゃん結び",
-  description: "保護猫 × 里親マッチングサイト",
+  description: "保護ねこ × 里親マッチングサイト",
 };
 
 export default function RootLayout({

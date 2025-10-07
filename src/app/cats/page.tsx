@@ -80,7 +80,7 @@ export default function Cats() {
       setFilteredCats(data || []);
     } catch (err) {
       console.error("Error fetching cats:", err);
-      setError("猫の情報を取得できませんでした。");
+      setError("ねこの情報を取得できませんでした。");
     } finally {
       setLoading(false);
     }
@@ -200,13 +200,13 @@ export default function Cats() {
         </div>
       </section>
 
-      {/* 猫一覧 */}
+      {/* ねこ一覧 */}
       <section className="c-section p-cats-list">
         <div className="c-container">
           {/* データなしの場合のメッセージ */}
           {filteredCats.length === 0 ? (
             <div className="p-top-newcat__empty">
-              <p>条件に合う猫が見つかりませんでした。</p>
+              <p>条件に合うねこが見つかりませんでした。</p>
               <p>検索条件を変更してお試しください。</p>
             </div>
           ) : (

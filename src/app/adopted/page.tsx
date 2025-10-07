@@ -72,7 +72,7 @@ export default function AdoptedCats() {
         .from("cat_adoption_info")
         .select("*")
         .order("created_at", { ascending: false })
-        .eq("adopted", true); // 譲渡済みの猫のみ取得
+        .eq("adopted", true); // 譲渡済みのねこのみ取得
 
       if (error) throw error;
 
@@ -80,7 +80,7 @@ export default function AdoptedCats() {
       setFilteredCats(data || []);
     } catch (err) {
       console.error("Error fetching adopted cats:", err);
-      setError("譲渡済みの猫の情報を取得できませんでした。");
+      setError("譲渡済みのねこの情報を取得できませんでした。");
     } finally {
       setLoading(false);
     }
@@ -200,17 +200,17 @@ export default function AdoptedCats() {
         </div>
       </section>
 
-      {/* 猫一覧 */}
+      {/* ねこ一覧 */}
       <section className="c-section p-cats-list">
         <div className="c-container">
           {/* データなしの場合のメッセージ */}
           {filteredCats.length === 0 ? (
             <div className="p-top-newcat__empty">
               {cats.length === 0 ? (
-                <p>現在、譲渡済みの猫はいません。</p>
+                <p>現在、譲渡済みのねこはいません。</p>
               ) : (
                 <>
-                  <p>条件に合う猫が見つかりませんでした。</p>
+                  <p>条件に合うねこが見つかりませんでした。</p>
                   <p>検索条件を変更してお試しください。</p>
                 </>
               )}

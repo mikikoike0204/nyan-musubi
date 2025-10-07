@@ -9,7 +9,7 @@ export default async function FavoritesList() {
   if (favorites.length === 0) {
     return (
       <div className="p-favorites__empty">
-        <p>お気に入りに追加された猫ちゃんはまだいません</p>
+        <p>お気に入りに追加されたねこちゃんはまだいません</p>
       </div>
     );
   }

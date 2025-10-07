@@ -38,7 +38,7 @@ export default function CatSlider({ images }: CatSliderProps) {
             <SwiperSlide key={i} className="p-detail-slider__main-slide">
               <Image
                 src={src}
-                alt={`猫画像 ${i}`}
+                alt={`ねこ画像 ${i}`}
                 fill
                 sizes="760px"
                 style={{ objectFit: "contain" }}

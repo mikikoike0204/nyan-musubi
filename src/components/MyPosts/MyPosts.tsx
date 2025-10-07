@@ -30,7 +30,7 @@ export default async function MyPosts() {
                 <div className="p-myposts__image">
                   <Image
                     src={post.thumbnail}
-                    alt="猫の画像"
+                    alt="ねこの画像"
                     fill
                     sizes="200px"
                     style={{ objectFit: "cover" }}

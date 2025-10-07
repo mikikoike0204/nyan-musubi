@@ -93,7 +93,7 @@ export default function FavoriteCats({
       setFavoriteCats(showPagination ? cats : cats.slice(0, limit));
     } catch (err) {
       console.error("Error fetching favorite cats:", err);
-      setError("お気に入りの猫情報を取得できませんでした。");
+      setError("お気に入りのねこ情報を取得できませんでした。");
     } finally {
       setLoading(false);
     }
@@ -113,7 +113,7 @@ export default function FavoriteCats({
   if (loading) return <p>読み込み中...</p>;
   if (error) return <p>{error}</p>;
   if (favoriteCats.length === 0)
-    return <p>お気に入りに追加された猫ちゃんはまだいません。</p>;
+    return <p>お気に入りに追加されたねこちゃんはまだいません。</p>;
 
   const currentCats = showPagination ? getCurrentPageData() : favoriteCats;
 
@@ -130,7 +130,7 @@ export default function FavoriteCats({
         )}
       </div>
 
-      {/* 猫リスト */}
+      {/* ねこリスト */}
       <CatList limit={ITEMS_PER_PAGE} cats={currentCats} />
 
       {/* ページネーション */}

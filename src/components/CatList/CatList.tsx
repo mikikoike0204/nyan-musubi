@@ -60,7 +60,7 @@ export default function CatList({
       setCats(data || []);
     } catch (error) {
       console.error("Error fetching cats:", error);
-      setError("猫の情報を取得できませんでした。");
+      setError("ねこの情報を取得できませんでした。");
     } finally {
       setLoading(false);
     }
@@ -86,7 +86,7 @@ export default function CatList({
   if (cats.length === 0) {
     return (
       <div className="p-top-newcat__empty">
-        <p>現在、登録されている猫はいません。</p>
+        <p>現在、登録されているねこはいません。</p>
       </div>
     );
   }

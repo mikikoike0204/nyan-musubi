@@ -13,7 +13,7 @@
 
 ---
 
-## 保護猫情報テーブル `cat_adoption_info`
+## 保護ねこ情報テーブル `cat_adoption_info`
 
 | 項目名           | データ型 | 必須 | 説明                             |
 | ---------------- | -------- | ---- | -------------------------------- |
@@ -35,22 +35,22 @@
 | adopted          | BOOLEAN  | YES  | 譲渡が決定したかどうか           |
 
 ※ 後で追加するかもしれない
-| fiv_status | BOOLEAN | YES | 猫エイズ（FIV） |
-| felv_status | BOOLEAN | YES | 猫白血病（FeLV） |
+| fiv_status | BOOLEAN | YES | ねこエイズ（FIV） |
+| felv_status | BOOLEAN | YES | ねこ白血病（FeLV） |
 | delivery_method | TEXT | NO | 引き渡し方法 |
 
 ---
 
-## 猫画像テーブル `cat_images`
+## ねこ画像テーブル `cat_images`
 
-| 項目名     | データ型 | 必須 | 説明                              |
-| ---------- | -------- | ---- | --------------------------------- |
-| id         | UUID PK  | YES  | 識別用 ID                         |
-| cat_id     | UUID     | YES  | 猫投稿 ID（cat_adoption_info.id） |
-| image_url  | TEXT     | YES  | 画像 URL                          |
-| order      | INTEGER  | NO   | スライダー表示順                  |
-| created_at | DATETIME | YES  | 登録日時（自動記録）              |
-| updated_at | DATETIME | YES  | 更新日時（自動記録）              |
+| 項目名     | データ型 | 必須 | 説明                                |
+| ---------- | -------- | ---- | ----------------------------------- |
+| id         | UUID PK  | YES  | 識別用 ID                           |
+| cat_id     | UUID     | YES  | ねこ投稿 ID（cat_adoption_info.id） |
+| image_url  | TEXT     | YES  | 画像 URL                            |
+| order      | INTEGER  | NO   | スライダー表示順                    |
+| created_at | DATETIME | YES  | 登録日時（自動記録）                |
+| updated_at | DATETIME | YES  | 更新日時（自動記録）                |
 
 ---
 
@@ -59,7 +59,7 @@
 | 項目名      | データ型 | 必須 | 説明                                  |
 | ----------- | -------- | ---- | ------------------------------------- |
 | id          | UUID PK  | YES  | 識別用 ID（主キー、自動採番 or UUID） |
-| cat_id      | UUID     | YES  | 猫投稿 ID（cat_adoption_info.id）     |
+| cat_id      | UUID     | YES  | ねこ投稿 ID（cat_adoption_info.id）   |
 | user_id     | UUID     | YES  | 投稿者ユーザー ID（profiles.id）      |
 | update_text | TEXT     | YES  | 報告内容（自由記述）                  |
 | image_url   | TEXT     | NO   | 画像　 URL                            |
@@ -74,7 +74,7 @@
 | ---------- | -------- | ---- | ------------------------------------- |
 | id         | UUID PK  | YES  | 識別用 ID（主キー、自動採番 or UUID） |
 | user_id    | UUID     | YES  | ユーザー ID（profiles.id）            |
-| cat_id     | UUID     | YES  | 猫投稿 ID（cat_adoption_info.id）     |
+| cat_id     | UUID     | YES  | ねこ投稿 ID（cat_adoption_info.id）   |
 | created_at | DATETIME | YES  | 登録日時                              |
 | updated_at | DATETIME | YES  | 更新日時                              |
 
@@ -85,7 +85,7 @@
 | 項目名 　     | データ型 　 | 必須 　 | 説明                                  |
 | ------------- | ----------- | ------- | ------------------------------------- |
 | id 　         | UUID PK     | YES     | 識別用 ID（主キー、自動採番 or UUID） |
-| cat_id 　     | UUID        | YES     | 猫投稿 ID（cat_adoption_info.id）     |
+| cat_id 　     | UUID        | YES     | ねこ投稿 ID（cat_adoption_info.id）   |
 | from_user_id  | UUID        | YES     | 譲渡元ユーザー ID（profiles.id）      |
 | to_user_id 　 | UUID        | YES     | 譲渡先ユーザー ID（profiles.id）      |
 | created_at 　 | DATETIME    | YES     | 登録日時                              |

@@ -19,7 +19,7 @@ export default function Home() {
             <p className="p-top-mv__text">
               ねこについて詳しくないけど、
               <br />
-              猫を保護したので家族になってくれる人を探したい。
+              ねこを保護したので家族になってくれる人を探したい。
             </p>
             <p className="p-top-mv__text">
               そんな優しい人たちの間で、にゃんこのご縁を結びたい。
