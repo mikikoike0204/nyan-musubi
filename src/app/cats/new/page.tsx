@@ -40,18 +40,27 @@ export default function NewCatPage() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      if (!session) router.push("/login");
-      else {
+
+      if (!session) {
+        alert("ログインまたは新規登録してください。");
+        router.push("/login");
+      } else {
         setUser(session.user);
         setLoading(false);
       }
     };
+
     checkSession();
 
+    // リスナーはログアウトした場合のみセット
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        if (!session) router.push("/login");
-        else setUser(session.user);
+        if (!session) {
+          router.push("/login"); // alert は初回チェックのみ
+        } else {
+          setUser(session.user);
+          setLoading(false);
+        }
       }
     );
 
