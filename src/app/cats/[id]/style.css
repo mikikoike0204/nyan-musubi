@@ -63,6 +63,10 @@
   padding: 8px 0;
 }
 
+.p-detail-desc__explanation {
+  width: calc(100% - (35% + 50px));
+}
+
 .p-detail-desc__explanation-item + .p-detail-desc__explanation-item {
   margin-top: 30px;
 }
@@ -74,6 +78,13 @@
 }
 
 .p-detail-desc__explanation-fav .p-top-newcat__fav {
+  display: block;
+  border-radius: 9999px;
+  background-color: #4a90e2;
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
@@ -163,4 +174,17 @@
   border: 1px solid #ccc;
   padding: 40px;
   line-height: 2;
+}
+
+/* comment */
+.p-detail-comment__title {
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 24px;
+  border-bottom: 1px dashed gray;
+}
+
+.p-detail-comment__content {
+  margin: 30px auto 0;
+  max-width: 600px;
 }

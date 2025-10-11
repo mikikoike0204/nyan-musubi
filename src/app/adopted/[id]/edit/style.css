@@ -71,7 +71,7 @@
 }
 
 .p-detail-desc__explanation {
-  flex-grow: 1;
+  width: calc(100% - (35% + 50px));
 }
 
 .p-detail-desc__explanation-item + .p-detail-desc__explanation-item {
@@ -92,6 +92,13 @@
 }
 
 .p-detail-desc__explanation-fav .p-top-newcat__fav {
+  display: block;
+  border-radius: 9999px;
+  background-color: #4a90e2;
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
