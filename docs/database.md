@@ -90,3 +90,19 @@
 | to_user_id 　 | UUID        | YES     | 譲渡先ユーザー ID（profiles.id）      |
 | created_at 　 | DATETIME    | YES     | 登録日時                              |
 | updated_at 　 | DATETIME    | YES     | 更新日時                              |
+
+---
+
+## コメントテーブル `　comments`
+
+| 項目名     | データ型 | 必須 | 説明                                |
+| ---------- | -------- | ---- | ----------------------------------- |
+| id         | UUID PK  | YES  | 識別用 ID（主キー）                 |
+| cat_id     | UUID     | YES  | ねこ投稿 ID（cat_adoption_info.id） |
+| user_id    | TEXT     | YES  | コメント投稿者 ID（profiles.id）    |
+| content    | TEXT     | YES  | コメント内容　　                    |
+| is_deleted | BOOLEAN  | YES  | 削除フラグ（デフォルト: false）     |
+| created_at | DATETIME | YES  | 登録日時（自動記録）                |
+| updated_at | DATETIME | YES  | 更新日時（自動記録）                |
+
+---

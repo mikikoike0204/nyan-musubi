@@ -1,0 +1,40 @@
+/* src/components/CommentItem/style.css */
+
+.p-detail-comment__item-user {
+  display: flex;
+  align-items: center;
+}
+
+.p-detail-comment__item-user-icon {
+  flex-shrink: 0;
+}
+
+.p-detail-comment__item-username {
+  text-decoration: underline;
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+.p-detail-comment__item-date {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.p-detail-comment__item-content {
+  margin-top: 10px;
+}
+
+.p-detail-comment__item-delete {
+  margin-top: 5px;
+  flex-shrink: 0;
+  background-color: #ddd;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.p-detail-comment__list-item + .p-detail-comment__list-item {
+  margin-top: 15px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}

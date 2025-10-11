@@ -4,6 +4,9 @@ import EditButton from "@/components/EditButton/EditButton";
 import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
 import { fetchCatById, fetchCatImages } from "@/lib/catApi";
 import "./style.css";
+import CommentForm from "@/components/CommentForm/CommentForm";
+import CommentList from "@/components/CommentList/CommentList";
+import { fetchComments } from "@/lib/commentApi";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -14,6 +17,7 @@ export default async function CatDetail({ params }: Props) {
 
   const cat = await fetchCatById(id);
   const images = await fetchCatImages(id);
+  const comments = await fetchComments(id);
 
   if (!cat) {
     return <div>ねこちゃんが見つかりませんでした。</div>;
@@ -112,6 +116,17 @@ export default async function CatDetail({ params }: Props) {
           <div className="p-detail-desc__contact">
             {/* 投稿者本人なら「編集する」、それ以外は「応募する」を表示 */}
             <EditButton catId={id} postUserId={cat.user_id} />
+          </div>
+        </div>
+      </section>
+      <section className="c-section p-detail-comment">
+        <div className="c-container">
+          <h2 className="p-detail-comment__title">質問する</h2>
+          <div className="p-detail-comment__content">
+            <div className="p-detail-comment__form-wrap">
+              <CommentForm catId={id} />
+            </div>
+            <CommentList comments={comments} catPostUserId={cat.user_id} />
           </div>
         </div>
       </section>

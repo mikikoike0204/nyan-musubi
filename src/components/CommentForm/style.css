@@ -1,0 +1,21 @@
+/* src/components/CommentForm/style.css */
+.p-detail-comment__form-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.p-detail-comment__form-textarea {
+  width: 80%;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.p-detail-comment__form-submit {
+  width: 16%;
+  flex-shrink: 0;
+  background-color: #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
