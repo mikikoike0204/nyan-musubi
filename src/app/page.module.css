@@ -1,17 +1,17 @@
-/* src/app/style.css */
-.p-top-mv__desc {
+/* src/app/page.module.css */
+.topMvDesc {
   margin-top: 40px;
 }
 
-.p-top-mv__text {
+.topMvText {
   text-align: center;
   line-height: 1.5;
 }
 
-.p-top-mv__text + .p-top-mv__text {
+.topMvText + .topMvText {
   margin-top: 15px;
 }
 
-.p-top-newcat {
+.topNewCat {
   margin-top: 50px;
 }
