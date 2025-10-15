@@ -263,7 +263,7 @@ export default function EditCatPage({
                 <div className={styles.postThumbnailImage}>
                   <div className={styles.postThumbnailImageImgWrap}>
                     <Image
-                      className="p-new__post-thumbnail-image-img"
+                      className={styles.postThumbnailImageImg}
                       src={currentThumbnail}
                       alt="現在のサムネイル"
                       fill
@@ -320,7 +320,7 @@ export default function EditCatPage({
 
               <div className={styles.postSliderSelectedItemAdd}>
                 <label className={styles.postSliderSelectedItemAddLabel}>
-                  新しい画像を追加 (最大7枚)
+                  新しい画像を追加
                 </label>
                 <input
                   type="file"
@@ -528,7 +528,7 @@ export default function EditCatPage({
                     </div>
                   </li>
                   <li className={styles.tableItem}>
-                    <div className="p-detail-desc__table-head adopted">
+                    <div className={styles.tableHeadAdopted}>
                       家族が決まったかどうか
                     </div>
                     <div
