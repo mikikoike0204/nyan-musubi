@@ -1,7 +1,7 @@
 // src/components/FavoritesList/FavoritesList.tsx
 import { getFavorites } from "@/lib/supabase/queries";
 import FavoriteListItem from "@/components/FavoriteListItem/FavoriteListItem";
-import "./style.css";
+import styles from "./page.module.css";
 
 export default async function FavoritesList() {
   const favorites = await getFavorites();
