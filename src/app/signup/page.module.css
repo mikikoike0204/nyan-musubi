@@ -1,0 +1,44 @@
+.login {
+  margin-top: 80px;
+}
+
+.loginContent {
+  max-width: 330px;
+  margin: 0 auto;
+}
+
+.loginItemHead {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d9d9d9;
+  font-weight: bold;
+}
+
+.loginForm {
+  margin-top: 50px;
+}
+
+.loginItem + .loginItem {
+  margin-top: 30px;
+}
+
+.loginItemDesc {
+  margin-top: 10px;
+}
+
+.loginItemDescInput {
+  margin-top: 10px;
+  border: 1px solid #d9d9d9;
+  line-height: 43px;
+  padding: 0 10px;
+  display: block;
+  width: 100%;
+}
+
+.loginItemDescInput:placeholder {
+  color: #d9d9d9;
+}
+
+.loginBtn {
+  margin-top: 50px;
+}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient"; // ← 作成済みの Supabase client を import
-import "./style.css";
+import styles from "./page.module.css";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -39,14 +39,12 @@ export default function SignUp() {
 
     // ② profiles テーブルにユーザー情報を追加
     if (data.user) {
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .insert([
-          {
-            id: data.user.id, // Auth の UUID
-            name: email.split("@")[0], // 仮にメールの前半を名前に
-          },
-        ]);
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: data.user.id, // Auth の UUID
+          name: email.split("@")[0], // 仮にメールの前半を名前に
+        },
+      ]);
 
       if (profileError) {
         setLoading(false);
@@ -74,16 +72,15 @@ export default function SignUp() {
         </div>
       </section>
 
-      <section className="c-section p-login">
+      <section className={`c-section {styles.login}`}>
         <div className="c-container">
-          <div className="p-login__content">
-            {/* <h2 className="p-login__head">新規会員登録</h2> */}
-            <form className="p-login__form" onSubmit={handleSubmit}>
-              <div className="p-login__item">
-                <div className="p-login__item-head">メールアドレス</div>
-                <div className="p-login__item-desc">
+          <div className={styles.loginContent}>
+            <form className={styles.loginForm} onSubmit={handleSubmit}>
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>メールアドレス</div>
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="email"
                     placeholder="入力"
                     value={email}
@@ -92,13 +89,13 @@ export default function SignUp() {
                   />
                 </div>
               </div>
-              <div className="p-login__item">
-                <div className="p-login__item-head">
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>
                   メールアドレス（確認用）
                 </div>
-                <div className="p-login__item-desc">
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="email"
                     placeholder="入力"
                     value={confirmEmail}
@@ -107,11 +104,11 @@ export default function SignUp() {
                   />
                 </div>
               </div>
-              <div className="p-login__item">
-                <div className="p-login__item-head">パスワード</div>
-                <div className="p-login__item-desc">
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>パスワード</div>
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="password"
                     placeholder="入力"
                     value={password}
@@ -120,11 +117,11 @@ export default function SignUp() {
                   />
                 </div>
               </div>
-              <div className="p-login__item">
-                <div className="p-login__item-head">パスワード（確認用）</div>
-                <div className="p-login__item-desc">
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>パスワード（確認用）</div>
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="password"
                     placeholder="入力"
                     value={confirmPassword}
@@ -133,8 +130,12 @@ export default function SignUp() {
                   />
                 </div>
               </div>
-              <div className="p-login__btn">
-                <button className="c-common-btn" type="submit" disabled={loading}>
+              <div className={styles.loginBtn}>
+                <button
+                  className="c-common-btn"
+                  type="submit"
+                  disabled={loading}
+                >
                   {loading ? "登録中..." : "登録する"}
                 </button>
               </div>
