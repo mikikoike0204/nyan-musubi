@@ -1,22 +1,24 @@
-.p-cats-parameters {
+/* src/app/adopted/page.module.css */
+
+.parameters {
   margin-top: 50px;
 }
 
-.p-cats-parameters__form {
+.parametersForm {
   margin-top: 50px;
   border: 1px solid #ccc;
   padding: 40px;
 }
 
-.p-cats-list__info {
+.listInfo {
   display: flex;
   justify-content: space-between;
 }
 
-.p-cats-list__sort {
+.listSort {
   width: 300px;
 }
 
-.p-sub-mv__bg {
+.subMvBg {
   background-color: rgba(0, 0, 0, 0.2);
 }

@@ -8,7 +8,7 @@ import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
 import { createBrowserClient } from "@supabase/ssr";
 import Pagination from "@/components/Pagination/Pagination";
-import "./style.css";
+import styles from "./page.module.css";
 
 // Supabaseクライアントの初期化
 const supabase = createBrowserClient(
@@ -148,12 +148,7 @@ export default function AdoptedCats() {
   };
 
   // ローディング
-  if (loading)
-    return (
-      <div className="p-top-newcat__loading">
-        <p>読み込み中...</p>
-      </div>
-    );
+  if (loading) return <p className="c-loading">読み込み中...</p>;
 
   // エラー
   if (error)
@@ -178,7 +173,7 @@ export default function AdoptedCats() {
               className="p-sub-mv__image"
               style={{ backgroundImage: "url('/adopted/bg-mv.jpg')" }}
             ></div>
-            <div className="p-sub-mv__bg"></div>
+            <div className={styles.subMvBg}></div>
             <h1 className="p-sub-mv__title">
               家族が決まった
               <br />
@@ -189,7 +184,7 @@ export default function AdoptedCats() {
       </section>
 
       {/* 絞り込み条件 */}
-      <section className="c-section p-cats-parameters">
+      <section className={`c-section ${styles.parameters}`}>
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">絞り込み条件</h2>
@@ -201,23 +196,26 @@ export default function AdoptedCats() {
       </section>
 
       {/* ねこ一覧 */}
-      <section className="c-section p-cats-list">
+      <section className="c-section">
         <div className="c-container">
           {/* データなしの場合のメッセージ */}
           {filteredCats.length === 0 ? (
-            <div className="p-top-newcat__empty">
+            <div>
               {cats.length === 0 ? (
-                <p>現在、譲渡済みのねこはいません。</p>
+                <p className="c-loading">現在、譲渡済みのねこはいません。</p>
               ) : (
                 <>
-                  <p>条件に合うねこが見つかりませんでした。</p>
-                  <p>検索条件を変更してお試しください。</p>
+                  <p className="c-loading">
+                    条件に合うねこが見つかりませんでした。
+                    <br />
+                    検索条件を変更してお試しください。
+                  </p>
                 </>
               )}
             </div>
           ) : (
             <>
-              <div className="p-cats-list__info">
+              <div className={styles.listInfo}>
                 <div className="">
                   <p>
                     検索結果: {filteredCats.length}件 / 全{cats.length}件
@@ -229,7 +227,7 @@ export default function AdoptedCats() {
                     )}
                   </p>
                 </div>
-                <div className="p-cats-list__sort">
+                <div className={styles.listSort}>
                   <Select
                     name="sort"
                     value={sortOrder}
