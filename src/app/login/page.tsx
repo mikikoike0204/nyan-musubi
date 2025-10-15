@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import "./style.css";
+import styles from "./page.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -47,7 +47,6 @@ export default function Login() {
     setLoading(false);
   };
 
-
   return (
     <div className="c-section-wrapper">
       <section className="p-sub-mv">
@@ -63,16 +62,15 @@ export default function Login() {
         </div>
       </section>
 
-      <section className="c-section p-login">
+      <section className={`c-section {styles.login}`}>
         <div className="c-container">
-          <div className="p-login__content">
-            {/* <h2 className="p-login__head">ログイン情報入力</h2> */}
-            <form className="p-login__form" onSubmit={handleSubmit}>
-              <div className="p-login__item">
-                <div className="p-login__item-head">メールアドレス</div>
-                <div className="p-login__item-desc">
+          <div className={styles.loginContent}>
+            <form className={styles.loginForm} onSubmit={handleSubmit}>
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>メールアドレス</div>
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="email"
                     placeholder="入力"
                     value={email}
@@ -81,11 +79,11 @@ export default function Login() {
                   />
                 </div>
               </div>
-              <div className="p-login__item">
-                <div className="p-login__item-head">パスワード</div>
-                <div className="p-login__item-desc">
+              <div className={styles.loginItem}>
+                <div className={styles.loginItemHead}>パスワード</div>
+                <div className={styles.loginItemDesc}>
                   <input
-                    className="p-login__item-desc-input"
+                    className={styles.loginItemDescInput}
                     type="password"
                     placeholder="入力"
                     value={password}
@@ -94,10 +92,10 @@ export default function Login() {
                   />
                 </div>
               </div>
-              <Link className="p-login__link" href="">
-                ログインメールアドレス・パスワードをお忘れの方
+              <Link className={styles.loginLink} href="/signup">
+                新規登録の方はこちら
               </Link>
-              <div className="p-login__btn">
+              <div className={styles.loginBtn}>
                 <button className="c-common-btn" type="submit">
                   {loading ? "ログイン中..." : "ログインする"}
                 </button>
