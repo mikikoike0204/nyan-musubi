@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getGenderDisplay, getAgeDisplay } from "@/utils/catDisplay";
-import "./style.css";
+import styles from "./FavoriteListItem.module.css";
 
 interface FavoriteListItemProps {
   favorite: {
@@ -25,36 +25,36 @@ export default function FavoriteListItem({ favorite }: FavoriteListItemProps) {
   const href = cat.adopted ? `/adopted/${cat.id}` : `/cats/${cat.id}`;
 
   return (
-    <li className="p-top-newcat__item">
-      <Link className="p-top-newcat__link" href={href}>
+    <li className={styles.topNewCatItem}>
+      <Link className={styles.topNewCatLink} href={href}>
         {cat.adopted && (
-          <div className="p-top-newcat__shuku">
+          <div className={styles.topNewCatShuku}>
             <Image src="/top/icon-shuku.png" alt="祝" width={72} height={64} />
           </div>
         )}
 
-        <div className="p-top-newcat__image">
+        <div className={styles.topNewCatImage}>
           <Image
             src={cat.thumbnail_url || "/images/no-image.jpg"}
             alt={`${cat.title}の画像`}
             fill
             sizes="185px"
             style={{ objectFit: "cover" }}
-            className="p-top-newcat__image-pic"
+            className={styles.topNewCatImagePic}
           />
         </div>
 
-        <div className="p-top-newcat__desc">
-          <div className="p-top-newcat__desc-inner">
-            <div className="p-top-newcat__text1">
+        <div className={styles.topNewCatDesc}>
+          <div className={styles.topNewCatDescInner}>
+            <div className={styles.topNewCatText1}>
               {cat.color}{" "}
               {getGenderDisplay(cat.gender as "オス" | "メス" | "不明")}
               <br />
               {getAgeDisplay(cat.age as "幼少期" | "若年期" | "高齢期")} /{" "}
               {cat.prefecture}
             </div>
-            <div className="p-top-newcat__text2">
-              <h3 className="p-top-newcat__text2-title">{cat.title}</h3>
+            <div className={styles.topNewCatText2}>
+              <h3 className={styles.topNewCatText2Title}>{cat.title}</h3>
             </div>
           </div>
 

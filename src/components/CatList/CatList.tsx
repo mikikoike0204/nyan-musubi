@@ -67,11 +67,7 @@ export default function CatList({
   };
 
   if (loading) {
-    return (
-      <div className="p-top-newcat__loading">
-        <p>読み込み中...</p>
-      </div>
-    );
+    return <p className="c-loading">読み込み中...</p>;
   }
 
   if (error) {
@@ -84,11 +80,7 @@ export default function CatList({
   }
 
   if (cats.length === 0) {
-    return (
-      <div className="p-top-newcat__empty">
-        <p>現在、登録されているねこはいません。</p>
-      </div>
-    );
+    return <p className="c-loading">現在、登録されているねこはいません。</p>;
   }
 
   return (
