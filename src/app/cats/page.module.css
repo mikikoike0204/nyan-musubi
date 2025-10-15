@@ -1,18 +1,20 @@
-.p-cats-parameters {
+/* src/app/cats/page.module.css */
+
+.parameters {
   margin-top: 50px;
 }
 
-.p-cats-parameters__form {
+.parametersForm {
   margin-top: 50px;
   border: 1px solid #ccc;
   padding: 40px;
 }
 
-.p-cats-list__info {
+.listInfo {
   display: flex;
   justify-content: space-between;
 }
 
-.p-cats-list__sort {
+.listSort {
   width: 300px;
 }

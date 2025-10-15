@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { Prefecture, prefectureOptions } from "@/types/prefectures";
 import { Color, colorOptions } from "@/types/color";
-import "./style.css";
+import styles from "./page.module.css";
 import Image from "next/image";
 
 export default function EditCatPage({
@@ -243,10 +243,10 @@ export default function EditCatPage({
 
       <section className="c-section p-detail-desc">
         <div className="c-container">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="p-new__post-title">
-              <div className="p-new__post-title-head">タイトル:</div>
-              <div className="p-new__post-title-desc">
+          <form onSubmit={handleSubmit}>
+            <div className={styles.postTitle}>
+              <div className={styles.postTitleHead}>タイトル:</div>
+              <div className={styles.postTitleDesc}>
                 <input
                   type="text"
                   value={title}
@@ -257,11 +257,11 @@ export default function EditCatPage({
               </div>
             </div>
 
-            <div className="p-new__post-thumbnail">
-              <label className="p-new__post-thumbnail-label">サムネイル</label>
+            <div className={styles.postThumbnail}>
+              <label className={styles.postThumbnailLabel}>サムネイル</label>
               {currentThumbnail && !thumbnailFile && (
-                <div className="p-new__post-thumbnail-image">
-                  <div className="p-new__post-thumbnail-image-img-wrap">
+                <div className={styles.postThumbnailImage}>
+                  <div className={styles.postThumbnailImageImgWrap}>
                     <Image
                       className="p-new__post-thumbnail-image-img"
                       src={currentThumbnail}
@@ -271,7 +271,7 @@ export default function EditCatPage({
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                  <p className="p-new__post-thumbnail-image-text">
+                  <p className={styles.postThumbnailImageText}>
                     現在のサムネイル（変更する場合は新しい画像を選択）
                   </p>
                 </div>
@@ -280,25 +280,23 @@ export default function EditCatPage({
                 type="file"
                 accept="image/*"
                 onChange={handleThumbnailChange}
-                className="p-new__post-thumbnail-input"
+                className={styles.postThumbnailInput}
               />
             </div>
 
-            <div className="p-new__post-slider">
-              <label className="p-new__post-slider-label">スライダー画像</label>
+            <div className={styles.postSlider}>
+              <label className={styles.postSliderLabel}>スライダー画像</label>
 
               {currentSliderImages.length > 0 && (
-                <div className="p-new__post-slider-selected-wrap">
-                  <p className="p-new__post-slider-selected-text">
-                    現在の画像:
-                  </p>
-                  <div className="p-new__post-slider-selected-item">
+                <div className={styles.postSliderSelectedWrap}>
+                  <p className={styles.postSliderSelectedText}>現在の画像:</p>
+                  <div className={styles.postSliderSelectedItem}>
                     {currentSliderImages.map((img) => (
                       <div
-                        className="p-new__post-slider-selected-item-inner"
+                        className={styles.postSliderSelectedItemInner}
                         key={img.id}
                       >
-                        <div className="p-new__post-slider-selected-item-image">
+                        <div className={styles.postSliderSelectedItemImage}>
                           <Image
                             src={img.image_url}
                             alt=""
@@ -308,7 +306,7 @@ export default function EditCatPage({
                           />
                         </div>
                         <button
-                          className="p-new__post-slider-selected-item-image-close"
+                          className={styles.postSliderSelectedItemImageClose}
                           type="button"
                           onClick={() => handleDeleteSliderImage(img.id)}
                         >
@@ -320,8 +318,8 @@ export default function EditCatPage({
                 </div>
               )}
 
-              <div className="p-new__post-slider-selected-item-add">
-                <label className="p-new__post-slider-selected-item-add-label">
+              <div className={styles.postSliderSelectedItemAdd}>
+                <label className={styles.postSliderSelectedItemAddLabel}>
                   新しい画像を追加 (最大7枚)
                 </label>
                 <input
@@ -329,18 +327,15 @@ export default function EditCatPage({
                   accept="image/*"
                   multiple
                   onChange={handleSliderChange}
-                  className="p-new__post-slider-selected-item-add-input"
+                  className={styles.postSliderSelectedItemAddInput}
                 />
               </div>
               {sliderFiles.length > 0 && (
-                <div className="p-new__post-slider-selected-wrap">
+                <div className={styles.postSliderSelectedWrap}>
                   <p>追加予定: </p>
-                  <ul className="p-new__post-slider-selected">
+                  <ul className={styles.postSliderSelected}>
                     {sliderFiles.map((f, idx) => (
-                      <li
-                        className="p-new__post-slider-selected-item"
-                        key={idx}
-                      >
+                      <li className={styles.postSliderSelectedItem} key={idx}>
                         {f.name}
                       </li>
                     ))}
@@ -349,17 +344,19 @@ export default function EditCatPage({
               )}
             </div>
 
-            <div className="p-detail-desc__content">
-              <div className="p-detail-desc__table">
-                <h2 className="p-detail-desc__content-title">基本情報</h2>
-                <ul className="p-detail-desc__table-list">
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">毛色</div>
-                    <div className="p-detail-desc__table-desc p-new__post-select-wap">
+            <div className={styles.content}>
+              <div className={styles.table}>
+                <h2 className={styles.contentTitle}>基本情報</h2>
+                <ul className={styles.tableList}>
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>毛色</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postSelectWrap}`}
+                    >
                       <select
                         value={color}
                         onChange={(e) => setColor(e.target.value as Color)}
-                        className="p-new__post-select"
+                        className={styles.postSelect}
                         required
                       >
                         <option value="">選択してください</option>
@@ -371,15 +368,17 @@ export default function EditCatPage({
                       </select>
                     </div>
                   </li>
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">募集地域</div>
-                    <div className="p-detail-desc__table-desc p-new__post-select-wap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>募集地域</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postSelectWrap}`}
+                    >
                       <select
                         value={prefecture}
                         onChange={(e) =>
                           setPrefecture(e.target.value as Prefecture)
                         }
-                        className="p-new__post-select"
+                        className={styles.postSelect}
                         required
                       >
                         <option value="">選択してください</option>
@@ -391,13 +390,15 @@ export default function EditCatPage({
                       </select>
                     </div>
                   </li>
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">年齢</div>
-                    <div className="p-detail-desc__table-desc p-new__post-select-wap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>年齢</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postSelectWrap}`}
+                    >
                       <select
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
-                        className="p-new__post-select"
+                        className={styles.postSelect}
                       >
                         <option value="">選択してください</option>
                         <option value="幼少期">幼少期</option>
@@ -406,13 +407,15 @@ export default function EditCatPage({
                       </select>
                     </div>
                   </li>
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">性別</div>
-                    <div className="p-detail-desc__table-desc p-new__post-select-wap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>性別</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postSelectWrap}`}
+                    >
                       <select
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}
-                        className="p-new__post-select"
+                        className={styles.postSelect}
                       >
                         <option value="">選択してください</option>
                         <option value="オス">オス</option>
@@ -421,11 +424,11 @@ export default function EditCatPage({
                       </select>
                     </div>
                   </li>
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">
-                      ワクチン接種
-                    </div>
-                    <div className="p-detail-desc__table-desc p-new__post-radio-wrap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>ワクチン接種</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postRadioWrap}`}
+                    >
                       <label>
                         <input
                           type="radio"
@@ -447,9 +450,11 @@ export default function EditCatPage({
                     </div>
                   </li>
 
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">避妊・去勢</div>
-                    <div className="p-detail-desc__table-desc p-new__post-radio-wrap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>避妊・去勢</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postRadioWrap}`}
+                    >
                       <label>
                         <input
                           type="radio"
@@ -471,11 +476,11 @@ export default function EditCatPage({
                     </div>
                   </li>
 
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">
-                      単身者応募可否
-                    </div>
-                    <div className="p-detail-desc__table-desc p-new__post-radio-wrap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>単身者応募可否</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postRadioWrap}`}
+                    >
                       <label>
                         <input
                           type="radio"
@@ -497,11 +502,11 @@ export default function EditCatPage({
                     </div>
                   </li>
 
-                  <li className="p-detail-desc__table-item">
-                    <div className="p-detail-desc__table-head">
-                      高齢者応募可否
-                    </div>
-                    <div className="p-detail-desc__table-desc p-new__post-radio-wrap">
+                  <li className={styles.tableItem}>
+                    <div className={styles.tableHead}>高齢者応募可否</div>
+                    <div
+                      className={`${styles.tableDesc} ${styles.postRadioWrap}`}
+                    >
                       <label>
                         <input
                           type="radio"
@@ -522,11 +527,13 @@ export default function EditCatPage({
                       </label>
                     </div>
                   </li>
-                  <li className="p-detail-desc__table-item">
+                  <li className={styles.tableItem}>
                     <div className="p-detail-desc__table-head adopted">
                       家族が決まったかどうか
                     </div>
-                    <div className="p-detail-desc__table-desc p-new__post-radio-wrap">
+                    <div
+                      className={`${styles.tableDesc} ${styles.postRadioWrap}`}
+                    >
                       <label>
                         <input
                           type="radio"
@@ -549,10 +556,10 @@ export default function EditCatPage({
                   </li>
                 </ul>
               </div>
-              <div className="p-detail-desc__explanation">
-                <div className="p-detail-desc__explanation-item">
-                  <h2 className="p-detail-desc__content-title">保護の経緯</h2>
-                  <div className="p-detail-desc__explanation-text">
+              <div className={styles.explanation}>
+                <div className={styles.explanationItem}>
+                  <h2 className={styles.contentTitle}>保護の経緯</h2>
+                  <div className={styles.explanationText}>
                     <textarea
                       placeholder="いつ、どこで保護したか、詳しい状況などを記載して下さい。"
                       value={description}
@@ -560,9 +567,9 @@ export default function EditCatPage({
                     />
                   </div>
                 </div>
-                <div className="p-detail-desc__explanation-item">
-                  <h2 className="p-detail-desc__content-title">性格・特徴</h2>
-                  <div className="p-detail-desc__explanation-text">
+                <div className={styles.explanationItem}>
+                  <h2 className={styles.contentTitle}>性格・特徴</h2>
+                  <div className={styles.explanationText}>
                     <textarea
                       placeholder="できるだけ詳しく書くと、新しい家族が見つかりやすくなります。"
                       value={personality}
@@ -570,9 +577,9 @@ export default function EditCatPage({
                     />
                   </div>
                 </div>
-                <div className="p-detail-desc__explanation-item">
-                  <h2 className="p-detail-desc__content-title">健康状態</h2>
-                  <div className="p-detail-desc__explanation-text">
+                <div className={styles.explanationItem}>
+                  <h2 className={styles.contentTitle}>健康状態</h2>
+                  <div className={styles.explanationText}>
                     <textarea
                       placeholder="獣医を受診したかどうか、した場合はその結果を書いて下さい。受診していない場合は、ご飯の食べ具合や元気さ、怪我や病気の有無など見てわかる範囲で書いて下さい。"
                       value={health}
@@ -585,7 +592,7 @@ export default function EditCatPage({
             <button
               type="submit"
               disabled={loading}
-              className="c-common-btn p-new__post-submit"
+              className={`c-common-btn ${styles.postSubmit}`}
             >
               {loading ? "更新中..." : "更新する"}
             </button>

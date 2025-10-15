@@ -8,7 +8,7 @@ import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
 import { createBrowserClient } from "@supabase/ssr";
 import Pagination from "@/components/Pagination/Pagination";
-import "./style.css";
+import styles from "./page.module.css";
 
 // Supabaseクライアントの初期化
 const supabase = createBrowserClient(
@@ -148,12 +148,7 @@ export default function Cats() {
   };
 
   // ローディング
-  if (loading)
-    return (
-      <div className="p-top-newcat__loading">
-        <p>読み込み中...</p>
-      </div>
-    );
+  if (loading) return <p className="c-loading">読み込み中...</p>;
 
   // エラー
   if (error)
@@ -189,7 +184,7 @@ export default function Cats() {
       </section>
 
       {/* 絞り込み条件 */}
-      <section className="c-section p-cats-parameters">
+      <section className={`c-section ${styles.parameters}`}>
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">絞り込み条件</h2>
@@ -201,18 +196,21 @@ export default function Cats() {
       </section>
 
       {/* ねこ一覧 */}
-      <section className="c-section p-cats-list">
+      <section className="c-section">
         <div className="c-container">
           {/* データなしの場合のメッセージ */}
           {filteredCats.length === 0 ? (
-            <div className="p-top-newcat__empty">
-              <p>条件に合うねこが見つかりませんでした。</p>
-              <p>検索条件を変更してお試しください。</p>
+            <div>
+              <p className="c-loading">
+                条件に合うねこが見つかりませんでした。
+                <br />
+                検索条件を変更してお試しください。
+              </p>
             </div>
           ) : (
             <>
-              <div className="p-cats-list__info">
-                <div className="">
+              <div className={styles.listInfo}>
+                <div>
                   <p>
                     検索結果: {filteredCats.length}件 / 全{cats.length}件
                     {totalPages > 1 && (
@@ -223,7 +221,7 @@ export default function Cats() {
                     )}
                   </p>
                 </div>
-                <div className="p-cats-list__sort">
+                <div className={styles.listSort}>
                   <Select
                     name="sort"
                     value={sortOrder}

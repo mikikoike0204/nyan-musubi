@@ -216,7 +216,7 @@ export default function AdoptedCats() {
           ) : (
             <>
               <div className={styles.listInfo}>
-                <div className="">
+                <div>
                   <p>
                     検索結果: {filteredCats.length}件 / 全{cats.length}件
                     {totalPages > 1 && (

@@ -3,7 +3,7 @@ import CatSlider from "@/components/CatSlider/CatSlider";
 import EditButton from "@/components/EditButton/EditButton";
 import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
 import { fetchCatById, fetchCatImages } from "@/lib/catApi";
-import "./style.css";
+import styles from "./page.module.css";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import CommentList from "@/components/CommentList/CommentList";
 import { fetchComments } from "@/lib/commentApi";
@@ -20,7 +20,7 @@ export default async function CatDetail({ params }: Props) {
   const comments = await fetchComments(id);
 
   if (!cat) {
-    return <div>ねこちゃんが見つかりませんでした。</div>;
+    return <div className="c-loading">ねこちゃんが見つかりませんでした。</div>;
   }
 
   return (
@@ -32,79 +32,69 @@ export default async function CatDetail({ params }: Props) {
       </section>
       <section className="c-section p-detail-desc">
         <div className="c-container">
-          <h1 className="p-detail-desc__title">{cat.title}</h1>
-          <div className="p-detail-desc__content">
-            <div className="p-detail-desc__table">
-              <h2 className="p-detail-desc__content-title">基本情報</h2>
-              <ul className="p-detail-desc__table-list">
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">毛色</div>
-                  <div className="p-detail-desc__table-desc">{cat.color}</div>
+          <h1 className={styles.title}>{cat.title}</h1>
+          <div className={styles.content}>
+            <div className={styles.table}>
+              <h2 className={styles.contentTitle}>基本情報</h2>
+              <ul className={styles.tableList}>
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>毛色</div>
+                  <div className={styles.tableDesc}>{cat.color}</div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">募集地域</div>
-                  <div className="p-detail-desc__table-desc">
-                    {cat.prefecture}
-                  </div>
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>募集地域</div>
+                  <div className={styles.tableDesc}>{cat.prefecture}</div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">年齢</div>
-                  <div className="p-detail-desc__table-desc">{cat.age}</div>
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>年齢</div>
+                  <div className={styles.tableDesc}>{cat.age}</div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">性別</div>
-                  <div className="p-detail-desc__table-desc">{cat.gender}</div>
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>性別</div>
+                  <div className={styles.tableDesc}>{cat.gender}</div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">ワクチン接種</div>
-                  <div className="p-detail-desc__table-desc">
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>ワクチン接種</div>
+                  <div className={styles.tableDesc}>
                     {cat.vaccinated ? "済" : "未"}
                   </div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">避妊・去勢</div>
-                  <div className="p-detail-desc__table-desc">
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>避妊・去勢</div>
+                  <div className={styles.tableDesc}>
                     {cat.neutered ? "済" : "未"}
                   </div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">
-                    単身者応募可否
-                  </div>
-                  <div className="p-detail-desc__table-desc">
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>単身者応募可否</div>
+                  <div className={styles.tableDesc}>
                     {cat.single_ok ? "可" : "不可"}
                   </div>
                 </li>
-                <li className="p-detail-desc__table-item">
-                  <div className="p-detail-desc__table-head">
-                    高齢者応募可否
-                  </div>
-                  <div className="p-detail-desc__table-desc">
+                <li className={styles.tableItem}>
+                  <div className={styles.tableHead}>高齢者応募可否</div>
+                  <div className={styles.tableDesc}>
                     {cat.elderly_ok ? "可" : "不可"}
                   </div>
                 </li>
               </ul>
             </div>
-            <div className="p-detail-desc__explanation">
-              <div className="p-detail-desc__explanation-item">
-                <h2 className="p-detail-desc__content-title">保護の経緯</h2>
-                <div className="p-detail-desc__explanation-text">
-                  {cat.description}
-                </div>
+            <div className={styles.explanation}>
+              <div className={styles.explanationItem}>
+                <h2 className={styles.contentTitle}>保護の経緯</h2>
+                <div className={styles.explanationText}>{cat.description}</div>
               </div>
-              <div className="p-detail-desc__explanation-item">
-                <h2 className="p-detail-desc__content-title">性格・特徴</h2>
-                <div className="p-detail-desc__explanation-text">
-                  {cat.personality}
-                </div>
+              <div className={styles.explanationItem}>
+                <h2 className={styles.contentTitle}>性格・特徴</h2>
+                <div className={styles.explanationText}>{cat.personality}</div>
               </div>
-              <div className="p-detail-desc__explanation-item">
-                <h2 className="p-detail-desc__content-title">健康状態</h2>
-                <div className="p-detail-desc__explanation-text">
+              <div className={styles.explanationItem}>
+                <h2 className={styles.contentTitle}>健康状態</h2>
+                <div className={styles.explanationText}>
                   {cat.health_condition}
                 </div>
               </div>
-              <div className="p-detail-desc__explanation-fav">
+              <div className={styles.explanationFav}>
                 <FavoriteButton
                   catId={id}
                   isAdopted={cat.adopted}
@@ -113,7 +103,7 @@ export default async function CatDetail({ params }: Props) {
               </div>
             </div>
           </div>
-          <div className="p-detail-desc__contact">
+          <div className={styles.contact}>
             {/* 投稿者本人なら「編集する」、それ以外は「応募する」を表示 */}
             <EditButton catId={id} postUserId={cat.user_id} />
           </div>
@@ -121,9 +111,9 @@ export default async function CatDetail({ params }: Props) {
       </section>
       <section className="c-section p-detail-comment">
         <div className="c-container">
-          <h2 className="p-detail-comment__title">質問する</h2>
-          <div className="p-detail-comment__content">
-            <div className="p-detail-comment__form-wrap">
+          <h2 className={styles.commentTitle}>質問する</h2>
+          <div className={styles.commentContent}>
+            <div className={styles.commentFormWrap}>
               <CommentForm catId={id} />
             </div>
             <CommentList comments={comments} catPostUserId={cat.user_id} />

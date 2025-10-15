@@ -1,0 +1,128 @@
+/* src/app/cats/[id]/page.module.css */
+
+.title {
+  position: relative;
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.title::before {
+  position: absolute;
+  left: -10px;
+  bottom: 0px;
+  width: 100%;
+  height: 10px;
+  transform: skew(-45deg);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 4px,
+    #dfefff 4px 8px
+  );
+  content: "";
+  z-index: -1;
+}
+
+.content {
+  display: flex;
+  column-gap: 50px;
+  margin-top: 30px;
+}
+
+.contentTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.table {
+  width: 35%;
+  flex-shrink: 0;
+}
+
+.tableList {
+  margin-top: 15px;
+}
+
+.tableItem {
+  display: flex;
+  column-gap: 15px;
+}
+
+.tableItem + .tableItem {
+  margin-top: 5px;
+}
+
+.tableHead {
+  flex-shrink: 0;
+  background-color: #ddd;
+  padding: 8px 15px;
+  width: 150px;
+  min-height: 40px;
+}
+
+.tableDesc {
+  min-height: 40px;
+  padding: 8px 0;
+}
+
+.explanation {
+  width: calc(100% - (35% + 50px));
+}
+
+.explanationItem + .explanationItem {
+  margin-top: 30px;
+}
+
+.explanationText {
+  margin-top: 10px;
+  line-height: calc(32 / 16);
+  white-space: pre-line;
+}
+
+.explanationFav :global(.p-top-newcat__fav) {
+  display: block;
+  border-radius: 9999px;
+  background-color: #4a90e2;
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  padding: 10px 10px;
+}
+
+.explanationFav :global(.p-top-newcat__fav.added) {
+  background-color: pink;
+}
+
+.contact {
+  display: table;
+  margin: 50px auto 0;
+}
+
+.contact :global(.c-common-btn) {
+  border-radius: 30px;
+  font-size: 20px;
+  width: 300px;
+  line-height: 45px;
+  background-color: #fff;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+/* comment */
+.commentTitle {
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 24px;
+  border-bottom: 1px dashed gray;
+}
+
+.commentContent {
+  margin: 30px auto 0;
+  max-width: 600px;
+}
