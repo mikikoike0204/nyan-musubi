@@ -4,7 +4,7 @@ import MyPosts from "@/components/MyPosts/MyPosts";
 import Link from "next/link";
 import { Suspense } from "react";
 import FavoriteCats from "@/components/FavoriteCats/FavoriteCats";
-import "./style.css";
+import styles from "./page.module.css";
 
 export default function Mypage() {
   return (
@@ -22,23 +22,23 @@ export default function Mypage() {
         </div>
       </section>
 
-      <section className="c-section p-myposts">
+      <section className={`c-section ${styles.myPosts}`}>
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">自分の投稿</h2>
           </div>
-          <Suspense fallback={<p>読み込み中...</p>}>
+          <Suspense fallback={<p className="c-loading">読み込み中...</p>}>
             <MyPosts />
           </Suspense>
         </div>
       </section>
 
-      <section className="c-section p-favorites-list">
+      <section className={`c-section ${styles.favoritesList}`}>
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">お気に入りのねこちゃん</h2>
           </div>
-          <Suspense fallback={<p>読み込み中...</p>}>
+          <Suspense fallback={<p className="c-loading">読み込み中...</p>}>
             <FavoriteCats limit={4} showPagination={false} />
           </Suspense>
 

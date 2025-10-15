@@ -2,32 +2,32 @@
 import { getMyPosts } from "@/lib/supabase/queries";
 import Link from "next/link";
 import Image from "next/image";
-import "./style.css";
+import styles from "./myPosts.module.css";
 
 export default async function MyPosts() {
   const posts = await getMyPosts();
 
   if (posts.length === 0) {
     return (
-      <div className="p-myposts__empty">
-        <p>まだ投稿がありません</p>
+      <>
+        <p className="c-loading">まだ投稿がありません</p>
         <Link href="/cats/new" className="c-common-btn">
           新しく投稿する
         </Link>
-      </div>
+      </>
     );
   }
 
   return (
-    <ul className="p-myposts__list">
+    <ul className={styles.myPostsList}>
       {posts.map((post) => {
         const href = post.adopted ? `/adopted/${post.id}` : `/cats/${post.id}`;
 
         return (
-          <li key={post.id} className="p-myposts__item">
+          <li key={post.id} className={styles.myPostsItem}>
             <Link href={href}>
               {post.thumbnail && (
-                <div className="p-myposts__image">
+                <div className={styles.myPostsImage}>
                   <Image
                     src={post.thumbnail}
                     alt="ねこの画像"
@@ -37,15 +37,15 @@ export default async function MyPosts() {
                   />
                 </div>
               )}
-              <div className="p-myposts__info">
-                <p className="p-myposts__details">
+              <div className={styles.myPostsInfo}>
+                <p className={styles.myPostsDetails}>
                   {post.prefecture} / {post.color} / {post.age} / {post.gender}
                 </p>
-                <p className="p-myposts__date">
+                <p className={styles.myPostsDate}>
                   投稿日:{" "}
                   {new Date(post.created_at).toLocaleDateString("ja-JP")}
                 </p>
-                <p className="p-myposts__badge">
+                <p className={styles.myPostsBadge}>
                   ステータス：{post.adopted ? "譲渡済み" : "募集中"}
                 </p>
               </div>
