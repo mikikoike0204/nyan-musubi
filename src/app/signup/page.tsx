@@ -72,7 +72,7 @@ export default function SignUp() {
         </div>
       </section>
 
-      <section className={`c-section {styles.login}`}>
+      <section className={`c-section ${styles.login}`}>
         <div className="c-container">
           <div className={styles.loginContent}>
             <form className={styles.loginForm} onSubmit={handleSubmit}>
