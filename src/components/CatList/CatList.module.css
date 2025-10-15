@@ -1,6 +1,6 @@
 /* src/components/CatList/style.css */
 
-.p-top-newcat__list {
+.topNewcatList {
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;

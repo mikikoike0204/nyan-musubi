@@ -3,7 +3,7 @@
 
 import FavoriteCats from "@/components/FavoriteCats/FavoriteCats";
 import Link from "next/link";
-import "./style.css";
+import styles from "./page.module.css";
 
 export default function FavoritesPage() {
   return (
@@ -21,7 +21,7 @@ export default function FavoritesPage() {
         </div>
       </section>
 
-      <section className="c-section p-favorites-list">
+      <section className={`c-section ${styles.favoriteList}`}>
         <div className="c-container">
           <div className="c-section-title-wrap">
             <h2 className="c-section-title">お気に入り一覧</h2>

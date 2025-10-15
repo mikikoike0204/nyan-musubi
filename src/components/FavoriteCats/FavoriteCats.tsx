@@ -5,6 +5,7 @@ import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
 import { supabase } from "@/lib/supabaseClient";
 import Pagination from "@/components/Pagination/Pagination";
+import styles from "./FavoriteCats.module.css";
 
 interface FavoriteCatsProps {
   /** 表示件数の上限（例：マイページは4件） */
@@ -118,9 +119,9 @@ export default function FavoriteCats({
   const currentCats = showPagination ? getCurrentPageData() : favoriteCats;
 
   return (
-    <div className="p-favoritecats">
+    <div className={styles.favoriteCats}>
       {/* 件数表示 */}
-      <div className="p-favorites__display">
+      <div className={styles.favoritesDisplay}>
         お気に入り件数: {favoriteCats.length}件
         {showPagination && totalPages > 1 && (
           <span>

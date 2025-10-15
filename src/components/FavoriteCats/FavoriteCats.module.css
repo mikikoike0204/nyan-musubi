@@ -1,0 +1,7 @@
+.favoriteCats {
+  margin-top: 30px;
+}
+
+.favoritesDisplay + .topNewcatList {
+  margin-top: 15px;
+}

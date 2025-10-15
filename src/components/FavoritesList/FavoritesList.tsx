@@ -15,7 +15,7 @@ export default async function FavoritesList() {
   }
 
   return (
-    <ul className="p-top-newcat__list">
+    <ul className={styles.topNewcatList}>
       {favorites.map((favorite) => (
         <FavoriteListItem key={favorite.id} favorite={favorite} />
       ))}

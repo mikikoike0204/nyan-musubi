@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { Cat } from "@/types/cat";
 import CatListItem from "@/components/CatListItem/CatListItem";
-import "./style.css";
+import styles from "./CatList.module.css";
 
 interface CatListProps {
   limit: number;
@@ -92,7 +92,7 @@ export default function CatList({
   }
 
   return (
-    <ul className="p-top-newcat__list">
+    <ul className={styles.topNewcatList}>
       {cats.map((cat) => (
         <CatListItem key={cat.id} cat={cat} />
       ))}
