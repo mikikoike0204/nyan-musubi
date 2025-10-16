@@ -1,30 +1,30 @@
-/* src/components/CommentItem/style.css */
+/* src/components/CommentItem/CommentItem.module.css */
 
-.p-detail-comment__item-user {
+.commentListItemUser {
   display: flex;
   align-items: center;
 }
 
-.p-detail-comment__item-user-icon {
+.commentListItemIcon {
   flex-shrink: 0;
 }
 
-.p-detail-comment__item-username {
+.commentListItemName {
   text-decoration: underline;
   margin-left: 10px;
   font-weight: 700;
 }
 
-.p-detail-comment__item-date {
+.commentListItemDate {
   margin-left: 20px;
   font-size: 14px;
 }
 
-.p-detail-comment__item-content {
+.commentListItemContent {
   margin-top: 10px;
 }
 
-.p-detail-comment__item-delete {
+.commentListItemDelete {
   margin-top: 5px;
   flex-shrink: 0;
   background-color: #ddd;
@@ -33,7 +33,7 @@
   text-align: center;
 }
 
-.p-detail-comment__list-item + .p-detail-comment__list-item {
+.commentListItem + .commentListItem {
   margin-top: 15px;
   border-top: 1px solid #ddd;
   padding-top: 15px;

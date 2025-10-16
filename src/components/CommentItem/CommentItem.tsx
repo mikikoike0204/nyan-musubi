@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { deleteCommentAction } from "@/actions/commentActions";
 import { supabase } from "@/lib/supabaseClient";
 import Image from "next/image";
-import "./style.css";
+import styles from "./CommentItem.module.css";
 
 interface Props {
   comment: Comment;
@@ -51,30 +51,30 @@ export default function CommentItem({ comment, catPostUserId }: Props) {
     currentUserId === comment.user_id || currentUserId === catPostUserId;
 
   return (
-    <li className="p-detail-comment__list-item">
-      <div className="p-detail-comment__item-header">
-        <div className="p-detail-comment__item-user">
+    <li className={styles.commentListItem}>
+      <div className={styles.commentListItemHeader}>
+        <div className={styles.commentListItemUser}>
           <Image
             src="/common/icon-comment.png"
             alt=""
             width={25}
             height={25}
-            className="p-detail-comment__item-user-icon"
+            className={styles.commentListItemIcon}
           />
-          <span className="p-detail-comment__item-username">
+          <span className={styles.commentListItemName}>
             {comment.profiles?.name || "匿名ユーザー"}
           </span>
-          <time className="p-detail-comment__item-date">
+          <time className={styles.commentListItemDate}>
             {new Date(comment.created_at).toLocaleDateString("ja-JP")}
           </time>
         </div>
       </div>
-      <div className="p-detail-comment__item-content">{comment.content}</div>
+      <div className={styles.commentListItemContent}>{comment.content}</div>
       {canDelete && (
         <button
           onClick={handleDelete}
           disabled={isDeleting}
-          className="p-detail-comment__item-delete"
+          className={styles.commentListItemDelete}
         >
           {isDeleting ? "削除中..." : "削除"}
         </button>
