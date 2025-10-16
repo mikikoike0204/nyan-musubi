@@ -1,4 +1,6 @@
-.checkbox-label {
+/* src/components/Checkbox/Checkbox.module.css */
+
+.checkboxLabel {
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -7,7 +9,7 @@
   font-size: 0.875rem;
 }
 
-.checkbox-label input {
+.checkboxLabelInput {
   position: absolute;
   opacity: 0;
   width: 1rem;
@@ -16,7 +18,7 @@
   cursor: pointer;
 }
 
-.checkbox-box {
+.checkboxBox {
   width: 1rem;
   height: 1rem;
   border: 1px solid #d6dde3;
@@ -26,7 +28,7 @@
   position: relative;
 }
 
-.checkbox-box::after {
+.checkboxBox::after {
   content: "";
   width: 5px;
   height: 10px;
@@ -36,6 +38,6 @@
   display: none;
 }
 
-.checkbox-label input:checked + .checkbox-box::after {
+.checkboxLabelInput:checked + .checkboxBox::after {
   display: block;
 }

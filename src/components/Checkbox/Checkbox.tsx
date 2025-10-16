@@ -1,6 +1,6 @@
 // src/components/Checkbox/Checkbox.tsx
 import React from "react";
-import "./style.css";
+import styles from "./Checkbox.module.css";
 
 type CheckboxProps = {
   label: string;
@@ -16,15 +16,16 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
 }: CheckboxProps) => {
   return (
-    <label className="checkbox-label">
+    <label className={styles.checkboxLabel}>
       <input
         type="checkbox"
         name={name}
         checked={checked}
         onChange={onChange}
+        className={styles.checkboxLabelInput}
       />
-      <span className="checkbox-box"></span>
-      <span className="checkbox-text text-sm">{label}</span>
+      <span className={styles.checkboxBox}></span>
+      <span className={styles.checkboxText}>{label}</span>
     </label>
   );
 };
