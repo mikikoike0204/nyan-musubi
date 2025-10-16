@@ -1,0 +1,55 @@
+/* src/components/CatSlider/CatSlider.module.css */
+
+.detailSliderMainWrap {
+  position: relative;
+  display: table;
+  margin: 0 auto;
+}
+
+.detailSliderMain {
+  width: 760px;
+  height: 420px;
+}
+
+.detailSliderMainSlide {
+  display: block;
+  background-color: #d1d5db;
+}
+
+.detailSliderMainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detailSliderThumb {
+  margin-top: 30px;
+}
+
+.detailSliderThumbSlide {
+  width: 135px !important;
+  height: 135px !important;
+  display: block;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.detailSliderThumbSlide:global(.swiper-slide-thumb-active) {
+  opacity: 1;
+}
+
+.detailSliderThumbImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detailSliderWrap :global(.swiper-button-next),
+.detailSliderWrap :global(.swiper-button-prev) {
+  color: #333;
+}
+
+.detailSliderWrap :global(.swiper-button-next:after),
+.detailSliderWrap :global(.swiper-button-prev:after) {
+  font-size: 30px;
+}

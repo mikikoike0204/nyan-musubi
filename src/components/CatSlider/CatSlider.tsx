@@ -7,7 +7,7 @@ import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper/types";
 import { useState } from "react";
 import Image from "next/image";
-import "./style.css";
+import styles from "./CatSlider.module.css";
 
 // Swiperのスタイルをインポート
 import "swiper/css";
@@ -22,27 +22,24 @@ export default function CatSlider({ images }: CatSliderProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <div className="p-detail-slider-wrapper">
-      <div className="p-detail-slider__main-wrapper">
-        {/* <div className="p-detail-slider__fav"></div> */}
-        {/* <div className="p-detail-slider__fav added"></div> */}
-
+    <div className={styles.detailSliderWrap}>
+      <div className={styles.detailSliderMainWrap}>
         {/* メインスライダー */}
         <Swiper
           modules={[Thumbs, Navigation]}
           thumbs={{ swiper: thumbsSwiper }}
           navigation
-          className="p-detail-slider__main"
+          className={styles.detailSliderMain}
         >
           {images.map((src, i) => (
-            <SwiperSlide key={i} className="p-detail-slider__main-slide">
+            <SwiperSlide key={i} className={styles.detailSliderMainSlide}>
               <Image
                 src={src}
                 alt={`ねこ画像 ${i}`}
                 fill
                 sizes="760px"
                 style={{ objectFit: "contain" }}
-                className="p-detail-slider__main-image"
+                className={styles.detailSliderMainImage}
               />
             </SwiperSlide>
           ))}
@@ -56,17 +53,17 @@ export default function CatSlider({ images }: CatSliderProps) {
         slidesPerView={7}
         spaceBetween={10}
         watchSlidesProgress
-        className="p-detail-slider__thumb"
+        className={styles.detailSliderThumb}
       >
         {images.map((src, i) => (
-          <SwiperSlide key={i} className="p-detail-slider__thumb-slide">
+          <SwiperSlide key={i} className={styles.detailSliderThumbSlide}>
             <Image
               src={src}
               alt={`サムネイル ${i}`}
               fill
               sizes="135px"
               style={{ objectFit: "cover" }}
-              className="p-detail-slider__thumb-image"
+              className={styles.detailSliderThumbImage}
             />
           </SwiperSlide>
         ))}
