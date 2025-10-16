@@ -1,4 +1,4 @@
-.p-cats-search__parameters {
+.catSearchParameters {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -7,17 +7,17 @@
   margin: 0;
 }
 
-.p-cats-search__item {
+.catSearchItem {
   display: flex;
   width: 100%;
   gap: 0.5rem;
 }
 
-.p-cats-search__item.half {
+.catSearchItemHalf {
   width: calc((100% - 2rem) / 2);
 }
 
-.p-cats-search__label {
+.catSearchLabel {
   text-align: center;
   width: 8.75rem;
   background-color: #e0e0e0;
@@ -29,19 +29,20 @@
   font-size: 0.875rem;
 }
 
-.p-cats-search__inputs {
+.catSearchInputs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
 }
 
-.p-top-newcat__more {
+.more {
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 30px;
+  margin-top: 50px;
 }
 
-.p-top-newcat__more .c-common-btn {
+.more :global(.c-common-btn) {
   margin: 0;
 }

@@ -1,4 +1,4 @@
-/* src/components/CatListItems/style.css */
+/* src/components/CatListItems/CatListItems.module.css */
 
 .topNewCatItem {
   width: calc((100% - 90px) / 4);

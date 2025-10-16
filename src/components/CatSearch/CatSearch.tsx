@@ -6,7 +6,7 @@ import Checkbox from "../Checkbox/Checkbox";
 import Select from "../Select/Select";
 import { Cat } from "@/types/cat";
 import { prefectureOptions } from "@/types/prefectures";
-import "./style.css";
+import styles from "./CatSearch.module.css";
 
 // Cat型から毛色の選択肢を生成
 const colorOptions = [
@@ -125,12 +125,12 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
   };
 
   return (
-    <form className="p-cats-parameters__form" onSubmit={handleSubmit}>
-      <ul className="p-cats-search__parameters">
+    <form className={styles.catSearchParametersForm} onSubmit={handleSubmit}>
+      <ul className={styles.catSearchParameters}>
         {/* 毛色 */}
-        <li className="p-cats-search__item">
-          <div className="p-cats-search__label">毛色</div>
-          <div className="p-cats-search__inputs">
+        <li className={styles.catSearchItem}>
+          <div className={styles.catSearchLabel}>毛色</div>
+          <div className={styles.catSearchInputs}>
             {colorOptions.map((color) => (
               <Checkbox
                 key={color}
@@ -151,8 +151,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 募集地域 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">募集地域</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>募集地域</div>
           <Select
             name="prefecture"
             value={filters.prefecture}
@@ -162,8 +162,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 年齢 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">年齢</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>年齢</div>
           <Select
             name="age"
             value={filters.age}
@@ -173,8 +173,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 性別 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">性別</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>性別</div>
           <Select
             name="gender"
             value={filters.gender}
@@ -184,8 +184,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* ワクチン接種状況 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">ワクチン接種状況</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>ワクチン接種状況</div>
           <Select
             name="vaccinated"
             value={filters.vaccinated}
@@ -198,8 +198,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 避妊・去勢 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">避妊・去勢</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>避妊・去勢</div>
           <Select
             name="neutered"
             value={filters.neutered}
@@ -212,8 +212,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 単身者応募 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">単身者応募</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>単身者応募</div>
           <Select
             name="single_ok"
             value={filters.single_ok}
@@ -226,8 +226,8 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
 
         {/* 高齢者応募 */}
-        <li className="p-cats-search__item half">
-          <div className="p-cats-search__label">高齢者応募</div>
+        <li className={`${styles.catSearchItem} ${styles.catSearchItemHalf}`}>
+          <div className={styles.catSearchLabel}>高齢者応募</div>
           <Select
             name="elderly_ok"
             value={filters.elderly_ok}
@@ -240,7 +240,7 @@ export default function CatSearch({ onSearch }: CatSearchProps) {
         </li>
       </ul>
 
-      <div className="p-top-newcat__more">
+      <div className={styles.more}>
         <button type="submit" className="c-common-btn">
           検索する
         </button>
