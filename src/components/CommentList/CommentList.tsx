@@ -1,7 +1,7 @@
 // src/components/CommentList/CommentList.tsx
 import type { Comment } from "@/types/comment";
 import CommentItem from "@/components/CommentItem/CommentItem";
-import "./style.css";
+import styles from "./CommentList.module.css";
 
 interface Props {
   comments: Comment[];
@@ -11,14 +11,14 @@ interface Props {
 export default function CommentList({ comments, catPostUserId }: Props) {
   if (comments.length === 0) {
     return (
-      <div className="p-detail-comment__empty">
+      <div className="c-loading">
         まだコメントはありません。最初のコメントや質問をしてみましょう！
       </div>
     );
   }
 
   return (
-    <ul className="p-detail-comment__list">
+    <ul className={styles.commentList}>
       {comments.map((comment) => (
         <CommentItem
           key={comment.id}
