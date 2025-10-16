@@ -1,6 +1,6 @@
 // src/components/Select/Select.tsx
 import React from "react";
-import "./style.css";
+import styles from "./Select.module.css";
 
 type Option = { value: string; label: string };
 
@@ -24,9 +24,9 @@ const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className="p-cats-parameter__select-wrapper">
+    <div className={styles.selectWrap}>
       <select
-        className="p-cats-parameter__select"
+        className={styles.select}
         name={name}
         id={name}
         value={value}

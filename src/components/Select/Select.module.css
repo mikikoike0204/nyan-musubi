@@ -1,12 +1,12 @@
-.p-cats-parameter__select-wrapper {
+.selectWrap {
   display: inline-flex;
   align-items: center;
   position: relative;
   width: 100%;
 }
 
-.p-cats-parameter__select-wrapper::after {
-  content: '';
+.selectWrap::after {
+  content: "";
   position: absolute;
   right: 15px;
   width: 10px;
@@ -16,8 +16,8 @@
   pointer-events: none;
 }
 
-.p-cats-parameter__select {
-  appearance: none; 
+.select {
+  appearance: none;
   cursor: pointer;
   width: 100%;
   height: 2rem;
