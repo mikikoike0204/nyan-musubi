@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Cat } from "@/types/cat";
 import { getGenderDisplay, getAgeDisplay } from "@/utils/catDisplay";
-import "./style.css";
+import styles from "./CatListItem.module.css";
 import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
 interface CatListItemProps {
   cat: Cat;
@@ -11,9 +11,9 @@ interface CatListItemProps {
 
 export default function CatListItem({ cat }: CatListItemProps) {
   return (
-    <li className="p-top-newcat__item">
+    <li className={styles.topNewCatItem}>
       <Link
-        className="p-top-newcat__link"
+        className={styles.topNewCatLink}
         href={cat.adopted ? `/adopted/${cat.id}` : `/cats/${cat.id}`}
       >
         {cat.adopted && (
@@ -22,26 +22,26 @@ export default function CatListItem({ cat }: CatListItemProps) {
           </div>
         )}
 
-        <div className="p-top-newcat__image">
+        <div className={styles.topNewCatImage}>
           <Image
             src={cat.thumbnail || "/images/no-image.jpg"}
             alt={`${cat.title}の画像`}
             fill
             sizes="185px"
             style={{ objectFit: "cover" }}
-            className="p-top-newcat__image-pic"
+            className={styles.topNewCatImagePic}
           />
         </div>
 
-        <div className="p-top-newcat__desc">
-          <div className="p-top-newcat__desc-inner">
-            <div className="p-top-newcat__text1">
+        <div className={styles.topNewCatDesc}>
+          <div className={styles.topNewCatDescInner}>
+            <div className={styles.topNewCatText1}>
               {cat.color} {getGenderDisplay(cat.gender)}
               <br />
               {getAgeDisplay(cat.age)} / {cat.prefecture}
             </div>
-            <div className="p-top-newcat__text2">
-              <h3 className="p-top-newcat__text2-title">{cat.title}</h3>
+            <div className={styles.topNewCatText2}>
+              <h3 className={styles.topNewCatText2Title}>{cat.title}</h3>
             </div>
           </div>
 

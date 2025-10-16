@@ -1,10 +1,10 @@
 /* src/components/CatListItems/style.css */
 
-.p-top-newcat__item {
+.topNewCatItem {
   width: calc((100% - 90px) / 4);
 }
 
-.p-top-newcat__link {
+.topNewCatLink {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -13,13 +13,13 @@
   height: 100%;
 }
 
-.p-top-newcat__link:hover {
+.topNewCatLink:hover {
   opacity: 1;
   background-color: #dfefff;
   border-color: #dfefff;
 }
 
-.p-top-newcat__image {
+.topNewCatImage {
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.p-top-newcat__desc {
+.topNewCatDesc {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,22 +36,17 @@
   justify-content: space-between;
 }
 
-.p-top-newcat__text1 {
+.topNewCatText1 {
   text-align: center;
   font-size: 0.875rem;
   line-height: 1.5;
 }
 
-.p-top-newcat__text2 {
+.topNewCatText2 {
   margin-top: 20px;
 }
 
-.p-top-newcat__text2-s {
-  text-align: center;
-  font-size: 0.875rem;
-}
-
-.p-top-newcat__text2-title {
+.topNewCatText2Title {
   text-align: center;
   font-size: 1rem;
   margin-top: 5px;
