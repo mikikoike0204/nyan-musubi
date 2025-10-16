@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { createCommentAction } from "@/actions/commentActions";
 import { supabase } from "@/lib/supabaseClient";
-import "./style.css";
+import styles from "./CommentForm.module.css";
 
 interface Props {
   catId: string;
@@ -52,27 +52,25 @@ export default function CommentForm({ catId }: Props) {
 
   if (!isLoggedIn) {
     return (
-      <div className="p-detail-comment__login-message">
-        コメント・質問するにはログインが必要です
-      </div>
+      <div className="c-loading">コメント・質問するにはログインが必要です</div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-detail-comment__form">
-      <div className="p-detail-comment__form-inner">
+    <form onSubmit={handleSubmit} className={styles.commentForm}>
+      <div className={styles.commentFormInner}>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="コメントや質問内容を入力してください"
-          className="p-detail-comment__form-textarea"
+          className={styles.commentFormTextarea}
           rows={4}
           disabled={isSubmitting}
         />
         <button
           type="submit"
           disabled={isSubmitting || !content.trim()}
-          className="p-detail-comment__form-submit"
+          className={styles.commentFormSubmit}
         >
           {isSubmitting ? "投稿中..." : "投稿する"}
         </button>

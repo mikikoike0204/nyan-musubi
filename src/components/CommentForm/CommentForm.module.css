@@ -1,17 +1,17 @@
-/* src/components/CommentForm/style.css */
-.p-detail-comment__form-inner {
+/* src/components/CommentForm/CommentForm.module.css */
+.commentFormInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.p-detail-comment__form-textarea {
+.commentFormTextarea {
   width: 80%;
   border: 1px solid #ddd;
   padding: 10px;
 }
 
-.p-detail-comment__form-submit {
+.commentFormSubmit {
   width: 16%;
   flex-shrink: 0;
   background-color: #ddd;
