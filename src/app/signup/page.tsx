@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient"; // ← 作成済みの Supabase client を import
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -140,6 +141,9 @@ export default function SignUp() {
                 </button>
               </div>
             </form>
+            <Link className={styles.loginLink} href="/login">
+              ログインはこちら
+            </Link>
           </div>
         </div>
       </section>
