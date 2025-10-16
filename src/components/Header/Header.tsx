@@ -1,6 +1,6 @@
 "use client";
 
-import "./Header.css";
+import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
@@ -38,11 +38,11 @@ export default function Header() {
   };
 
   return (
-    <header className="c-header">
+    <header className={styles.header}>
       <div className="c-container">
-        <div className="c-header__inner">
+        <div className={styles.headerInner}>
           <h1>
-            <Link className="c-header__logo-link" href="/">
+            <Link className={styles.headerLogoLink} href="/">
               <Image
                 src="/common/logo.png"
                 alt="にゃん結び"
@@ -51,32 +51,32 @@ export default function Header() {
               />
             </Link>
           </h1>
-          <nav className="c-nav">
-            <ul className="c-nav__links">
+          <nav className={styles.nav}>
+            <ul className={styles.navLinks}>
               <li>
-                <Link className="c-nav__item" href="/">
+                <Link className={styles.navItem} href="/">
                   トップ
                 </Link>
               </li>
               <li>
-                <Link className="c-nav__item" href="/cats">
+                <Link className={styles.navItem} href="/cats">
                   ねこちゃん一覧
                 </Link>
               </li>
               <li>
-                <Link className="c-nav__item" href="/cats/new">
+                <Link className={styles.navItem} href="/cats/new">
                   新規投稿作成
                 </Link>
               </li>
               {user ? (
                 <>
                   <li>
-                    <Link className="c-nav__item" href="/favorites">
+                    <Link className={styles.navItem} href="/favorites">
                       お気に入り
                     </Link>
                   </li>
                   <li>
-                    <Link className="c-nav__item" href="/mypage">
+                    <Link className={styles.navItem} href="/mypage">
                       マイページ
                     </Link>
                   </li>
@@ -85,13 +85,12 @@ export default function Header() {
                 ""
               )}
             </ul>
-            {/* ログイン状態で出し分け */}
-            <ul className="c-auth__links">
+            <ul className={styles.authLinks}>
               {user ? (
                 <>
                   <li>
                     <button
-                      className="c-auth__item login"
+                      className={`${styles.authItem} ${styles.authItemLogin}`}
                       onClick={handleLogout}
                     >
                       ログアウト
@@ -101,12 +100,18 @@ export default function Header() {
               ) : (
                 <>
                   <li>
-                    <Link className="c-auth__item signup" href="/signup">
+                    <Link
+                      className={`${styles.authItem} ${styles.authItemSignup}`}
+                      href="/signup"
+                    >
                       新規登録
                     </Link>
                   </li>
                   <li>
-                    <Link className="c-auth__item login" href="/login">
+                    <Link
+                      className={`${styles.authItem} ${styles.authItemLogin}`}
+                      href="/login"
+                    >
                       ログイン
                     </Link>
                   </li>

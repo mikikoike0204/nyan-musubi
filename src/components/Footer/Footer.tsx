@@ -1,15 +1,13 @@
 // components/Footer/Footer.tsx
-import "./Footer.css";
-import Link from "next/link";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <div className="c-container">
-        <Link className="privacy-link" href="">
-          個人情報保護方針
-        </Link>
-        <p className="copyright">&copy; Nyan-musubi All Rights Reserved.</p>
+        <p className={styles.copyright}>
+          &copy; Nyan-musubi All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

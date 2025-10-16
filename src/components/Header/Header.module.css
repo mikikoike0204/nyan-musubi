@@ -1,29 +1,26 @@
-/* ヘッダー */
-/* ============================================ */
-
-.c-header {
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1),
-              0 2px 4px -2px rgba(0,0,0,0.1); /* shadow-md 相当 */
+.header {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md 相当 */
   background-color: #fff;
 }
 
-.c-header__inner {
+.headerInner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem 0; 
+  padding: 0.25rem 0;
 }
 
-.c-header__logo-link {
+.headerLogoLink {
   display: inline-block;
 }
 
-.c-nav {
+.nav {
   display: flex;
   align-items: center;
 }
 
-.c-nav__links {
+.navLinks {
   display: flex;
   gap: 0.75rem;
   list-style: none;
@@ -32,11 +29,11 @@
   align-items: center;
 }
 
-.c-nav__item {
+.navItem {
   font-size: 0.875rem;
 }
 
-.c-auth__links {
+.authLinks {
   display: flex;
   gap: 10px;
   margin-left: 0.5rem;
@@ -45,7 +42,7 @@
   margin-left: 15px;
 }
 
-.c-auth__item {
+.authItem {
   display: block;
   padding: 0.25rem 1.25rem;
   border-radius: 9999px;
@@ -55,12 +52,12 @@
   transition: opacity 0.2s;
 }
 
-.c-auth__item.signup {
+.authItemSignup {
   background-color: #4a90e2;
   color: #fff;
 }
 
-.c-auth__item.login {
+.authItemLogin {
   background-color: #d1d5db;
   color: #000;
 }
