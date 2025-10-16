@@ -1,0 +1,10 @@
+.topSlider {
+  width: 100%;
+  height: 500px;
+}
+
+.slideContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
