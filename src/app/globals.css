@@ -194,6 +194,20 @@ a:hover {
   margin-top: 50px;
 }
 
+@media screen and (max-width: 768px) {
+  .p-sub-mv__content {
+    height: 200px;
+  }
+
+  .p-sub-mv__title {
+    font-size: 1.5rem;
+  }
+
+  .p-cats-parameters__content {
+    margin-top: 30px;
+  }
+}
+
 /* お気に入りボタン */
 /* ============================================ */
 .p-top-newcat__fav {

@@ -50,3 +50,41 @@
   font-size: 13px;
   text-decoration: underline;
 }
+
+@media screen and (max-width: 768px) {
+  .login {
+    margin-top: 40px;
+  }
+
+  .loginItemHead {
+    padding-bottom: 5px;
+    font-size: 0.875rem;
+  }
+
+  .loginForm {
+    margin-top: 40px;
+  }
+
+  .loginItemDesc {
+    margin-top: 10px;
+  }
+
+  .loginItemDescInput {
+    margin-top: 10px;
+    line-height: 30px;
+    font-size: 0.875rem;
+  }
+
+  .loginBtn {
+    margin-top: 30px;
+  }
+
+  .loginLink {
+    margin: 30px auto 0;
+    font-size: 0.8rem;
+  }
+
+  .subMvImage {
+    background-position: right;
+  }
+}

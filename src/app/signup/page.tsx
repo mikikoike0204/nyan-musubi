@@ -64,7 +64,7 @@ export default function SignUp() {
         <div className="c-container">
           <div className="p-sub-mv__content">
             <div
-              className="p-sub-mv__image"
+              className={`p-sub-mv__image ${styles.subMvImage}`}
               style={{ backgroundImage: "url('/signup/bg-mv.jpg')" }}
             ></div>
             <div className="p-sub-mv__bg"></div>
