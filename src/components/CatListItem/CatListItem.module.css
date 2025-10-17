@@ -80,3 +80,42 @@
 .p-top-newcat__fav.added {
   background-color: pink;
 }
+
+@media screen and (max-width: 768px) {
+  .topNewCatItem {
+    width: calc((100% - 20px) / 2);
+  }
+
+  .topNewCatLink {
+    padding: 10px;
+  }
+
+  .topNewCatDesc {
+    margin-top: 15px;
+  }
+
+  .topNewCatText1 {
+    font-size: 0.75rem;
+  }
+
+  .topNewCatText2 {
+    margin-top: 15px;
+  }
+
+  .topNewCatText2Title {
+    margin-top: 5px;
+  }
+
+  .p-top-newcat__fav {
+    padding: 5px;
+    font-size: 0.7rem;
+    margin-top: 15px;
+  }
+
+  .p-top-newcat__adopted-label {
+    padding: 5px;
+    font-size: 0.7rem;
+    line-height: 1.25rem;
+    margin-top: 1.25rem;
+  }
+}

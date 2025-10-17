@@ -15,3 +15,21 @@
 .topNewCat {
   margin-top: 50px;
 }
+
+@media screen and (max-width: 768px) {
+  .topMvDesc {
+    margin-top: 30px;
+  }
+
+  .topMvText {
+    font-size: 0.9rem;
+  }
+
+  .topMvText + .topMvText {
+    margin-top: 15px;
+  }
+
+  .topNewCat {
+    margin-top: 50px;
+  }
+}

@@ -18,7 +18,13 @@ export default function CatListItem({ cat }: CatListItemProps) {
       >
         {cat.adopted && (
           <div className="p-top-newcat__shuku">
-            <Image src="/top/icon-shuku.png" alt="祝" width={72} height={64} />
+            <Image
+              className="p-top-newcat__shuku-img"
+              src="/top/icon-shuku.png"
+              alt="祝"
+              width={72}
+              height={64}
+            />
           </div>
         )}
 

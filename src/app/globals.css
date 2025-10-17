@@ -2,11 +2,6 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-/* 
-body {
-  font-family: 'Zen Kaku Gothic New', sans-serif!important;
-} */
-
 /* 共通 */
 /* ============================================ */
 .c-container {
@@ -101,6 +96,66 @@ a:hover {
   text-align: center;
 }
 
+.forSP {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .c-container {
+    width: auto;
+    padding: 0 10px;
+  }
+
+  .c-section + .c-section {
+    margin-top: 80px;
+  }
+
+  .c-section-title {
+    font-size: 1.1rem;
+    border: 1px dashed white;
+  }
+
+  .c-common-btn {
+    min-width: 200px;
+    padding: 0 10px;
+    line-height: 2rem;
+    box-shadow: 0 3px 0 gray;
+    font-size: 0.875rem;
+  }
+
+  .c-common-btn:hover {
+    transform: translateY(3px);
+  }
+
+  .p-top-newcat__more {
+    margin-top: 30px;
+  }
+
+  .p-top-newcat__shuku {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+  }
+
+  .p-top-newcat__shuku-img {
+    width: 58px;
+    height: 54px;
+  }
+
+  .c-loading {
+    margin: 15px auto 0;
+  }
+
+  .forSP {
+    display: block;
+  }
+
+  .forPC {
+    display: none;
+  }
+}
+
 /* 下層 */
 /* ============================================ */
 
@@ -168,6 +223,25 @@ a:hover {
 
 .p-top-newcat__fav.added {
   background-color: pink;
+}
+
+@media screen and (max-width: 768px) {
+  .p-top-newcat__fav {
+    padding: 7px;
+    font-size: 0.8rem;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .p-top-newcat__adopted-label {
+    padding: 5px;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    margin-top: 1.25rem;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /* ページネーション */

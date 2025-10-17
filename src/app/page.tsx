@@ -22,7 +22,9 @@ export default function Home() {
               ねこを保護したので家族になってくれる人を探したい。
             </p>
             <p className={styles.topMvText}>
-              そんな優しい人たちの間で、にゃんこのご縁を結びたい。
+              そんな優しい人たちの間で、
+              <br className="forSP" />
+              にゃんこのご縁を結びたい。
               <br />
               そう思って出来たサイト「にゃん結び」です。
             </p>
