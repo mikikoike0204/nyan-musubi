@@ -28,3 +28,14 @@
   color: #000;
   outline: none;
 }
+
+@media screen and (max-width: 768px) {
+  .selectWrap::after {
+    right: 10px;
+  }
+
+  .select {
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+}

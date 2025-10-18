@@ -4,12 +4,6 @@
   margin-top: 50px;
 }
 
-.parametersForm {
-  margin-top: 50px;
-  border: 1px solid #ccc;
-  padding: 40px;
-}
-
 .listInfo {
   display: flex;
   justify-content: space-between;
@@ -17,4 +11,20 @@
 
 .listSort {
   width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .parameters {
+    margin-top: 40px;
+  }
+
+  .listInfo {
+    flex-direction: column;
+    gap: 10px 0;
+    font-size: 0.875rem;
+  }
+
+  .listSort {
+    width: 150px;
+  }
 }

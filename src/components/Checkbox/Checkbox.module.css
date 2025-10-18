@@ -41,3 +41,9 @@
 .checkboxLabelInput:checked + .checkboxBox::after {
   display: block;
 }
+
+@media screen and (max-width: 768px) {
+  .checkboxLabel {
+    font-size: 0.8rem;
+  }
+}

@@ -7,6 +7,11 @@
   margin: 0;
 }
 
+.catSearchParametersForm {
+  margin-top: 40px;
+  border: 1px solid #ccc;
+  padding: 40px;
+}
 .catSearchItem {
   display: flex;
   width: 100%;
@@ -45,4 +50,38 @@
 
 .more :global(.c-common-btn) {
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .catSearchParameters {
+    flex-direction: column;
+    gap: 25px 0;
+  }
+
+  .catSearchParametersForm {
+    margin-top: 30px;
+    padding: 15px 15px 30px;
+  }
+  .catSearchItem {
+    flex-direction: column;
+    gap: 15px 0;
+  }
+
+  .catSearchItemHalf {
+    width: 100%;
+  }
+
+  .catSearchLabel {
+    width: 100%;
+  }
+
+  .catSearchInputs {
+    gap: 10px 15px;
+  }
+
+  .more {
+    flex-direction: column;
+    gap: 20px 0;
+    margin-top: 30px;
+  }
 }
