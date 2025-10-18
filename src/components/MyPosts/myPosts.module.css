@@ -30,3 +30,27 @@
 .myPostsBadge {
   margin-top: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .myPostsList {
+    margin-top: 20px;
+    gap: 20px;
+  }
+
+  .myPostsItem {
+    width: calc((100% - 20px) / 2);
+    font-size: 0.875rem;
+  }
+
+  .myPostsInfo {
+    margin-top: 5px;
+  }
+
+  .myPostsDate {
+    margin-top: 5px;
+  }
+
+  .myPostsBadge {
+    margin-top: 5px;
+  }
+}

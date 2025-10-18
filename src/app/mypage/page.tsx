@@ -13,8 +13,10 @@ export default function Mypage() {
         <div className="c-container">
           <div className="p-sub-mv__content">
             <div
-              className="p-sub-mv__image"
-              style={{ backgroundImage: "url('/favorites/bg-mv.jpg')" }}
+              className="p-sub-mv__image mypage"
+              style={{
+                backgroundImage: "url('/favorites/bg-mv.jpg')",
+              }}
             ></div>
             <div className="p-sub-mv__bg"></div>
             <h1 className="p-sub-mv__title">マイページ</h1>

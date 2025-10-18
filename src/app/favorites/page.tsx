@@ -12,7 +12,7 @@ export default function FavoritesPage() {
         <div className="c-container">
           <div className="p-sub-mv__content">
             <div
-              className="p-sub-mv__image"
+              className="p-sub-mv__image favorite"
               style={{ backgroundImage: "url('/favorites/bg-mv.jpg')" }}
             ></div>
             <div className="p-sub-mv__bg"></div>

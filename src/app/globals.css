@@ -204,6 +204,14 @@ a:hover {
     font-size: 1.5rem;
   }
 
+  .p-sub-mv__image.mypage {
+    background-position: left;
+  }
+
+  .p-sub-mv__image.favorite {
+    background-position: left;
+  }
+
   .p-cats-parameters__content {
     margin-top: 30px;
   }
