@@ -7,6 +7,13 @@
   margin: 0 auto;
 }
 
+.loginItemHead {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d9d9d9;
+  font-weight: bold;
+}
+
 .loginForm {
   margin-top: 50px;
 }
@@ -42,4 +49,33 @@
 
 .loginBtn {
   margin-top: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    margin-top: 40px;
+  }
+
+  .loginItemHead {
+    padding-bottom: 5px;
+    font-size: 0.875rem;
+  }
+
+  .loginForm {
+    margin-top: 40px;
+  }
+
+  .loginItemDescInput {
+    line-height: 35px;
+    font-size: 0.875rem;
+  }
+
+  .loginLink {
+    margin: 30px auto 0;
+    font-size: 0.8rem;
+  }
+
+  .loginBtn {
+    margin-top: 30px;
+  }
 }
