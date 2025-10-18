@@ -105,6 +105,9 @@
   display: none;
 }
 
+/* ============================================
+   スマホ対応
+   ============================================ */
 @media screen and (max-width: 768px) {
   .navItem {
     font-size: 0.7rem;
@@ -112,7 +115,7 @@
 
   .navLinks {
     gap: 10px;
-    display: none;
+    display: none; /* PC用メニューを非表示 */
   }
 
   .authItem {
@@ -122,7 +125,7 @@
   }
 
   .authLinks {
-    display: none;
+    display: none; /* PC用認証リンクを非表示 */
   }
 
   .headerLogoImg {
@@ -130,8 +133,10 @@
     height: auto;
   }
 
+  /* ハンバーガーアイコンを表示 */
   .hamIconBox {
     display: block;
+    margin-left: 15px;
   }
 
   .hamIconInner {
@@ -164,6 +169,7 @@
     transform: translateY(-100%);
   }
 
+  /* ×マークへの変形 */
   .hamIconInner.active .hamIconBar:nth-child(1) {
     top: 50%;
     transform: translateY(-50%) rotate(45deg);
@@ -178,6 +184,7 @@
     transform: translateY(-50%) rotate(-45deg);
   }
 
+  /* オーバーレイ */
   .overlay {
     display: block;
     position: fixed;
@@ -191,11 +198,12 @@
     transition: opacity 0.3s ease;
   }
 
+  /* スマホメニュー */
   .spMenu {
     display: block;
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* 初期状態は画面外 */
     width: 80%;
     max-width: 300px;
     height: 100%;
@@ -208,13 +216,14 @@
   }
 
   .spMenu.open {
-    right: 0;
+    right: 0; /* 開いた状態 */
   }
 
+  /* 閉じるボタン */
   .spMenuClose {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     width: 40px;
     height: 40px;
     background-color: transparent;
@@ -258,6 +267,25 @@
   }
 
   .spMenuItem a:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* ログアウトボタン */
+  .spMenuLogout {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .spMenuLogout:hover {
     background-color: #f5f5f5;
   }
 
