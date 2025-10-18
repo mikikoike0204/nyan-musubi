@@ -2,6 +2,12 @@
   margin-top: 30px;
 }
 
-.favoritesDisplay + .topNewcatList {
+.topNewcatList {
   margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .favoritesDisplay {
+    font-size: 0.875rem;
+  }
 }

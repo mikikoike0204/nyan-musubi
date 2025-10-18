@@ -111,10 +111,14 @@ export default function FavoriteCats({
     return favoriteCats.slice(startIndex, endIndex);
   };
 
-  if (loading) return <p>読み込み中...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="c-loading">読み込み中...</p>;
+  if (error) return <p className="c-loading">{error}</p>;
   if (favoriteCats.length === 0)
-    return <p>お気に入りに追加されたねこちゃんはまだいません。</p>;
+    return (
+      <p className="c-loading">
+        お気に入りに追加されたねこちゃんはまだいません。
+      </p>
+    );
 
   const currentCats = showPagination ? getCurrentPageData() : favoriteCats;
 
