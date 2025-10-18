@@ -1,28 +1,5 @@
 /* src/app/cats/new/page.module.css */
 
-.title {
-  position: relative;
-  padding-bottom: 15px;
-  font-weight: bold;
-  font-size: 26px;
-}
-
-.title::before {
-  position: absolute;
-  left: -10px;
-  bottom: 0px;
-  width: 100%;
-  height: 10px;
-  transform: skew(-45deg);
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent 0 4px,
-    #dfefff 4px 8px
-  );
-  content: "";
-  z-index: -1;
-}
-
 .content {
   display: flex;
   column-gap: 50px;
@@ -152,7 +129,6 @@
   padding: 0 10px;
   border: 1px solid #d1d5db;
   appearance: none;
-  height: 2.8em;
   cursor: pointer;
 }
 
@@ -351,4 +327,155 @@
 .postSliderSelectedItemAddInput {
   margin-top: 10px;
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 30px 0;
+    margin-top: 30px;
+  }
+
+  .contentTitle {
+    font-size: 1rem;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  .tableHead {
+    padding: 0 10px;
+    min-height: unset;
+    line-height: 35px;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .tableDesc {
+    min-height: unset;
+    line-height: 35px;
+  }
+
+  .explanation {
+    width: 100%;
+  }
+
+  .explanationItem + .explanationItem {
+    margin-top: 30px;
+  }
+
+  .explanationText {
+    margin-top: 10px;
+  }
+
+  .explanationText textarea {
+    padding: 5px;
+    font-size: 0.875rem;
+  }
+
+  .contact {
+    margin: 30px auto 0;
+  }
+
+  .postTitle {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.2rem;
+    gap: 5px 0;
+    margin-top: 30px;
+  }
+
+  .postTitleDesc {
+    width: 100%;
+  }
+
+  .postSelect {
+    padding: 0 10px;
+    min-height: unset;
+    line-height: 35px;
+    font-size: 0.9rem;
+    height: 35px;
+  }
+
+  .postSelectWrap::after {
+    right: 10px;
+  }
+
+  .postRadioWrap {
+    gap: 0 20px;
+  }
+
+  .postRadioWrap {
+    font-size: 0.875rem;
+  }
+
+  .postSubmit {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    width: 150px;
+    line-height: 30px;
+  }
+
+  .postThumbnail {
+    margin-top: 30px;
+  }
+
+  .postThumbnailLabel {
+    font-size: 1rem;
+    margin-right: 0;
+  }
+
+  .postThumbnailInput {
+    font-size: 0.875rem;
+  }
+
+  .postThumbnailImage {
+    font-size: 0.875rem;
+  }
+
+  .postThumbnailImageImgWrap {
+    width: 100px;
+  }
+
+  .postThumbnailImageText {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+  }
+
+  .postSliderLabel {
+    font-size: 1rem;
+  }
+
+  .postSliderSelected {
+    font-size: 0.875rem;
+  }
+
+  .postSliderSelectedText {
+    font-size: 0.875rem;
+  }
+
+  .postSliderSelectedItemImage {
+    width: 80px;
+    height: 80px;
+  }
+
+  .postSliderSelectedItemImageClose {
+    top: 3px;
+    right: 3px;
+    font-size: 1rem;
+  }
+
+  .postSliderSelectedItemAdd {
+    margin-top: 20px;
+  }
+
+  .postSliderSelectedItemAddLabel {
+    font-size: 0.875rem;
+  }
+
+  .postSliderSelectedItemAddInput {
+    font-size: 0.875rem;
+  }
 }
