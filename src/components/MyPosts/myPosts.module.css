@@ -31,6 +31,10 @@
   margin-top: 10px;
 }
 
+.newPost {
+  margin-top: 50px;
+}
+
 @media screen and (max-width: 768px) {
   .myPostsList {
     margin-top: 20px;

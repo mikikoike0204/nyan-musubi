@@ -11,7 +11,7 @@ export default async function MyPosts() {
     return (
       <>
         <p className="c-loading">まだ投稿がありません</p>
-        <Link href="/cats/new" className="c-common-btn">
+        <Link href="/cats/new" className={`c-common-btn ${styles.newPost}`}>
           新しく投稿する
         </Link>
       </>
