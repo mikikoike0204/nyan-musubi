@@ -38,3 +38,30 @@
   border-top: 1px solid #ddd;
   padding-top: 15px;
 }
+
+@media screen and (max-width: 768px) {
+  .commentListItemName {
+    font-size: 0.9rem;
+    margin-left: 5px;
+  }
+
+  .commentListItemDate {
+    margin-left: 15px;
+    font-size: 0.8rem;
+  }
+
+  .commentListItemContent {
+    margin-top: 5px;
+    font-size: 0.875rem;
+  }
+  .commentListItemDelete {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  .commentListItem + .commentListItem {
+    margin-top: 10x;
+    padding-top: 10px;
+  }
+}

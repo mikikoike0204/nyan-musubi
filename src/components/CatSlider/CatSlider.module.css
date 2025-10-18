@@ -53,3 +53,24 @@
 .detailSliderWrap :global(.swiper-button-prev:after) {
   font-size: 30px;
 }
+
+@media screen and (max-width: 768px) {
+  .detailSliderMain {
+    width: calc(100vw - 20px);
+    height: 260px;
+  }
+
+  .detailSliderThumb {
+    margin-top: 20px;
+  }
+
+  .detailSliderThumbSlide {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .detailSliderWrap :global(.swiper-button-next:after),
+  .detailSliderWrap :global(.swiper-button-prev:after) {
+    font-size: 25px;
+  }
+}

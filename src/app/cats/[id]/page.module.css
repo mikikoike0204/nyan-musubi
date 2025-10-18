@@ -126,3 +126,99 @@
   margin: 30px auto 0;
   max-width: 600px;
 }
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 1.2rem;
+    padding-left: 5px;
+    padding-bottom: 10px;
+  }
+
+  .title::before {
+    left: 0px;
+    height: 7px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 40px 0;
+    margin-top: 30px;
+  }
+
+  .contentTitle {
+    font-size: 1rem;
+  }
+
+  .table {
+    width: 100%;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  .tableList {
+    margin-top: 15px;
+  }
+
+  .tableItem {
+    text-align: center;
+    column-gap: 0;
+  }
+
+  .tableItem + .tableItem {
+    margin-top: 5px;
+  }
+
+  .tableHead {
+    padding: 0 10px;
+    width: 50%;
+    min-height: unset;
+    line-height: 30px;
+  }
+
+  .tableDesc {
+    min-height: unset;
+    padding: 0 15px;
+    line-height: 30px;
+  }
+
+  .explanation {
+    width: 100%;
+  }
+
+  .explanationItem + .explanationItem {
+    margin-top: 20px;
+  }
+
+  .explanationText {
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+
+  .explanationFav :global(.p-top-newcat__fav) {
+    width: 150px;
+    font-size: 0.9rem;
+    padding: 7px;
+  }
+
+  .contact {
+    margin: 40px auto 0;
+  }
+
+  .contact :global(.c-common-btn) {
+    border-radius: 30px;
+    font-size: 0.9rem;
+    width: 150px;
+    line-height: 30px;
+  }
+
+  /* comment */
+  .commentTitle {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    font-size: 1.2rem;
+  }
+
+  .commentContent {
+    margin: 15px auto 0;
+  }
+}
