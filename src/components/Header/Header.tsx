@@ -1,126 +1,188 @@
 "use client";
 
-import styles from "./Header.module.css";
-import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "@/lib/supabaseClient";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import styles from "./Header.module.css";
 
 export default function Header() {
-  const [user, setUser] = useState<any>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  // 初期ロード時にユーザー取得
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-    };
+    closeMenu();
+  }, [pathname]);
 
-    getUser();
-
-    // 状態変化（ログイン / ログアウト）を監視
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
     return () => {
-      authListener.subscription.unsubscribe();
+      document.body.style.overflow = "";
     };
-  }, []);
+  }, [isMenuOpen]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-  };
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className={styles.header}>
       <div className="c-container">
         <div className={styles.headerInner}>
-          <h1>
-            <Link className={styles.headerLogoLink} href="/">
-              <Image
-                src="/common/logo.png"
-                alt="にゃん結び"
-                width={75}
-                height={75}
-              />
-            </Link>
-          </h1>
+          <Link href="/" className={styles.headerLogoLink}>
+            <Image
+              src="/common/logo.png"
+              alt="にゃん結び"
+              width={75}
+              height={75}
+              className={styles.headerLogoImg}
+              priority
+            />
+          </Link>
+
           <nav className={styles.nav}>
-            <ul className={styles.navLinks}>
-              <li>
-                <Link className={styles.navItem} href="/">
-                  トップ
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.navItem} href="/cats">
-                  ねこちゃん一覧
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.navItem} href="/cats/new">
-                  新規投稿作成
-                </Link>
-              </li>
-              {user ? (
-                <>
-                  <li>
-                    <Link className={styles.navItem} href="/favorites">
-                      お気に入り
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className={styles.navItem} href="/mypage">
-                      マイページ
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                ""
-              )}
-            </ul>
-            <ul className={styles.authLinks}>
-              {user ? (
-                <>
-                  <li>
-                    <button
-                      className={`${styles.authItem} ${styles.authItemLogin}`}
-                      onClick={handleLogout}
-                    >
-                      ログアウト
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link
-                      className={`${styles.authItem} ${styles.authItemSignup}`}
-                      href="/signup"
-                    >
-                      新規登録
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className={`${styles.authItem} ${styles.authItemLogin}`}
-                      href="/login"
-                    >
-                      ログイン
-                    </Link>
-                  </li>
-                </>
-              )}
-            </ul>
+            <div className={styles.navInner}>
+              <ul className={styles.navLinks}>
+                <li className={styles.navItem}>
+                  <Link href="/cats">ねこを探す</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link href="/adopted">家族が決まったねこ</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link href="/favorites">お気に入り</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link href="/new">投稿する</Link>
+                </li>
+              </ul>
+
+              {/* 認証リンク */}
+              <ul className={styles.authLinks}>
+                <li>
+                  <Link
+                    href="/signup"
+                    className={`${styles.authItem} ${styles.authItemSignup}`}
+                  >
+                    新規登録
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/login"
+                    className={`${styles.authItem} ${styles.authItemLogin}`}
+                  >
+                    ログイン
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* ハンバーガーアイコン */}
+            <button
+              className={styles.hamIconBox}
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
+              aria-expanded={isMenuOpen}
+            >
+              <div
+                className={`${styles.hamIconInner} ${
+                  isMenuOpen ? styles.active : ""
+                }`}
+              >
+                <span className={styles.hamIconBar}></span>
+                <span className={styles.hamIconBar}></span>
+                <span className={styles.hamIconBar}></span>
+              </div>
+            </button>
           </nav>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div
+          className={styles.overlay}
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+      )}
+
+      <nav
+        className={`${styles.spMenu} ${isMenuOpen ? styles.open : ""}`}
+        aria-label="メインメニュー"
+      >
+        <button
+          className={styles.spMenuClose}
+          onClick={closeMenu}
+          aria-label="メニューを閉じる"
+        >
+          ✕
+        </button>
+
+        <ul className={styles.spMenuList}>
+          <li className={styles.spMenuItem}>
+            <Link href="/cats" onClick={closeMenu}>
+              ねこを探す
+            </Link>
+          </li>
+          <li className={styles.spMenuItem}>
+            <Link href="/adopted" onClick={closeMenu}>
+              家族が決まったねこ
+            </Link>
+          </li>
+          <li className={styles.spMenuItem}>
+            <Link href="/favorites" onClick={closeMenu}>
+              お気に入り
+            </Link>
+          </li>
+          <li className={styles.spMenuItem}>
+            <Link href="/new" onClick={closeMenu}>
+              投稿する
+            </Link>
+          </li>
+          <li className={styles.spMenuItem}>
+            <Link href="/mypage" onClick={closeMenu}>
+              マイページ
+            </Link>
+          </li>
+          <li className={styles.spMenuDivider}></li>
+          <li className={styles.spMenuItem}>
+            <Link href="/signup" onClick={closeMenu}>
+              新規登録
+            </Link>
+          </li>
+          <li className={styles.spMenuItem}>
+            <Link href="/login" onClick={closeMenu}>
+              ログイン
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
