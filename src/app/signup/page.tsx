@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabaseClient"; // ← 作成済みの Supabase client を import
+import { supabase } from "@/lib/supabaseClient";
 import styles from "./page.module.css";
 import Link from "next/link";
 

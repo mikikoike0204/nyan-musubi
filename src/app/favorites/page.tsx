@@ -1,4 +1,3 @@
-// src/app/favorites/page.tsx
 "use client";
 
 import FavoriteCats from "@/components/FavoriteCats/FavoriteCats";

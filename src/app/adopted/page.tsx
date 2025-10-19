@@ -1,4 +1,3 @@
-// src/app/adopted/page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -6,15 +5,9 @@ import CatSearch from "@/components/CatSearch/CatSearch";
 import Select from "@/components/Select/Select";
 import CatList from "@/components/CatList/CatList";
 import { Cat } from "@/types/cat";
-import { createBrowserClient } from "@supabase/ssr";
 import Pagination from "@/components/Pagination/Pagination";
 import styles from "./page.module.css";
-
-// Supabaseクライアントの初期化
-const supabase = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/supabaseClient";
 
 const ITEMS_PER_PAGE = 8; // 1ページあたりの表示件数
 

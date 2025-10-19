@@ -1,4 +1,5 @@
 "use client";
+
 import TopSlider from "@/components/TopSlider/TopSlider";
 import Link from "next/link";
 import styles from "./page.module.css";

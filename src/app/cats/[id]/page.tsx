@@ -1,4 +1,3 @@
-// src/app/cats/[id]/page.tsx
 import CatSlider from "@/components/CatSlider/CatSlider";
 import EditButton from "@/components/EditButton/EditButton";
 import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";

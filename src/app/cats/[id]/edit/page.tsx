@@ -1,4 +1,3 @@
-// src/app/cats/[id]/edit/page.tsx
 "use client";
 
 import { use, useState, useEffect } from "react";

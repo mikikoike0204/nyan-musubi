@@ -1,5 +1,3 @@
-// src/app/mypage/page.tsx
-import CatList from "@/components/CatList/CatList";
 import MyPosts from "@/components/MyPosts/MyPosts";
 import Link from "next/link";
 import { Suspense } from "react";

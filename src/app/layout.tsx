@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import "./destyle.css";
 import "./globals.css";
 import type { Metadata } from "next";

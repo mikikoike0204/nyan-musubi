@@ -1,4 +1,3 @@
-// src/lib/catApi.ts
 import { supabase } from "./supabaseClient";
 
 export type Cat = {

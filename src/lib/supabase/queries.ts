@@ -1,4 +1,3 @@
-// src/lib/supabase/queries.ts
 import { createClient } from "@/utils/supabase/server";
 
 export async function getMyPosts() {
